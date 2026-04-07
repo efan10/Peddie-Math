@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% Page Setup
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em}
+\setcounter{secnumdepth}{3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% Section Formatting
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% mathematical commands
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\example}[2]{\begin{tcolorbox}[title={Example: #1},colback=brown!5!white,colframe=brown!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\remark}[2]{\begin{tcolorbox}[title={#1},colback=black!5!white,colframe=black!75!black,parbox=false] #2 \end{tcolorbox}}
+
+% Document
+\begin{document}
+
+\vspace*{0cm}
+
+\begin{center}
+    {\Large \bfseries Problem Set 55} \\[0.5cm]
+    {\large Complex Numbers} \\[0.35cm]
+    {\normalsize February 20, 2026}
+\end{center}
+
+% Questions
+
+\section{Question 5}
+Suppose we define a sequence of complex numbers by $z_1=0$ and $z_{n+1} = z_n^2 + i$ for $n \ge 1$. How far away from the origin is $z_{111}$?
+\begin{align*}
+    z_1&=0\\
+    z_2&=z_1^2+i=i\\
+    z_3&=z_2^2+i=-1+i\\
+    z_4&=z_3^2+i=-2i+i=-i\\
+    z_5&=z_4^2+i=-1+i
+\end{align*}
+
+The sequence repeats with a period of 2 starting from $z_3$.
+\begin{gather*}
+    111 \equiv 1 \pmod 2 \implies z_3=z_{111}\\
+    \boxed{|z_{111}|=\sqrt{2}}
+\end{gather*}
+
+\section{Question 6}
+Answer each question below about complex numbers $z$ and $w$.
+
+\subsection{(a)} \, Prove $z\overline{z}=|z|^2.$
+\begin{gather*}
+    z=x+yi\\
+    z\overline{z}=(x+yi)(x-yi)=x^2+y^2=|z|
+\end{gather*}
+
+\subsection{(b)} \, Suppose $|z + w| = 2$ and $|z| = |w| = 3$. Find $|z - w|$.
+\begin{gather*}
+    2^2=3^2+3^2-2\cdot3\cdot3 \cos\theta \implies 18 \cos \theta = 14\\
+    |z-w|=\sqrt{3^2+3^2+2\cdot3\cdot3\cos\theta}=\sqrt{32}\\
+    \boxed{|z-w|=4\sqrt{2}}
+\end{gather*}
+
+\section{Question 7}
+Equations involving magnitudes of complex numbers.
+
+\vspace{0.3em}
+
+\subsection{(a)} \, Find and graph all $z$ such that $|z-3|=|z+2i|$. \\
+\textit{Hint: either interpret geometrically or square both sides and consider problem 7a. See if you can solve it both ways to improve your understanding.}
+
+\vspace{0.3em}
+Geometric:
+\begin{gather*}
+    |z-3|=|z+2i|\\
+    z \text{ is equidistance from $(3,0)$ and $(0,-2)$}\\
+    \dydx=\frac{2}{3}, \ \text{midpoint}=(1.5,-1)\\
+    y+1=-\frac{3}{2}(x-\frac{3}{2})\\
+    \boxed{y=-\frac{3}{2}x+\frac{5}{4}}
+\end{gather*}
+
+Algebra:
+\begin{gather*}
+    |z-3|=|z+2i|\\
+    |x-3+yi|=|x+(y+2)i|\\
+    (x-3)^2+y^2=x^2+(y+2)^2\\
+    x^2-6x+9+y^2=x^2+y^2+4y+4\\
+    4y=-6x+5\\
+    \boxed{y=-\frac{3}{2}x+\frac{5}{4}}
+\end{gather*}
+
+\subsection{(b)} \,  $z + |z| = 2 + 8i$. Determine $|z|$. \textit{Hint: $|z|$ is a magnitude, so consider change of variables $r = |z|$}.
+
+\begin{gather*}
+    z + |z| = 2 + 8i\\
+    x+yi+\sqrt{x^2+y^2}=2+8i\\
+    y=8 \implies x+\sqrt{x^2+8^2}=2\\
+    (x-2)^2=x^2+64\\
+    x^2-4x+4=x^2+64\\
+    4x=-60 \implies x=-15\\
+    \sqrt{x^2+y^2}=\sqrt{(-15)^2+8^2}=\sqrt{289}=17\\
+    \boxed{|z|=17}
+\end{gather*}
+
+\section{Question 8}
+Find the area of the region enclosed by the graph of $|z - 4 + 5i| = 2\sqrt{3}$ in the complex plane.
+\begin{gather*}
+    |z - 4 + 5i| = 2\sqrt{3}\\
+    |(x-4)+(y+5)i|=2\sqrt{3}\\
+    (x-4)^2+(y+5)^2=12\\
+    \pi r^2=12\pi\\
+    \boxed{\text{Area}=12\pi}
+\end{gather*}
+
+\section{Question 10}
+
+Consider the quadratic equation $ax^2 + bx + c = 0$ with non-real coefficients. Given that the equation has imaginary roots and the sum of the cubes of these roots is a real number, prove that the coefficients $a$, $b$, and $c$ form a geometric progression (or geometric sequence)
+\begin{gather*}
+    ax^2+bx+c=0,\ z_1^3+z_2^3\in \mathbb{R}\\
+    z_1^3+z_2^3=(z_1+z_2)^3-3(z_1+z_2)(z_1z_2)
+\end{gather*}
+
+Applying Vieta's gives:
+\begin{gather*}
+    (\frac{-b}{a})^3-3(\frac{-b}{a})(\frac{c}{a})=\frac{3bc}{a^2}-\frac{b^3}{a^3}\in \mathbb{R}\\
+    \arg(\frac{3bc}{a^2})=\arg(\frac{b^3}{a^3})\\
+    \arg b +\arg c - 2 \arg a=3 \arg b - 3 \arg a \\
+    \arg a + \arg c = 2\arg b \implies ac=b^2 \\
+    \boxed{a, b, c \text{ progresses geometrically}}
+\end{gather*}
+
+
+
+\end{document}
+
