@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+% Page Setup
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em}
+\setcounter{secnumdepth}{3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% Section Formatting
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% mathematical commands
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+
+% Document
+\begin{document}
+
+\vspace*{0cm}
+
+\begin{center}
+    {\Large \bfseries Problem Set 52} \\[0.5cm]
+    {\large Parametric Equations and Their Drama} \\[0.35cm]
+    {\normalsize February 9, 2026}
+\end{center}
+
+% Questions
+
+\section{Question 1}
+Given $Q(0,3)$ and $C: 20x^2-12xy+y^2+3=0$, find all points $P(x,y)$ on $C$ such that the tangent line to $C$ at $P$ passes through the point $Q(0,3)$.
+\begin{gather*}
+   \ddx(20x^2-12xy+y^2+3)=0\\
+   40x-12y-12xy'+2yy'=0\\
+   \dydx=\frac{20x-6y}{6x-y}\\
+    \frac{20x-6y}{6x-y}=\frac{y-3}{x}\\
+    20x^2-6xy=6xy-18x-y^2+3y\\
+    20x^2-12xy+18x+y^2-3y=0\\
+    18-3y-3=0\\
+    y=6x-1\\
+    20x^2-12x(6x-1)+(6x-1)^2+3=0\\
+    20x^2-72x^2+12x+36x^2-12x+1+3=0\\
+    16x^2=4\implies x=\pm 1/2\\
+    \boxed{(\frac{1}{2},2),(-\frac{1}{2},-4)}
+\end{gather*}
+
+\section{Question 2}
+Given parametric equations $\tan t+\cot t=x^3$ and $\sec t- \cos t= y^3$, find function $f(x,y)=1$ by eliminating $t$.
+\begin{gather*}
+    \frac{\sin t}{\cos t}+\frac{\cos t}{\sin t}=\frac{1}{\cos t\sin t}=\frac{1}{\cos t \sqrt{1-\cos^2t}}=x^3\\
+    \frac{1}{\cos t}-\cos t = \frac{\sin^2}{\cos t}=\frac{1-\cos^2t}{\cos t}=y^3\\
+    x^6y^3=\frac{1}{\cos^3t}\implies x^2y=\frac{1}{\cos t}\\
+    \frac{x}{y}=\frac{1}{\sqrt{1-\cos^2t}}\implies \frac{x^2}{y^2}=\frac{1}{1-\cos^2t}\\
+    x^2(1-\cos^2t)=y^2\implies x^2-y^2=x^2\cos^2t\\
+    x^2-y^2=\frac{x^2}{x^4y^2}=\frac{1}{y^2x^2}\\
+    \boxed{x^2y^2(x^2-y^2)=1}
+\end{gather*}
+
+\section{Question 3}
+Given point $(2,1)$ on curve $x^4+ky^4=16+k$, find the unique nonzero $k$ such that $y'(2)=y''(2).$
+\begin{gather*}
+    \ddx (x^4+ky^4)=0\\
+    4x^3+4ky^3y'=0 \implies \dydx=-\frac{x^3}{ky^3}\\
+    \frac{d^2y}{dx^2}=\frac{x^3(3ky^2y')-ky^3(3x^2)}{k^2y^6}\\
+    \frac{d^2y}{dx^2}=\frac{(3x^2(xy'-y)}{ky^4}\\
+    \frac{d^2y}{dx^2}=-\frac{x^2(3y+3x(\frac{x^3}{ky^3}))}{ky^4}\\
+    y'(2)=y''(2)\implies -\frac{x^2(3y+3x(\frac{x^3}{ky^3}))}{ky^4}=-\frac{x^3}{ky^3}\\
+    \frac{3y+\frac{3x^4}{ky^3}}{y}=x\\
+    3-x=-\frac{3x^4}{ky^4}\\
+    3-2=-\frac{3(2^4)}{ky^4}\\
+    1=-\frac{3(2^4)}{16+k-2^4}\\
+    k=\frac{-3(2^4)}{-1}\\
+    \boxed{k=-48}
+\end{gather*}
+
+\section{Question 4}
+For a quadratic polynomial $p(x)=ax^2+bx+c$, given that the graphs of $p$ and its derivative $p'$ are tangent at point $(2,1)$, find all such polynomials $p(x)$.
+\begin{gather*}
+    p(x)=ax^2+bx+c\\
+    \ddx(ax^2+bx+c)=2ax+b\\
+    y-1=(4a+b)(x-2)\implies y=(4a+b)x-8a-2b+1\\
+    (4a+b)=2a \implies 2a+b=0\\
+    b=-8a-2b+1 \implies b=2b+1\\
+    b=1,\, a=-\frac{1}{2}\\
+    p(2)=-\frac{1}{2}x^2+x+c\\
+    -\frac{1}{2}(2^2)+2+c=1\implies c=1\\
+    \boxed{p(x)=-\frac{1}{2}x^2+x+1}
+\end{gather*}
+
+\section{Question 5}
+Given parametric equations $x=\frac{t^2}{3}$ and $y=\frac{2t}{3}$, find normal line through point $P$ on function $f(x,y)$ that intersects curve again at point $Q$. Show that the shortest distance $|PQ|=\sqrt{12}$.
+\begin{gather*}
+    x=\frac{t^2}{3}, \, y=\frac{2t}{3} \implies y=\frac{3}{4}x^2\\
+    \dydx=\frac{3}{2}x\\
+    P=(a,\frac{3}{4}a^2) \implies y-\frac{3}{4}a^2=-\frac{2}{3a}(x-a)\\
+    y=\frac{3}{4}x^2+\frac{2}{3a}x-\frac{3}{4}a^2-\frac{2}{3}=0\\
+    y=\frac{3}{4}(x-a)(x+a+\frac{8}{9a})\\
+    \Delta x=a+a+\frac{8}{9a}=2a+\frac{8}{9a}\\
+    \Delta y=\frac{3}{4}(a+\frac{8}{9a})^2-\frac{3}{4}a^2=\frac{16}{27a^2}+\frac{4}{3}\\
+    |PQ|=\sqrt{(\Delta x)^2+(\Delta y)^2}\\
+    |PQ|=\sqrt{(2a+\frac{8}{9a})^2+(\frac{16}{27a^2}+\frac{4}{3})^2}\\
+    |PQ|=\sqrt{4a^2+\frac{16}{3}+\frac{64}{27a^2}+\frac{256}{729a^4}}\\
+    \min (4a^2+\frac{16}{3}+\frac{64}{27a^2}+\frac{256}{729a^4})=12\\
+    \boxed{\min |PQ|=\sqrt{12}}
+\end{gather*}
+
+\end{document}
+
