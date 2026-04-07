@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+% Page Setup
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em}
+\setcounter{secnumdepth}{3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% Section Formatting
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% mathematical commands
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+
+% Document
+\begin{document}
+
+\vspace*{0cm}
+
+\begin{center}
+    {\Large \bfseries Problem Set 53} \\[0.5cm]
+    {\large Polar Coordinates} \\[0.35cm]
+    {\normalsize February 12, 2026}
+\end{center}
+
+% Questions
+
+\section{Question 5}
+\subsection{(a)} \, Find the distance between the points with polar coordinates $(2,\frac{\pi}{3})$ and $(4,\frac{2\pi}{3})$.
+\begin{gather*}
+d^2 = 2^2+4^4-2\cdot2\cdot4\cos(\frac{2\pi}{3}-\frac{\pi}{3})=4+16-16\cdot\frac{1}{2}=12\\
+\boxed{d=2\sqrt{3}}
+\end{gather*}
+
+\subsection{(b)} \, Find a formula for the distance between the points with polar coordinates $(r_1, \theta_1)$ and $(r_2, \theta_2)$.
+\begin{gather*}
+\boxed{d=\sqrt{r_1^2+r_2^2-2r_1r_2\cos(\theta_2-\theta_1)}}
+\end{gather*}
+
+\section{Question 9}
+The two curves $r_1=3+2\cos \theta,\ 0\le \theta\le 2\pi$ and $r_2=2$ intersect at two points $A$ and $B$. Given that a line passing through the point $A$ and the pole intersects the curve $r_1$ at a distinct point $C$, show that the line $BC$ is tangent to the curve $r_2$ at $B$.
+\begin{gather*}
+    r_1=3+2\cos \theta,\  r_2=2 \implies -1=2\cos\theta\\
+    \cos\theta=-\frac{1}{2}\implies \theta=\frac{2\pi}{3} \ \text{or}\ \frac{4\pi}{3}\\
+    A, B = (2,\frac{2\pi}{3}),(2,\frac{4\pi}{3})
+\end{gather*}
+As points $A$ and $B$ are reflections over the x-axis, we assume that $A$ = $(2,\frac{2\pi}{3})$ without loss of generalization. 
+\begin{gather*}
+    AC: \theta=\frac{2\pi}{3} \text{ or } -\frac{\pi}{3}\implies r_1=3-2\cos \frac{\pi}{3}=4\\
+    C=(4,-\frac{\pi}{3})=(2,-2\sqrt{3}), B=(2,\frac{4\pi}{3})=(-1,-\sqrt{3})\\
+    BC:y+\sqrt{3}=-\frac{\sqrt{3}}{3}(x+1)\implies y=-\frac{\sqrt{3}}{3}x-\frac{4\sqrt{3}}{3}\\
+    x^2+y^2=x^2+(-\frac{\sqrt{3}}{3}x-\frac{4\sqrt{3}}{3})^2=\frac{4}{3}x^2+\frac{8}{3}x+\frac{16}{3}=4\\
+    x^2+2x+1=0\implies(x+1)^2=0\\
+    \boxed{BC \perp r_2 \text{ at } B}
+\end{gather*}
+
+
+\end{document}
+
