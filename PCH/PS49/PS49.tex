@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+
+% ---------- Packages ----------
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+% ---------- Page Setup ----------
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em}
+\setcounter{secnumdepth}{3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% ---------- Section Formatting ----------
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% mathematical commands
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+
+% ---------- Document ----------
+\begin{document}
+
+\vspace*{0cm}
+
+\begin{center}
+    {\Large \bfseries Problem Set 49} \\[0.5cm]
+    {\large Rotational Conic Section} \\[0.35cm]
+    {\normalsize January 30, 2026}
+\end{center}
+
+% QUESTIONS
+
+\section{Question 2}
+The probe's trajectory is modeled by the equation:
+\[
+x^2-4xy+4y^2-10\sqrt{5}x-20\sqrt{5}y+75=0
+\]
+
+\subsection{(c)} \, Implicit Differentiation: Using the original equation, find the expression for the slope of the path, $\dfrac{dy}{dx}$.
+\begin{gather*}
+\dfrac{d}{dx}(x^2-4xy+4y^2-10\sqrt{5}x-20\sqrt{5}y+75)=0 \\
+2x-4(y+x\dydx)+8y\dydx-10\sqrt{5}-20\sqrt{5}\dydx=0 \\
+\dydx(8y-4x-20\sqrt{5})=4y-2x+10\sqrt{5} \\
+\boxed{\dydx=\frac{4y-2x+10\sqrt{5}}{8y-4x-20\sqrt{5}}}
+\end{gather*}
+
+\subsection{(d)} \, The "Critical Point": Calculate the exact slope of the probe's path at the point $(x,y)$ where $x=0$ (assume $y>0$).
+\begin{gather*}
+x=0 \Rightarrow 0^2-4\cdot0\cdot y+4y^2-10\sqrt{5}\cdot0 -20\sqrt{5}y+75=0\\
+4y^2-20\sqrt5y+75=0\\
+y=\frac{20\sqrt5 \pm \sqrt{2000-1200}}{8}=\frac{20\sqrt{5}\pm20\sqrt{2}}{8}=\frac{5\sqrt{5}\pm5\sqrt{2}}{2}\\
+y=\frac{5}{2}(\sqrt{5}+\sqrt{2})\\
+\dydx=\frac{4y-2x+10\sqrt{5}}{8y-4x-20\sqrt{5}}
+\dydx=\frac{10(\sqrt{5}+\sqrt{2})+10\sqrt{5}}{20(\sqrt{5}+\sqrt{2})-20\sqrt{5}}=\frac{2\sqrt{5}+\sqrt{2}}{2\sqrt{2}}\\
+\boxed{\dydx=\frac{\sqrt{10}+1}{2}}
+\end{gather*}
+
+\section{Question 3}
+The planet's surface is modeled by the sphere $x^2+y^2+z^2=R^2$. The satellite's orbital plane is "tilted," described by the quadric intersection of a cylinder and a plane. However, from the mission control's perspective, the satellite's 3D position $(x,y,z)$ is constrained by the following equation in the $xy$-plane (the ground projection):
+\[
+7x^2-6\sqrt{3}xy+13y^2=16
+\]
+
+\subsection{(a)} \, Standardize the projection: Use a rotation of axes to eliminate the $xy$ term. Find the lengths of the semi-major axis $(a)$ and semi-minor axis (b) of this ground projection.
+\begin{gather*}
+    cot(2\theta)=\frac{A-C}{B}=\frac{-6}{-6\sqrt{3}}=\frac{\sqrt{3}}{3}\\
+    \cos\theta=\frac{\sqrt{3}}{2}, \ \sin{\theta}=\frac{1}{2}\\
+    \begin{cases}
+        x=u\cos\theta -v\sin\theta = \frac{\sqrt{3}u}{2}-\frac{v}{2}\\
+        y=u\sin\theta + v\cos\theta = \frac{u}{2}+\frac{v\sqrt{3}}{2}
+    \end{cases}\\
+    7(\frac{\sqrt{3}u}{2}-\frac{v}{2})^2-6\sqrt{3}(\frac{\sqrt{3}u}{2}-\frac{v}{2})(\frac{u}{2}+\frac{v\sqrt{3}}{2})+13(\frac{u}{2}+\frac{v\sqrt{3}}{2})^2=64\\
+    7(3u^2-2\sqrt{3}uv+v^2)-6\sqrt{3}(\sqrt{3}u^2+3uv-uv-\sqrt{3}v^2)+13(u^2+2\sqrt{3}uv+3v^2)=64\\
+    (21-18+13)u^2+(26\sqrt{3}-14\sqrt{3}-12\sqrt{3})uv+(7+18+39)v^2=64\\
+    \frac{u^2}{4}+v^2=1\\
+    a^2=4,\ b^2=1\\
+    \boxed{a=2,\ b=1}
+\end{gather*}
+
+\subsection{(b)} \, Determine Eccentricity: Calculate the eccentricity $(e)$ of the projected orbit.
+\begin{gather*}
+    c=\sqrt{a^2-b^2}=\sqrt{3}\\
+    e=\frac{c}{a}\\
+    \boxed{e=\frac{\sqrt{3}}{2}}
+\end{gather*}
+
+\subsection{(c)} \, Find the Ground Velocity: Given $\dfrac{dx}{dt}=500$ km/h, use implicit differentiation on the original equation to find the rate of change of the y-coordinate $(\dfrac{dy}{dt})$ at that specific moment.
+\begin{gather*}
+    \dfrac{dx}{dt}=500,\ u=0,\ v=1\\
+    x= -\frac{1}{2}, \ y= \frac{\sqrt{3}}{2}\\
+    \dfrac{d}{dt}(7x^2-6\sqrt{3}xy+13y^2)=0\\
+    14x\dfrac{dx}{dt}-6\sqrt{3}(x\dfrac{dy}{dt}+y\dfrac{dx}{dt})+26y\dfrac{dy}{dt}=0\\
+    7000x-6\sqrt{3}(x\dfrac{dy}{dt}+500y)+26y\dfrac{dy}{dt}=0\\
+    -3500+3\sqrt{3}\dfrac{dy}{dt}-4500+13\sqrt{3}\dfrac{dy}{dt}=0\\
+    \dfrac{dy}{dt}=\frac{8000\sqrt{3}}{48}\\
+    \boxed{\dfrac{dy}{dt}=\frac{500\sqrt{3}}{3}}
+\end{gather*}
+
+\subsection{(d)} \, Extrapolation to 3D: If the orbital plane is defined by $z=x+y$, find the satellite's vertical velocity $\dfrac{dz}{dt}$ at that same moment.
+\begin{gather*}
+    z=x+y\\
+    \dfrac{dz}{dt}=\dfrac{dx}{dt}+\dfrac{dy}{dt}\\
+    \boxed{\dfrac{dz}{dt}=\frac{1500+500\sqrt{3}}{3}}    
+\end{gather*}
+
+\subsection{(e)} \, Find the Coordinate: Determine the exact $(u,v)$ coordinates of the satellite when $u=v$.
+\begin{gather*}
+    u=v\\
+    \frac{u^2}{4}+u^2=1\\
+    u^2=\frac{4}{5}\\
+    u=v=\frac{2\sqrt{5}}{5}\\
+    \boxed{(\frac{2\sqrt{5}}{5},\frac{2\sqrt{5}}{5})}
+\end{gather*}
+
+\subsection{(f)} \, Calculate the Sector Area: Find the area of the elliptical sector swept from the major axis to this point.
+\begin{gather*}
+    \frac{u^2}{4}+u^2=1\\
+    u=2\cos\phi,\ v=1\sin \phi\\
+    \frac{4\cos^2\phi}{4}+{\sin\phi}^2=1\\
+    \cos^2\phi + \sin^2\phi=1\\
+    \sin\phi=2\cos\phi\\
+    \tan\phi=2\\
+    \phi=\arctan2\\
+    \boxed{Area_{ellipse}=\frac{1}{2}ab\,\phi=\arctan2}
+\end{gather*}
+
+\subsection{(g)} \, Determine Time: If the total orbital period T is 12 hours, how much time has elapsed since the satellite passed the periapsis?
+\begin{gather*}
+    T\propto a\\
+    \frac{t}{12}=\frac{\arctan2}{2\pi}\\
+    \boxed{t=\frac{6\arctan2}{\pi}}
+\end{gather*}
+
+\subsection{(h)} \, Identify the Point in xy-Coordinates.
+\begin{gather*}
+    \begin{cases}
+        x=u\cos\theta -v\sin\theta =\frac{\sqrt{15}-\sqrt{5}}{5}\\
+        y=u\sin\theta + v\cos\theta = \frac{\sqrt{15}+\sqrt{5}}{5}
+    \end{cases}\\
+    \boxed{(\frac{\sqrt{15}-\sqrt{5}}{5},\ \frac{\sqrt{15}+\sqrt{5}}{5})}
+\end{gather*}
+
+\subsection{(i)} \, Calculate the Slope at this Point.
+\begin{gather*}
+    7x^2-6\sqrt{3}xy+13y^2=16\\
+    \ddx(7x^2-6\sqrt{3}xy+13y^2)=0\\
+    14x-6\sqrt{3}(x\dydx+y)+26y\dydx=0\\
+    \dydx=\frac{6\sqrt{3}y-14x}{26y-6\sqrt{3}x}=\frac{3\sqrt{3}y-7x}{13y-3\sqrt{3}x}\\
+    （\frac{\sqrt{15}-\sqrt{5}}{5},\ \frac{\sqrt{15}+\sqrt{5}}{5})\Rightarrow
+    \frac{3\sqrt{3}(\sqrt{15}+\sqrt{5}) - 7(\sqrt{15}-\sqrt{5})}
+{13(\sqrt{15}+\sqrt{5}) - 3\sqrt{3}(\sqrt{15}-\sqrt{5})}\\
+\dydx=\frac{(3\sqrt{3}-7)\sqrt{3}+(3\sqrt{3}+7)}{(13-3\sqrt{3})\sqrt{3}+(13+3\sqrt{3})}\\
+\dydx=\frac{4-\sqrt{3}}{1+4\sqrt{3}}\\
+\dydx=\frac{-4+16\sqrt{3}+\sqrt{3}-12}{47}\\
+\boxed{\dydx=\frac{17\sqrt{3}-16}{47}}
+\end{gather*}
+
+\subsection{(j)} \, Construct the Tangent Equation. 
+\begin{gather*}
+    \boxed{y-\frac{\sqrt{15}+\sqrt{5}}{5}=(\frac{17\sqrt{3}-16}{47})(x-\frac{\sqrt{15}-\sqrt{5}}{5})}
+\end{gather*}
+
+\end{document}
+
