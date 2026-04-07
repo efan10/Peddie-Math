@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% Page Setup
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em}
+\setcounter{secnumdepth}{3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+\allowdisplaybreaks
+
+% Section Formatting
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% mathematical commands
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\example}[2]{\begin{tcolorbox}[title={Example: #1},colback=brown!5!white,colframe=brown!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\remark}[2]{\begin{tcolorbox}[title={#1},colback=black!5!white,colframe=black!75!black,parbox=false] #2 \end{tcolorbox}}
+
+% Document
+\begin{document}
+
+\vspace*{0cm}
+
+\begin{center}
+    {\Large \bfseries Problem Set 57} \\[0.5cm]
+    {\large Euler's Form of a Complex Number} \\[0.35cm]
+    {\normalsize February 26, 2026}
+\end{center}
+
+% Questions
+
+\section{Question 2}
+Evaluate the following:
+
+\vspace{0.3em}
+\subsection{(a)} \, $(1+i)^{20}$
+\begin{gather*}
+    (1+i)^{20}=(\sqrt{2}e^{i\frac{\pi}{4}})^{20}=1024e^{5i\pi}=\boxed{-1024}
+\end{gather*}
+
+\subsection{(b)} \, $(3-i\sqrt{3})^5$
+\begin{gather*}
+    (3-i\sqrt{3})^5=(2\sqrt{3}e^{i\frac{11\pi}{6}})^5=288\sqrt{3}e^{i\frac{7\pi}{6}}=\boxed{-432-144\sqrt{3}i}
+\end{gather*}
+
+\section{Question 3}
+For what values of $\theta$ is $e^{i\theta}=1$?
+\begin{gather*}
+    e^{i\theta}=\cos \theta + i\sin \theta=1 \implies \theta=\arccos1\\
+    \boxed{\theta=2k\pi,\quad k\in\mathbb{Z}}
+\end{gather*}
+
+\section{Question 4}
+Show that if $z=re^{i\theta}$, then $\overline{z}=re^{-i\theta}$.
+\begin{gather*}
+    z=re^{i\theta}=r(\cos \theta + i\sin \theta)\\
+    \overline{z}=r(\cos \theta -i\sin \theta) = r(\cos (-\theta)+i \sin (-\theta)) = re^{-i\theta}\\
+    \boxed{\overline{z}=re^{-i\theta}}
+\end{gather*}
+
+\section{Question 5}
+Answer each question below.
+
+\vspace{0.3em}
+\subsection{(a)} \, Show that $Re(z)=\dfrac{z+\overline{z}}{2}$ and $Im(z)=\dfrac{z-\overline{z}}{2i}$.
+\begin{gather*}
+    z=a+bi,\  \overline{z}=a-bi\\
+    Re(z)=a=\frac{(a+bi)+(a-bi)}{2}=\dfrac{z+\overline{z}}{2}\\
+    Im(z)=b=\frac{(a+bi)-(a-bi)}{2i}=\dfrac{z-\overline{z}}{2i}
+\end{gather*}
+
+\subsection{(b)} \, Let $z=e^{i \theta}$ be a complex number. Prove:
+\[
+\cos \theta =\frac{1}{2}(e^{i \theta}+e^{-i \theta}) \quad \quad \sin\theta =\frac{1}{2i}(e^{i \theta}-e^{-i \theta})
+\]
+\begin{gather*}
+    z=e^{i \theta}=\cos \theta + i\sin \theta, \ \overline{z}=e^{-i \theta}=\cos \theta - i \sin \theta\\
+    \cos \theta = \frac{(\cos \theta + i\sin \theta)+(\cos \theta - i \sin \theta)}{2}=\frac{1}{2}(e^{i \theta}+e^{-i \theta})\\
+    \sin \theta = \frac{(\cos \theta + i\sin \theta)-(\cos \theta - i \sin \theta)}{2i} = \frac{1}{2i}(e^{i \theta}-e^{-i \theta})
+\end{gather*}
+
+\subsection{(c)} \, Use the results from (a) and (b) to help determine values for $\sin (i)$ and $\cos (i)$. Leave your answers in exact form. 
+\begin{gather*}
+    \cos (i)=\frac{1}{2}(e^{i^2}+e^{-i^2})=\boxed{\frac{e+e^{-1}}{2}}\\
+    \sin (i)=\frac{1}{2i}(e^{i^2}-e^{-i^2})=\boxed{\frac{e-e^{-1}}{2}i}
+\end{gather*}
+
+\section{Question 6}
+Let $-\dfrac{\pi}{4}\le \arg z \le \dfrac{2\pi}{3}$ and $|z| \le1 $. Determine the maximum value of $|w-z|^2$, where $w=1+\sqrt{3}i$.
+\begin{gather*}
+    \arg w=\arctan \frac{\sqrt{3}}{1}=\frac{\pi}{3}\\
+    \arg z \to \frac{4\pi}{3} \implies \arg z = -\frac{\pi}{4}\\
+    \theta =\arg w - \arg z = \frac{7\pi}{12}\\
+    |w-z|^2=|w|^2+|z|^2-2|w||z|\cos \theta\\ 2^2+1^2-2\cdot1\cdot2 \cdot  \frac{\sqrt{2}-\sqrt{6}}{4}\\
+    \boxed{|w-z|^2=5-\sqrt{2}+\sqrt{6}}
+\end{gather*}
+
+\section{Question 7}
+Let $u=z^z$, where $z=1+i$. Express $u$ in both polar $(r(\cos \theta + i \sin \theta)) $ and exponential $(re^{i\theta})$ forms. 
+\begin{gather*}
+    z=1+i=\sqrt{2}e^{i\frac{\pi}{4}}\\
+    z^z=(\sqrt{2}e^{i\frac{\pi}{4}})^{1+i}=\sqrt{2}^{1+i}e^{i\frac{\pi}{4}-\frac{\pi}{4}}=(\sqrt{2}e^{i\frac{\pi}{4}})\frac{e^{\frac{i}{2} \ln 2}}{e^{\frac{\pi}{4}}}\\
+    z^z=\boxed{\frac{\sqrt{2}}{e^{\frac{\pi}{4}}}(\cos (\frac{\pi+2 \ln 2}{4}) + i\sin (\frac{\pi+2 \ln 2}{4}), \ \frac{\sqrt{2}}{e^{\frac{\pi}{4}}}e^{i(\frac{\pi+2 \ln 2}{4}})}
+\end{gather*}
+
+\section{Question 9}
+\vspace{0.3em}
+\subsection{(a)} \, Determine all solutions to the equation $z^5=1$. These are known as the fifth roots of unity. 
+\begin{gather*}
+    \boxed{z=1, e^i\frac{2\pi}{5}, e^i\frac{4\pi}{5}, e^i\frac{6\pi}{5},  e^i\frac{8\pi}{5}}
+\end{gather*}
+
+\subsection{(b)} \, Using your results from part (a) and the sum property of the roots of unity, prove that:
+\[
+\cos \frac{2\pi}{5}=\frac{-1+\sqrt{5}}{4}
+\]
+\begin{gather*}
+    1+\omega + \omega^2+\omega^3+\omega^4=0\\
+    1+\cos \frac{2\pi}{5}+\cos \frac{4\pi}{5}+\cos \frac{6\pi}{5}+\cos \frac{8\pi}{5}=0\\
+    1+2\cos \frac{2\pi}{5}+2\cos \frac{4\pi}{5}=0\\
+    4\cos^2 \frac{2\pi}{5}+2\cos \frac{2\pi}{5}-1=0\\
+    \cos \frac{2\pi}{5}=\frac{-2\pm2\sqrt{5}}{8} \\
+    \boxed{\cos \frac{2\pi}{5}=\frac{-1+\sqrt{5}}{4}}
+\end{gather*}
+
+\section{Question 10}
+Consider the sum $S_n$ defined by:
+\[
+S_n=\sum_{r=0}^n \binom{n}{r}(-1)^r \cos ^r \theta \cos  r\theta, \quad n\in \mathbb{N}
+\]
+Determine four distinct equivalent expressions for $S_n$ in terms of $\theta$ and $n$.
+\begin{gather*}
+    \cos r\theta = \frac{e^{ri\theta}+e^{-ri\theta}}{2}\\
+    S_n=\sum_{r=0}^n \binom{n}{r}(-1)^r \frac{e^{ri\theta}+e^{-ri\theta}}{2}\cos ^r \theta \\
+    \frac{1}{2}\sum_{r=0}^n\binom{n}{r}(-1)^r\cos ^r \theta e^{ri\theta}+\frac{1}{2}\sum_{r=0}^n\binom{n}{r}(-1)^r\cos ^r \theta e^{-ri\theta}\\
+    {S_n=\frac{1}{2}(1-\cos \theta e^{i\theta})^n+\frac{1}{2}(1-\cos \theta e^{-i\theta})^n}\\
+    \frac{1}{2}(1-\cos \theta (\cos \theta + i \sin \theta))^n+\frac{1}{2}(1-\cos \theta (\cos \theta - i \sin \theta))^n\\
+    \frac{1}{2}(\sin^2 \theta  - i \sin \theta \cos \theta)^n+\frac{1}{2}(\sin^2 \theta + i \sin \theta \cos \theta)^n\\
+    Re((\sin\theta (\sin\theta+i\cos\theta))^n)\\
+    Re((\sin\theta (\cos(\frac{\pi}{2}-\theta)+i\sin(\frac{\pi}{2}-\theta)))^n)\\
+    Re(\sin^n\theta(\cos n(\frac{\pi}{2}-\theta)+i\sin n(\frac{\pi}{2}-\theta)))\\
+    \boxed{S_n=\sin^n\theta \cos (\frac{n\pi}{2}-n\theta)}
+\end{gather*}
+
+\end{document}
+
