@@ -1,0 +1,274 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% Page Setup
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em}
+\setcounter{secnumdepth}{3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+\allowdisplaybreaks
+
+% Section Formatting
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% mathematical commands
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\example}[2]{\begin{tcolorbox}[title={Example: #1},colback=brown!5!white,colframe=brown!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\remark}[2]{\begin{tcolorbox}[title={#1},colback=black!5!white,colframe=black!75!black,parbox=false] #2 \end{tcolorbox}}
+
+% Document
+\begin{document}
+
+\vspace*{0cm}
+
+\begin{center}
+    {\Large \bfseries Problem Set 59} \\[0.5cm]
+    {\large The Precise (Epsilon-Delta) Definition of a Limit} \\[0.35cm]
+    {\normalsize March 25, 2026}
+\end{center}
+
+% Questions
+
+\theorem{Epsilon-Delta Definition of a Limit}{
+Let $f(x)$ be defined on some open interval $(I)$ that contains the number $a$, except possibly at $a$ itself, then we say:
+\begin{gather*}
+    \lim_{x \to a} f(x) = L \iff\\
+    \forall \epsilon >0, \quad \exists \delta > 0 \text{ s.t. } 0<|x-a|<\delta \implies |f(x)-L|< \epsilon
+\end{gather*}
+\begin{itemize}
+    \item $|f(x)-L|< \epsilon \iff L-\epsilon < f(x) < L+\epsilon$
+    \item $|x-a|<\delta \iff a-\delta < x < a + \delta$
+\end{itemize}
+}
+
+\section{Example 1}
+Prove that $\lim\limits_{x \to 3} 4x-5=7$.\\
+Given $\epsilon > 0$, find $\delta$ s.t. if $|x-3|<\delta$, then $|4x-5-7|<\epsilon$.
+\begin{gather*}
+    |4x-12|<\epsilon\\
+    \iff 4|x-3|<\epsilon\\
+    \iff |x-3|<\frac{\epsilon}{4}\\
+    \boxed{\text{Choose } \delta=\frac{\epsilon}{4}}
+\end{gather*}
+Actual Proof:\\
+Given $\epsilon > 0$, let $\delta=\frac{\epsilon}{4}$, we want to show if $|x-3|<\delta$, then $|4x-5-7|<\epsilon$.
+\begin{gather*}
+    |x-3|<\frac{\epsilon}{4}\\
+    \iff 4|x-3|<\epsilon\\
+    \iff |4x-12|<\epsilon\\
+    \iff |4x-5-7|<\epsilon
+\end{gather*}
+By the $\epsilon-\delta$ definition:
+\[
+\boxed{\lim_{x\to 3} (4x-5) = 7}
+\]
+
+\section{Example 2}
+Prove that $\lim\limits_{x \to 1} (x^2+3)=4$.\\
+Given $\epsilon > 0$, find $\delta$ s.t. if $|x-1|< \delta$, then $|x^2+3-4|<\epsilon$.
+\begin{gather*}
+    |x^2-1|<\epsilon \\
+    \iff |x-1| \cdot |x+1| < \epsilon \\
+    \iff |x-1|<\frac{\epsilon}{|x+1|}
+\end{gather*}
+Let $\delta < 1$.
+\begin{gather*}
+    0<x<2\\
+    1<x+1<3\\
+    1<|x+1|<3\\
+    |x-1|<\frac{\epsilon}{|x+1|}<\frac{\epsilon}{3}\\
+    \boxed{\text{Choose } \delta= \min\{1, \frac{\epsilon}{3}\}}
+\end{gather*}
+
+\section{Question 1}
+\subsection{(f)} \, Use the $\epsilon - \delta$ definition to prove that $\lim\limits_{x\to9}(\sqrt{x}+2)=5$.\\
+Given $\epsilon > 0$, find $\delta$ s.t. if $|x-9|<\delta$, then $|\sqrt{x}+2-5|<\epsilon$.
+\begin{gather*}
+    |\sqrt{x}-3|<\epsilon\\
+    \iff |\sqrt{x}-3|\cdot|\sqrt{x}+3|<\epsilon|\sqrt{x}+3|\\
+    \iff |x-9|<\epsilon|\sqrt{x}+3|
+\end{gather*}
+Let $\delta<1$.
+\begin{gather*}
+    8<x<10\\
+    2\sqrt{2}<\sqrt{x}<\sqrt{10}\\
+    2\sqrt{2}+3<\sqrt{x}+3<\sqrt{10}+3\\
+    2\sqrt{2}+3<|\sqrt{x}+3|<\sqrt{10}+3\\
+    |x-9|<\epsilon|\sqrt{x}+3|<(2\sqrt{2}+3)\epsilon\\
+    \boxed{\text{Choose } \delta=\min\{1,(2\sqrt{2}+3)\epsilon\}}
+\end{gather*}
+Given $\epsilon > 0$, let $\delta=(2\sqrt{2}+3)\epsilon$.
+\begin{gather*}
+    |x-9|<(2\sqrt{2}+3)\epsilon\\
+    \iff \frac{|x-9|}{|\sqrt{x}+3|}<\frac{(2\sqrt{2}+3)\epsilon}{|\sqrt{x}+3|}<\frac{(2\sqrt{2}+3)\epsilon}{2\sqrt{2}+3}\\
+    \iff |\sqrt{x}-3|<\epsilon\\
+    \iff |\sqrt{x}+2-5|<\epsilon
+\end{gather*}
+By the $\epsilon-\delta$ definition:
+\[
+\boxed{\lim\limits_{x\to9}(\sqrt{x}+2)=5}
+\]
+
+\section{Question 2}
+In the theory of relativity, the Lorentz contraction formula
+\[
+L=L_0 \sqrt{1-\frac{v^2}{c^2}}
+\]
+expresses the length $L$ of an object as a function of its velocity $v$ with respect to an observer, where $L_0$ is the length of the object at rest, and $c$ is the speed of light. Find $\lim_{v \to c^-} L$ and interpret the result. Why is a left-hand limit necessary? 
+\begin{gather*}
+    \lim_{v \to c^-} L= \lim_{v \to c^-} L_0 \sqrt{1-\frac{v^2}{c^2}}=L_0\cdot  0\\
+    \boxed{\lim_{v \to c^-} L=0}
+\end{gather*}
+In physics, the speed of objects may never reach or exceed the speed of light. Thus, a right-hand side limit, where $v$ approaches $c$ from greater values, can never be achieved. Hence, a left-hand limit is necessary. \vspace{0.5em}
+
+\section{Question 3}
+When an object falls through the air, air resistance increases as the object speeds up. The velocity $v(t)$
+of a falling object at time $t$ can be modeled by the following equation:
+\[
+v(t)=\frac{mg}{k}(1-e^{-\frac{kt}{m}})
+\]
+
+\subsection{(a)} \, Find $\lim\limits_{t \to \infty}v(t)$ and interpret it in the context of the problem. 
+\begin{gather*}
+    \lim\limits_{t \to \infty}v(t)=\lim\limits_{t \to \infty} \frac{mg}{k}(1-e^{-\frac{kt}{m}})=\frac{mg}{k}\lim\limits_{t \to \infty} (1-e^{-\frac{kt}{m}})=\frac{mg}{k}\lim_{t \to \infty}(1-0)\\
+    \boxed{\lim\limits_{t \to \infty}v(t)=\frac{mg}{k}}
+\end{gather*}
+The attained limit represents the terminal velocity the falling object reaches after a prolonged period of time. $\vspace{0.3em}$
+
+\subsection{(b)} \, Use the $\epsilon - \delta$ definition to prove the result of part $(a)$ rigorously.\\
+Given $\epsilon > 0$, find $N$ s.t. if $t>N$, then $|\dfrac{mg}{k}(1-e^{-\frac{kt}{m}})-\dfrac{mg}{k}|<\epsilon$.
+\begin{gather*}
+    |\dfrac{mg}{k}(-e^{-\frac{kt}{m}})|<\epsilon\\
+    \iff e^{-\frac{kt}{m}}<\frac{\epsilon k}{mg}\\
+    \iff \ln(e^{-\frac{kt}{m}})<\ln(\frac{\epsilon k}{mg})\\
+    \iff -\frac{kt}{m}<\ln(\frac{\epsilon k}{mg})\\
+    \iff t>-\frac{m}{k}\ln(\frac{\epsilon k}{mg})\\
+    \boxed{\text{Choose } N = \max \{ 0, -\frac{m}{k}\ln(\frac{\epsilon k}{mg}) \} } 
+\end{gather*}
+Given $\epsilon>0$, let $N=-\dfrac{m}{k}\ln(\dfrac{\epsilon k}{mg}).$
+\begin{gather*}
+    t>-\frac{m}{k}\ln(\frac{\epsilon k}{mg})\\
+    \iff -\frac{kt}{m}<\ln(\frac{\epsilon k}{mg})\\
+    \iff e^{-\frac{kt}{m}}<\frac{\epsilon k}{mg}\\
+    \iff |\dfrac{mg}{k}(-e^{-\frac{kt}{m}})|<\epsilon\\
+    \iff |\dfrac{mg}{k}(1-e^{-\frac{kt}{m}})-\dfrac{mg}{k}|<\epsilon
+\end{gather*}
+By the $\epsilon - \delta$ definition:
+\[
+\boxed{\lim\limits_{t \to \infty}v(t)=\frac{mg}{k}}
+\]
+
+\section{Question 4}
+When a patient is given a drug intravenously, the concentration $C$ of the drug in the bloodstream over
+time $t$ (in hours) can be modeled by the rational function:
+\[
+C(t)=\frac{5t}{t^2+1}, \quad t\ge 0
+\]
+
+\subsection{(a)}\, Evaluate $\lim\limits_{t \to \infty}C(t)$ and interpret it in the context of the problem.
+\begin{gather*}
+    \lim_{t \to \infty}C(t)=\lim_{t \to \infty}\frac{5t}{t^2+1}=\lim_{t \to \infty}\frac{\frac{1}{t^2}}{\frac{1}{t^2}}\cdot \frac{5t}{t^2+1}=\lim_{t \to \infty} \frac{\frac{5}{t}}{1+\frac{1}{t^2}}\\
+    \boxed{\lim_{t \to \infty}C(t)=0}
+\end{gather*}
+
+\subsection{(b)} \, Use the $\epsilon - \delta$ definition to provide a rigorous justification.\\
+Given $\epsilon > 0$, find $N$ s.t. if $t>N$, then $|\dfrac{5t}{t^2+1}-0|<\epsilon$.
+\begin{gather*}
+    |\frac{5t}{t^2+1}|<\epsilon\\
+    \iff \frac{5t}{t^2+1}<\frac{5t}{t^2} < \epsilon\\
+    \iff \frac{5}{t} < \epsilon\\
+    \iff t>\frac{5}{\epsilon }\\
+    \boxed{\text{Choose }N = \max \{0, \frac{5}{\epsilon} \} }
+\end{gather*}
+Given $\epsilon>0$, let $N=\dfrac{5}{\epsilon}$.
+\begin{gather*}
+    t>\frac{5}{\epsilon}\\
+    \iff \frac{5}{t} < \epsilon\\
+    \iff \frac{5t}{t^2+1}<\frac{5t}{t^2} < \epsilon\\
+    \iff |\frac{5t}{t^2+1}|<\epsilon\\
+    \iff |\dfrac{5t}{t^2+1}-0|<\epsilon
+\end{gather*}
+By the $\epsilon - \delta$ definition:
+\[
+\boxed{\lim_{t \to \infty}C(t)=0}
+\]
+
+\section{Question 5}
+A company’s profit $P$ (in thousands of dollars), based on the amount $x$ spent on advertising (in thousands
+of dollars), is modeled by the rational function:
+\[
+P(x)=\frac{100x}{x+10}, \quad x \ge 0
+\]
+
+\subsection{(a)} \, Evaluate and interpret $\lim\limits_{x \to \infty} P(x)$.
+\begin{gather*}
+    \lim_{x \to \infty} P(x) = \lim_{x \to \infty} \frac{100x}{x+10} = \lim_{x \to \infty} \frac{\frac{1}{x}}{\frac{1}{x}} \cdot\frac{100x}{x+10} = \lim_{x \to \infty} \frac{100}{1+\frac{10}{x}}\\
+    \boxed{\lim_{x \to \infty} P(x)=100}
+\end{gather*}
+
+\subsection{(b)} \, Provide a formal $\epsilon - \delta$ proof of the result.\\
+Given $\epsilon > 0$, find $N$ s.t. if $t>N$, then $|\dfrac{100x}{x+10}-100|<\epsilon$.
+\begin{gather*}
+    |\frac{100x-100x-1000}{x+10}|<\epsilon\\
+    \iff |-\frac{1000}{x+10}|<\epsilon\\
+    \iff \frac{1000}{x+10}<\epsilon\\
+    \iff x+10>\frac{1000}{\epsilon}\\
+    \iff x>\frac{1000-10\epsilon}{\epsilon}\\
+    \boxed{\text{Choose } N = \max \{ 0, \frac{1000-10\epsilon}{\epsilon} \} }
+\end{gather*}
+Given $\epsilon>0$, let $N=\frac{1000-10\epsilon}{\epsilon}$.
+\begin{gather*}
+    x>\frac{1000-10\epsilon}{\epsilon}\\
+    \iff x+10>\frac{1000}{\epsilon}\\
+    \iff \frac{1000}{x+10}<\epsilon\\
+    \iff |-\frac{1000}{x+10}|<\epsilon\\
+    \iff |\frac{100x-100x-1000}{x+10}|<\epsilon\\
+    \iff |\dfrac{100x}{x+10}-100|<\epsilon
+\end{gather*}
+By the $\epsilon - \delta$ definition:
+\[
+\boxed{\lim_{x \to \infty} P(x)=100}
+\]
+
+\end{document}
+
