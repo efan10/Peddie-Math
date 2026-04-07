@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% Page Setup
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em}
+\setcounter{secnumdepth}{3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+\allowdisplaybreaks
+
+% Section Formatting
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% mathematical commands
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\example}[2]{\begin{tcolorbox}[title={Example: #1},colback=brown!5!white,colframe=brown!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\remark}[2]{\begin{tcolorbox}[title={#1},colback=black!5!white,colframe=black!75!black,parbox=false] #2 \end{tcolorbox}}
+
+% Document
+\begin{document}
+
+\vspace*{0cm}
+
+\begin{center}
+    {\Large \bfseries Problem Set 58} \\[0.5cm]
+    {\large The Squeeze Theorem} \\[0.35cm]
+    {\normalsize March 24, 2026}
+\end{center}
+
+% Questions
+
+\section{Question 3}
+Assume that $\lim\limits_{\theta \to -1^-}f(\theta)$ exists and $\dfrac{\theta^2+\theta-2}{\theta +3} \le \dfrac{f(\theta)}{\theta^2} \le \dfrac{\theta^2+2\theta-1}{\theta +3}$. Find $\lim\limits_{\theta \to -1^-}f(\theta)$.
+\begin{gather*}
+    \dfrac{\theta^2+\theta-2}{\theta +3} \le \dfrac{f(\theta)}{\theta^2} \le \dfrac{\theta^2+2\theta-1}{\theta +3}\\
+    \dfrac{\theta^2(\theta^2+\theta-2)}{\theta +3} \le f(\theta) \le \dfrac{\theta^2(\theta^2+2\theta-1)}{\theta +3}\\
+    \lim\limits_{\theta \to -1^-}\dfrac{\theta^2(\theta^2+\theta-2)}{\theta +3}=\lim\limits_{\theta \to -1^-}\frac{1(1-1-2)}{2}=-1\\
+    \lim\limits_{\theta \to -1^-}\dfrac{\theta^2(\theta^2+2\theta-1)}{\theta +3}=\lim\limits_{\theta \to -1^-}\frac{1(1-2-1)}{2}=-1\\
+    \lim\limits_{\theta \to -1^-}\dfrac{\theta^2(\theta^2+\theta-2)}{\theta +3}=\lim\limits_{\theta \to -1^-}\dfrac{\theta^2(\theta^2+2\theta-1)}{\theta +3}=-1\\
+    \boxed{\lim\limits_{\theta \to -1^-}f(\theta)=-1}
+\end{gather*}
+
+\section{Question 5}
+Let $m$ and $n$ be positive integers greater than 1. Find the value of $\dfrac{m}{n}$ if
+\[
+\lim\limits_{\alpha \to 0} \frac{e^{\cos (\alpha ^n)}-e}{\alpha ^ m}=-\frac{e}{2}
+\]
+\begin{gather*}
+    \lim\limits_{\alpha \to 0} \frac{e^{(1-\frac{\alpha ^ {2n}}{2})}-e}{\alpha ^ m}=-\frac{e}{2}\\
+    \lim\limits_{\alpha \to 0} \frac{e^{(-\frac{\alpha ^ {2n}}{2})}-1}{\alpha ^ m}=-\frac{1}{2}\\
+    \lim\limits_{\alpha \to 0} (\frac{e^{(-\frac{\alpha ^ {2n}}{2})}-1}{-\frac{\alpha ^ {2n}}{2}})(\frac{-\frac{\alpha ^ {2n}}{2}}{\alpha ^m})=-\frac{1}{2}\\
+    \lim\limits_{\alpha \to 0}\frac{-\frac{\alpha ^ {2n}}{2}}{\alpha ^m}=-\frac{1}{2}\\
+    -\frac{1}{2} \lim\limits_{\alpha \to 0} \alpha ^{2n-m}=-\frac{1}{2} \\
+    \lim\limits_{\alpha \to 0} \alpha ^{2n-m}=1\implies 2n-m=0\\
+    \boxed{\frac{m}{n}=2}
+\end{gather*}
+
+\section{Question 6}
+Find the value of $\theta$ such that
+\[
+\lim\limits_{x \to 0} (1+x\ln (1+b^2))^{\frac{1}{x}}=2b\sin ^2 \theta, \quad b>0, \quad \theta \in (-\pi,\pi].
+\]
+\begin{gather*}
+    \lim\limits_{x \to 0} (1+x\ln (1+b^2))^{\frac{ln(1+b^2)}{xln(1+b^2)}}=2b\sin ^2 \theta\\
+    e ^{ln(1+b^2)}=2b\sin ^2 \theta\\
+    \sin ^2 \theta = \frac{1+b^2}{2b}\\
+    \frac{1+b^2}{2b}\ge 2\sqrt{\frac{1}{2b}\cdot \frac{b^2}{2b}}=1\\
+    \sin ^2 \theta = 1\\
+    \boxed{\theta = \frac{\pi}{2} \text{ or } -\frac{\pi}{2}}
+\end{gather*}
+
+\section{Question 7}
+\subsection{(a)} \, Find the perimeter of a regular $n$-gon inscribed in a circle of radius $r$.
+\begin{gather*}
+    s^2=r^2+r^2-2r^2\cos (\frac{2\pi}{n})\\
+    s=r\sqrt{2(1-\cos (\frac{2\pi}{n}))}\\
+    s=r\sqrt{2(1-1+2 \sin^2 \frac{\pi}{n})}\\
+    s=2r \sin \frac{\pi}{n}\\
+    \boxed{P=2nr \sin \frac{\pi}{n}}
+\end{gather*}
+
+\subsection{(b)} \, What value does this perimeter approach as $n$ becomes very large?
+\begin{gather*}
+    \lim_{n \to \infty}2nr \sin \frac{\pi}{n}=2\pi r\lim_{n \to \infty} \frac{\sin \frac{\pi}{n}}{\frac{\pi}{n}}=2\pi r\\
+    \boxed{\lim_{n \to \infty}P=2\pi r}
+\end{gather*}
+
+\subsection{(c)} \, What limit can you guess from this?
+\begin{gather*}
+    \boxed{\lim_{x \to 0}\frac{\sin x}{x}=1}
+\end{gather*}
+
+\end{document}
+
