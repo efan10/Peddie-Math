@@ -1,0 +1,205 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% Page Setup
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0em}
+\setcounter{secnumdepth}{3}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+\allowdisplaybreaks
+
+% Section Formatting
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% mathematical commands
+\newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\dne}{\ \mathrm{DNE}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\sub}[1]{\subsection{(#1)} \,}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\example}[2]{\begin{tcolorbox}[title={Example: #1},colback=brown!5!white,colframe=brown!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\remark}[2]{\begin{tcolorbox}[title={#1},colback=black!5!white,colframe=black!75!black,parbox=false] #2 \end{tcolorbox}}
+
+% Document
+\begin{document}
+
+\vspace*{0cm}
+
+\begin{center}
+    {\Large \bfseries Problem Set 60} \\[0.5cm]
+    {\large Continuity 1} \\[0.35cm]
+    {\normalsize March 31, 2026}
+\end{center}
+
+% Questions
+
+\section{Question 2}
+Find the points of discontinuity of the following functions over $\mathbb{R}$. \vspace{0.3em}
+
+\subsection{(a)} \, $f(x)=\dfrac{1}{2 \sin x-1}$
+\begin{gather*}
+    2\sin x \ne 1\\
+    \sin x \ne \frac{1}{2}\\
+    x \ne \frac{\pi}{6} \text{ or } \frac{5\pi}{6}\\
+    \boxed{x=\frac{\pi}{6}+2k\pi \text{ or } \frac{5\pi}{6}+2k\pi,\quad k\in \mathbb{Z}}
+\end{gather*}
+
+\subsection{(b)} \, $f(x)=\dfrac{1}{x^2-3|x|+2}$
+\begin{gather*}
+    f(x)=\begin{cases}
+        \dfrac{1}{x^2-3x+2},\quad x\ge 0 \vspace{0.3em}\\
+        \dfrac{1}{x^2+3x+2}, \quad x<0
+    \end{cases}\\ 
+    f(x)=\begin{cases}
+        \dfrac{1}{(x-2)(x-1)},\quad x\ge 0 \vspace{0.3em}\\
+        \dfrac{1}{(x+2)(x+1)}, \quad x<0
+    \end{cases}\\
+    \boxed{x=-2,-1,1,2}
+\end{gather*}
+
+\subsection{(c)} \, $f(x)=\dfrac{1}{x^4+x^2+1}$
+\begin{gather*}
+    x^4+x^2+1>0\\
+    x^4, x^2, 1 \text{ are continuous over } \mathbb{R}\\
+    \iff x^4+x^2+1 \text{ is continuous over } 
+    \mathbb{R}\\
+    \iff \frac{1}{x^4+x^2+1} \text{ is continuous over } \mathbb{R}\\
+    \boxed{f(x)\text{ is continuous over } \mathbb{R}}
+\end{gather*}
+
+\section{Question 3}
+What kind of discontinuity do the following functions have? If possible, redefine the function to
+make it continuous.
+
+\subsection{(a)} \, $f(x)=\lfloor x\rfloor$ at $x=0$
+\begin{gather*}
+    \lim_{x\to0^-}\floor{x} =-1\\
+    \lim_{x\to0^+}\floor{x} =0\\
+    \lim_{x\to0^-}\floor{x} \ne \lim_{x\to0^+}\floor{x} \implies \lim_{x \to 0} \floor{x} \ \mathrm{DNE}\vspace{0.3em} \\
+    \boxed{\text{Non-Removable Discontinuity: Jump}}
+\end{gather*}
+
+\subsection{(c)} \, $f(x)=e^\frac{1}{x}$ at $x=0$
+\begin{gather*}
+    f(0) \text{ is undefined}\\
+    \lim_{x\to 0^-}e^\frac{1}{x}=0\\
+    \lim_{x\to 0^+}e^\frac{1}{x}\to \infty\\
+    \lim_{x\to 0^-}e^\frac{1}{x} \ne \lim_{x\to 0^+}e^\frac{1}{x} \implies \lim_{x\to0}e^\frac{1}{x} \ \mathrm{DNE}\\
+    \boxed{\text{Non-Removable Discontinuity: Infinite}}
+\end{gather*}
+
+\section{Question 4}
+What type of discontinuity do the following functions have? Redefine the function to make it
+continuous, if possible. \vspace{0.3em}
+
+\subsection{(a)} \, $f(x)=\dfrac{1}{\ln |x^2-4|}$
+\begin{gather*}
+    \ln |x^2-4| \ne 0\\
+    \iff |x^2-4|\ne 1\\
+    \iff x^2\ne5,3\\
+    \iff x \ne \pm \sqrt{3}, \pm \sqrt{5}\\
+    f(x) \text{ is undefined for x=}\pm \sqrt{3}, \pm \sqrt{5}\\
+    \lim_{x \to \sqrt{3}^-}\dfrac{1}{\ln |x^2-4|}\to +\infty\\
+    \lim_{x \to \sqrt{3}^+}\dfrac{1}{\ln |x^2-4|} \to -\infty\\
+    \lim_{x \to \sqrt{3}^-}\dfrac{1}{\ln |x^2-4|} \ne \lim_{x \to \sqrt{3}^+}\dfrac{1}{\ln |x^2-4|} \implies \lim_{x \to \sqrt{3}}\dfrac{1}{\ln |x^2-4|} \ \mathrm{DNE}\\
+    \boxed{\text{Non-Removable Discontinuity: Infinite}}
+\end{gather*}
+
+\sub{b} $f(x)=\arccos \left( \dfrac{1-\tan^2\dfrac{x}{2}}{1+\tan^2\dfrac{x}{2}} \right) $
+\begin{gather*}
+    f(x)=\arccos \left( \dfrac{1-\tan^2\dfrac{x}{2}}{1+\tan^2\dfrac{x}{2}} \right)=\arccos (\cos x)\\
+    \cos x:D=\mathbb{R}, \ R=[-1,1]\\
+    \arccos x: D=[-1 , 1], \ R=[0, \pi]\\
+    \boxed{f(x)\text{ is continuous over } \mathbb{R}}
+\end{gather*}
+
+\section{Question 5}
+Test the following functions for continuity:
+
+\sub{a} $f(x) = 
+    \begin{cases} 
+    \dfrac{x^2-1}{x^2 - 2|x-1| - 1}, & x \neq 1 \\
+    \dfrac{1}{2}, & x = 1
+    \end{cases}$
+\begin{gather*}
+    \lim_{x \to 1^-}\frac{x^2-1}{x^2 - 2|x-1| - 1}= \lim_{x \to 1^-}\frac{x^2-1}{x^2-2+2x-1}=\lim_{x \to 1^-}\frac{(x+1)(x-1)}{(x+3)(x-1)}=\lim_{x \to 1^-}\frac{(x+1)}{(x+3)}=\frac{1}{2}\\
+    \lim_{x \to 1^+}\frac{x^2-1}{x^2 - 2|x-1| - 1}= \lim_{x \to 1^-}\frac{x^2-1}{x^2+2-2x-1}=\lim_{x \to 1^-}\frac{(x+1)(x-1)}{(x-1)^2}=\lim_{x \to 1^-}\frac{(x+1)}{(x-1)}\to \infty\\
+    \lim_{x \to 1^-} f(x) \ne \lim_{x \to 1^+} f(x) \implies \lim_{x \to 1} f(x) \  \mathrm{DNE}\\
+    \boxed{\text{Non-Removable Discontinuity: Infinite}}
+\end{gather*}
+
+\sub{b} $f(x) = 
+    \begin{cases}
+    \arccos(\cot x), & x < \frac{\pi}{2} \\
+    \pi \lfloor x \rfloor - 1, & x \ge \frac{\pi}{2}
+    \end{cases}$
+\begin{gather*}
+    \lim_{x\to\frac{\pi}{2}^+} \pi\floor{x}-1=\lim_{x\to\frac{\pi}{2}^+}\pi-1=\pi-1\\
+    \lim_{x\to\frac{\pi}{2}^-} \arccos(\cot x)=\lim_{x\to\frac{\pi}{2}^-}\arccos 0=\frac{\pi}{2}\\
+    \lim_{x\to\frac{\pi}{2}^+} f(x) \ne \lim_{x\to\frac{\pi}{2}^-} f(x) \implies \lim_{x\to\frac{\pi}{2}} f(x) \dne\\
+    \boxed{\text{Non-Removable Discontinuity: Jump}}
+\end{gather*}
+
+\sub{c} $f(x) = 
+    \begin{cases}
+    (x+1)^{2 - \left(\frac{1}{|x|} + \frac{1}{x}\right)}, & x \neq 0 \\
+    1, & x = 0
+    \end{cases}$
+\begin{gather*}
+    \lim_{x\to0^-}  (x+1)^{2 - \left(\frac{1}{|x|} + \frac{1}{x}\right)}=\lim_{x\to0^-}(x+1)^{2 - \left(-\frac{1}{x} + \frac{1}{x}\right)}=\lim_{x\to0^-}(x+1)^2=1\\
+    \lim_{x\to0^+}(x+1)^{2 - \left(\frac{1}{|x|} + \frac{1}{x}\right)}=\lim_{x\to0^+}(x+1)^{2 - \frac{2}{x}}=0\\
+    \lim_{x\to0^-} f(x) = \lim_{x\to0^+} f(x) \implies \lim_{x\to0} f(x) \dne\\
+    \boxed{\text{Non-Removable Discontinuity: Jump}}
+\end{gather*}
+
+\sub{d} $f(x) = \floor{\sin x}-\floor{\cos x}, \quad x = \frac{\pi}{2}$
+\begin{gather*}
+    \lim_{x \to \frac{\pi}{2}^-}\floor{\sin x}-\floor{\cos x}=\lim_{x \to \frac{\pi}{2}^-}0-0=0\\
+    \lim_{x \to \frac{\pi}{2}^+}\floor{\sin x}-\floor{\cos x}=\lim_{x \to \frac{\pi}{2}^+}0-(-1)=1\\
+    \lim_{x \to \frac{\pi}{2}^-}f(x) \ne \lim_{x \to \frac{\pi}{2}^+} f(x) \implies \lim_{x \to \frac{\pi}{2}}f(x) \dne \\
+    \boxed{\text{Non-Removable Discontinuity: Jump}}
+\end{gather*}
+ 
+\end{document}
+
