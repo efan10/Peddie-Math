@@ -1,0 +1,335 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 64} \\[0.5cm]
+    {\large Derivatives 3} \\[0.35cm]
+    {\normalsize April 10, 2026}
+\end{center}
+
+% problems
+
+\problem{1}
+Discuss continuity and differentiability of the first and second derivatives at $x = 0$ in problems 1-4. Justify your answers. \vem 
+
+\subproblem{a} Let
+\[
+f(x)=\begin{cases}
+    x \sin \paren{\dfrac{1}{x}} &x\ne 0\\
+    0 &x=0
+\end{cases}
+\]
+\[
+\boxed{f(x) $ is continuous$,
+    f'(x) \dne }
+\]
+
+\subproblem{b}
+\[
+f(x)=\begin{cases}
+    x^2 \sin \paren{\dfrac{1}{x}} &x\ne 0\\
+    0 &x=0
+\end{cases}
+\]
+\[
+\boxed{f(x) $ is differentiable$,
+    f'(x) $ exists but is not continuous$,
+    f''(x) \dne}
+\]
+
+\subproblem{c}
+\[
+f(x)=\begin{cases}
+    x^3 \sin \paren{\dfrac{1}{x}} &x\ne 0\\
+    0 &x=0
+\end{cases}
+\]
+\[
+\boxed{f(x) $ is differentiable$,
+    f'(x) $ is continuous$,
+    f''(x) \dne}
+\]
+
+\subproblem{d}
+\[
+f(x)=\begin{cases}
+    x^4 \sin \paren{\dfrac{1}{x}} &x\ne 0\\
+    0 &x=0
+\end{cases}
+\]
+\begin{gather*}
+    \lim_{h \to 0^-} \frac{f(x+h)-f(x)}{h}=\lim_{h \to 0^-}\frac{h^4 \sin \frac{1}{h}}{h}=\lim_{h \to 0^-}h^3 \sin \frac{1}{h}=0\\
+    \lim_{h \to 0^+} \frac{f(x+h)-f(x)}{h}=\lim_{h \to 0^+}\frac{h^4 \sin \frac{1}{h}}{h}=\lim_{h \to 0^+}h^3 \sin \frac{1}{h}=0\\
+    f'(0^-)=f'(0^+)=0 \implies f'(0)=0\\
+    f(x) $ is differentiable at $ x=0\\
+    f'(x)=\begin{cases}
+        4x^3 \sin \paren{\dfrac{1}{x}} -x^2 \cos \frac{1}{x} &x\ne 0\\
+    0 &x=0
+    \end{cases}\\
+    \lim_{h \to 0^-} \frac{f'(x+h)-f'(x)}{h}=\lim_{h \to 0^-}\frac{4h^3 \sin \frac{1}{h} -h^2\cos\frac{1}{h}}{h}=\lim_{h \to 0^-} 4h^2 \sin \frac{1}{h}-h \cos \frac{1}{h}=0\\
+    \lim_{h \to 0^+} \frac{f'(x+h)-f'(x)}{h}=\lim_{h \to 0^+}\frac{4h^3 \sin \frac{1}{h} -h^2\cos\frac{1}{h}}{h}=\lim_{h \to 0^+} 4h^2 \sin \frac{1}{h}-h \cos \frac{1}{h}=0\\
+    f''(0^-)=f''(0^+)=0 \implies f''(0)=0\\
+    f'(x)$ is differentiable at $ x=0\\
+    f''(x)$ oscillates near 0$\\
+\boxed{f(x) $ is differentiable$,
+    f'(x) $ is differentiable$,
+    f''(x) $ exists but is not continuous$}
+\end{gather*}
+
+\problem{2}
+Establish a general continuity and differentiability pattern for \vem
+
+\subproblem{a}
+\[
+f(x)=\begin{cases}
+    x^{2n} \sin \paren{ \dfrac{1}{x}} &x\ne 0\\
+    0 &x=0
+\end{cases}
+\]
+\begin{minipage}[t]{0.5\linewidth}
+    \begin{align*}
+        f'(0^-)&=\lim_{h\to0^-} \frac{f(x+h)-f(x)}{h}\\
+        &= \lim_{h\to0^-} \frac{h^{2n}\sin \frac{1}{h}}{h}\\
+        &=\lim_{h\to0^-} h^{2n-1} \sin \frac{1}{h}\\
+        &=0
+    \end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5 \linewidth}
+    \begin{align*}
+        f'(0^+)&=\lim_{h\to0^+} \frac{f(x+h)-f(x)}{h}\\
+        &= \lim_{h\to0^+} \frac{h^{2n}\sin \frac{1}{h}}{h}\\
+        &=\lim_{h\to0^+} h^{2n-1} \sin \frac{1}{h}
+        \\&=0
+    \end{align*}
+\end{minipage}
+
+\begin{gather*}
+    f'(0^-)=f'(0^+)=0 \implies f'(0)=0\\
+    \boxed{f(x) $ is differentiable at $ x=0 $ for all $ n \ge 1}\\ 
+    f'(x)=\begin{cases}
+        2nx^{2n-1} \sin \frac{1}{x}-x^{2n-2} \cos \frac{1}{x} &x \ne 0\\
+        0 & x=0
+    \end{cases}
+\end{gather*}
+\begin{minipage}[t]{0.5 \linewidth}
+    \begin{align*}
+        f''(0^-)&=\lim_{h\to0^-} \frac{f'(x+h)-f'(x)}{h}\\
+        &= \lim_{h\to0^-}=\frac{2nh^{2n-1}\sin \frac{1}{h}- h^{2n-2}\cos \frac{1}{h}}{h}\\
+        &=\lim_{h\to0^-} 2nh^{2n-2} \sin \frac{1}{h}-h^{2n-3}\cos \frac{1}{h}\\
+        &=0
+    \end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5 \linewidth}
+    \begin{align*}
+        f''(0^+)&=\lim_{h\to0^+} \frac{f'(x+h)-f'(x)}{h}\\
+        &= \lim_{h\to0^+}=\frac{2nh^{2n-1}\sin \frac{1}{h}- h^{2n-2}\cos \frac{1}{h}}{h}\\
+        &=\lim_{h\to0^+} 2nh^{2n-2} \sin \frac{1}{h}-h^{2n-3}\cos \frac{1}{h}\\
+        &=0
+    \end{align*}
+\end{minipage}
+
+\begin{gather*}
+    f''(0^-)=f''(0^+)=0 \implies f''(0)=0\\
+    \boxed{f'(x) $ is differentiable at $ x=0 $ for all $ n \ge 2}
+\end{gather*}
+As the number of times for which $f(x)$ is differentiable increases as $n$ increases, we observe that:
+\[
+\boxed{f^{(n)}(x) $ exists but is not continuous$}
+\]
+
+\subproblem{b}
+\[
+f(x)=\begin{cases}
+    x^{2n+1} \sin \paren{ \dfrac{1}{x}} &x\ne 0\\
+    0 &x=0
+\end{cases}
+\]
+Similar to \textbf{(a)}, with the difference of only one exponent, we observe that:
+\[
+\boxed{f^{(n)}(x) $ is continuous but not differentiable$}
+\]
+
+\problem{3}
+Find $f'(0)$ if
+\[
+f(x)=\begin{cases}
+    g(x)\sin \paren{ \dfrac{1}{x}} &x\ne 0\\
+    0 &x=0
+\end{cases}
+\]
+and $g(0)=g'(0)=0.$
+\begin{align*}
+    g'(0)
+    &=\lim_{h \to 0} \frac{g(0+h)-g(0)}{h}\\
+    &=\lim_{h \to 0}\frac{g(h)-0}{h}\\
+    &=\lim_{h \to 0} \frac{g(h)}{h}\\
+    &=0\\
+    f'(0)
+    &=\lim_{h \to 0}\frac{f(0+h)-f(0)}{h}\\
+    &=\lim_{h \to 0} \frac{g(h)\sin \frac{1}{h}-0}{h}\\
+    &=\lim_{h \to 0} \frac{g(h)}{h} \cdot \sin \frac{1}{h}\\
+    &=0 \cdot \lim_{h \to 0} \sin \frac{1}{h}\\
+    &=\boxed{0}
+\end{align*}
+
+\problem{4} \vspace{-0.3em}
+\subproblem{a} Use the definition of differentiability to prove that function $f(x)=(x-1)^\frac{1}{5}\sin \pi x$ is differentiable at $x = 1$.
+\begin{gather*}
+    \lim_{h \to 0^-} \frac{f(1+h)-f(1)}{h}=\lim_{h \to 0^-} \frac{h^{\frac{1}{5}}\sin(\pi+\pi h)-0}{h}=\lim_{h \to 0^-} -\frac{\sin \pi h}{\pi h}\cdot h^\frac{1}{5}\pi=\lim_{h \to 0^-}-h^\frac{1}{5}\pi=0\\
+    \lim_{h \to 0^+} \frac{f(1+h)-f(1)}{h}=\lim_{h \to 0^+} \frac{h^{\frac{1}{5}}\sin(\pi+\pi h)-0}{h}=\lim_{h \to 0^+} -\frac{\sin \pi h}{\pi h}\cdot h^\frac{1}{5}\pi=\lim_{h \to 0^+}-h^\frac{1}{5}\pi=0\\
+    f'(1^-)=f'(1^+)=0 \implies f'(1)=0\\
+    \boxed{f(x) $ is differentiable at $ x=1}
+\end{gather*}
+
+\subproblem{b} Use the definition of continuity to prove that $f'(x)$ is continuous at $x = 1$.
+\begin{gather*}
+    f'(x)= \frac{1}{5(x-1)^{\frac{4}{5}}} \sin \pi x+(x-1)^\frac{1}{5} \pi \cos \pi x\\
+    \limit{1^-} f'(x)= 
+    \limit{1^-} \frac{1}{5(0^-)^{\frac{4}{5}}} \sin \pi+(0^-)^\frac{1}{5} \pi \cos \pi=
+    \limit{1^-}0+0=0\\
+    \limit{1^+} f'(x)= 
+    \limit{1^+} \frac{1}{5(0^+)^{\frac{4}{5}}} \sin \pi+(0^+)^\frac{1}{5} \pi \cos \pi=
+    \limit{1^+}0+0=0\\
+    f'(1^-)=f'(1^+)=0 \implies f'(1)=0\\
+    \boxed{f'(x) $ is continuous at $ x=1}
+\end{gather*}
+
+\problem{5}
+Find the intervals where $f(x)=x^2|x|$ is thrice differentiable.
+\begin{align*}
+    f(x)&=\begin{cases}
+        x^3 &x \ge 0\\
+        -x^3 &x<0
+    \end{cases}\\
+    f'(x)&=\begin{cases}
+        3x^2 &x > 0\\
+        0 &x=0\\
+        -3x^2 &x<0
+    \end{cases}\\
+    f''(x)&=\begin{cases}
+        6x &x > 0\\
+        0 &x=0\\
+        -6x &x<0
+    \end{cases}\\
+    f'''(x)&=\begin{cases}
+        6 &x > 0\\
+        -6 &x<0
+    \end{cases}
+\end{align*}
+\[
+\boxed{x\ne 0}
+\]
+
+\end{document}
+
