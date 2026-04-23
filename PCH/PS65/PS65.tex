@@ -1,0 +1,302 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 65} \\[0.5cm]
+    {\large Application of Derivatives 1} \\[0.35cm]
+    {\normalsize April 13, 2026}
+\end{center}
+
+% problems
+
+\problem{5}
+Find the equations of all normal lines to the curve $y=x^3+2x+6$ that are parallel to the line $x+14y+4=0$.
+\begin{align*}
+    x+14y+4=0 & \implies \dydx =-\frac{1}{14}\\
+    y=x^3+2x+6 & \implies \dydx = 3x^2+2\\
+    3x^2+2=14 &\implies x^2=4 \implies x=\pm 2
+\end{align*}
+\[
+\boxed{y-18=-\frac{1}{14}(x-2), \ y+6=-\frac{1}{14}(x+2)}
+\]
+
+\problem{6}
+Consider the curve defined by the equation $x^3-y^2=0$. If the tangent line drawn at the point $P(4m^2,8m^2)$ is also a normal line to the same curve at some other point $Q$, find the value of $m$.
+\begin{align*}
+    y=x^\frac{3}{2} & \implies y'=\frac{3}{2}\sqrt{x}\\
+    y-8m^3&=3m(x-4m^2)\\
+    y=-x^\frac{3}{2} & \implies y'=-\frac{3}{2}\sqrt{x}\\
+    -\frac{1}{3m}=-\frac{3}{2}\sqrt{x} &\implies x_2=\frac{4}{81m^2}\\
+    y_2=-x_2^{\frac{3}{2}} &= -\frac{4}{81m^2}^{\frac{3}{2}} = - \frac{8}{729m^3} \\
+    y-8m^3&=3m(x-4m^2)\\
+    - \frac{8}{729m^3}-8m^3&=3m(\frac{4}{81m^2}-4m^2)\\
+    - \frac{2}{729}-2m^6&=\frac{m^2}{27}-3m^6\\
+    729m^6-27m^2-2&=0\\
+    m^2 &= \frac{2}{9}\\
+    & \hspace{-1.15em} \boxed{m=\pm \frac{\sqrt{2}}{3}}
+\end{align*}
+
+\problem{8}
+Find the equations of all possible normal lines to the parabola $x^2=4y$ that pass through the point $(1,2)$.
+\begin{align*}
+    y=\frac{x^2}{4} \implies \dydx &=\frac{x}{2} \implies \frac{dx}{dy} = -\frac{2}{x}\\
+    y-2&=-\frac{2}{x}(x-1) \\
+    \frac{x^2}{4}-2&=-2+\frac{2}{x}\\
+    x^3=8 & \implies x=2
+\end{align*}
+\[
+\boxed{y-2=-(x-1)}
+\]
+
+\problem{9}
+Find the coordinates of all points on the curve $y^2-2x^3-4y+8=0$ such that the tangent lines drawn at those points pass through the external point $(1,2)$.
+\begin{gather*}
+    2yy'-6x^2-4y'=0\\
+    y'=\frac{3x^2}{y-2}\\
+    (y-2)=\frac{3x^2}{y-2}(x-1)\\
+    2x^3-4=3x^2(x-1)\\
+    2x^3-4=3x^3-3x^2\\
+    x^3-3x^2+4=0\\ 
+    (x+1)(x-2)^2=0 \implies x=-1 \tor 2\\
+    (y-2)^2=2x^3-4\\
+    (y-2)^2=12\\
+    y=2\pm 2\sqrt{3}\\
+    \boxed{(2, 2+2\sqrt{3}),(2,2-2\sqrt{3})}
+\end{gather*}
+
+\problem{10}
+Determine the condition under which the line $Ax+By=1$ is a normal line to the curve $a^{n-1}y=x^n$.
+\begin{gather*}
+    y=\frac{x^n}{a^{n-1}} \implies \dydx = n(\frac{x}{a})^{n-1}\implies \frac{dx}{dy}=\frac{1}{n} (\frac{a}{x})^{n-1}\\
+    y=-\frac{A}{B}x+\frac{1}{B} \implies \frac{A}{B}=\frac{1}{n} (\frac{a}{x})^{n-1}\\
+    Ax+B\frac{x^n}{a^{n-1}}=1 \implies x(A+\frac{B^2}{An})=1\\
+    x=\frac{An}{A^2n+B^2}
+\end{gather*}
+Substituting $x$ and simplifying:
+\begin{gather*}
+    \frac{A}{B}=\frac{1}{n} (\frac{a}{x})^{n-1}\\
+    \frac{A}{B}=\frac{1}{n} (\frac{a(A^2n+B^2)}{An})^{n-1}\\
+    \boxed{(An)^n=Ba^{n-1}(A^2n+B^2)^{n-1}}
+\end{gather*}
+
+\problem{11}
+Find the acute angle of intersection between the two curves $y = |x^2 - 1|$ and $y = |x^2 - 3|$.
+\begin{gather*}
+    |x^2-1|=|x^2-3|\\
+    x^2-1=3-x^2\\
+    x^2=2 \implies x=\sqrt{2}\\
+    y_1'=(x^2-1)'=2x=2\sqrt{2}\\
+    y_2'=(3-x^2)'=-2x=-2\sqrt{2}\\
+    \tan \theta =|\frac{2\sqrt{2}-(-2\sqrt{2})}{1+(-8)}|=\frac{4\sqrt{2}}{7}\\
+    \boxed{\theta = \arctan \paren{\frac{4\sqrt{2}}{7}}}
+\end{gather*}
+
+\problem{12}
+Find the angle of intersection between the curves $2y^2 = x^3$ and $y^2 = 32x$ at every point where they
+intersect.
+\begin{gather*}
+    y^2=\frac{x^3}{2}=32x\\
+    x(x^2-64)=0\\
+    x=0\implies y=0 \implies \theta =\frac{\pi}{2}\\   
+    x=8 \implies y=16 \tor -16\\
+    4yy_1'=3x^2 \implies y_1'=\frac{3x^2}{4y}\\
+    2yy_2'=32 \implies y_2'=\frac{16}{y}\\
+    \tan \theta = |\frac{3-1}{1+3\cdot 1}|=\frac{1}{2}\\
+    \boxed{\theta = \arctan \paren{\frac{1}{2}} \tor \frac{\pi}{2}}
+\end{gather*}
+
+\problem{13}
+Find the angle of intersection between the curves $f (x) = 2^x \ln x$ and $g(x) = x^{2x} - 1$ at their common point(s) of intersection.
+\begin{gather*}
+    2^x \ln x=x^{2x}-1 \implies x=1\\
+    f'(x)=\ln 2 \cdot 2^x\cdot \ln x + 2^x \cdot \frac{1}{x} \implies f'(1)=2\\
+    \ln y=2x\ln x\implies y'\cdot \frac{1}{y}=2\ln x+2\\
+    g'(x)=x^{2x}(2 \ln x+2) \implies g'(1)=2\\
+    \boxed{\theta = 0}
+\end{gather*}
+
+\problem{14}
+Determine all possible values of the constant $a$ such that the ellipse $\frac{x^2}{a^2} + \frac{y^2}{4} = 1$ and the parabola $y^3 = 16x$ intersect orthogonally.
+\begin{gather*}
+    (\frac{x^2}{a^2} + \frac{y^2}{4})'=\frac{2x}
+    {a^2}+\frac{2yy'}{4} \implies \dydx =-\frac{4x}{a^2y}\\
+    3y^2y'=16 \implies \dydx =\frac{16}{3y^2}\\
+    \frac{a^2y}{4x}=\frac{16}{3y^2} \\
+    a^2=\frac{64x}{3y^3}\\
+    a^2=\frac{4}{3}\\
+    \boxed{a=\pm \frac{2}{\sqrt{3}}}
+\end{gather*}
+
+\problem{15}
+A light ray originating from point $A(0, 2)$ strikes the curve $y = x^3 - x^2 + x - 1$ at the point $P (2, 5)$. Assuming the curve acts as a reflective surface, find the equation of the reflected ray.
+\begin{gather*}
+    \dydx =3x^2-2x+1 =12-4+1=9\\
+    m_1=-\frac{1}{9}, m_2=\frac{3}{2}\\
+    \tan \theta =|\frac{m_2-m_1}{1+m_1m_2}|=|\frac{\frac{27}{18}+\frac{2}{18}}{1-\frac{1}{6}}|=-\frac{29}{15}\\
+    |\frac{m_3-m_1}{1+m_1m_3}|=\frac{29}{15}\\
+    15(m_3+\frac{1}{9})=29(\frac{m_3}{9}-1)\\
+    (15-\frac{29}{9})m_3=-29-\frac{5}{3}\\
+    m_3=-\frac{276}{106}=-\frac{138}{53}\\
+    \boxed{y-5=-\frac{138}{53}(x-2)}
+\end{gather*}
+
+\problem{16}
+Find all possible real values of $p$ such that the equation $px^2 = \ln x$ has exactly one unique solution for $x$.
+\begin{gather*}
+    \frac{d}{dx}px^2=2px\\
+    \frac{d}{dx}\ln x=\frac{1}{x}\\
+    2px=\frac{1}{x} \implies p=\frac{1}{2x^2}\\
+    px^2=\ln x \implies p=\frac{\ln x}{x^2}\\
+    \ln x = \frac{1}{2}\implies x = \sqrt{e}\\
+    \boxed{p=\frac{1}{2e}}
+\end{gather*}
+
+\problem{17}
+Find the shortest distance between the line $y = x - 2$ and the parabola $y = x^2 + 3x + 2$.
+\begin{gather*}
+    \dydx = 1\\
+    \dydx =2x+3=1 \implies x=-1\\
+    y=x+1\\
+    \boxed{d=\frac{3}{\sqrt{2}}}
+\end{gather*}
+
+\problem{18}
+Find the minimum value of $(x_1 -x_2)^2 + \paren{\dfrac{x_1^2}{20} - \sqrt{(17 - x_2)(x_2 - 13)}}^2$, where $x_1 \in  \real^+ $ and $x_2 \in (13, 17)$.
+\begin{gather*}
+    y=\frac{x^2}{20}\\
+    y=\sqrt{4-(x-15)^2} \implies y^2+(x-15)^2=2^2\\
+    f(x)=(x-15)^2+(\frac{x^2}{20}-0)^2\\
+    f'(x)=2(x-15)+\frac{x^3}{100}\\
+    x^3+200x-3000=0 \implies x=10\\
+    D=\sqrt{(10-15)^2+5^2}-2=5\sqrt{2}-2\\
+    \boxed{D^2=54-20\sqrt{2}}
+\end{gather*}
+
+\problem{19}
+Consider the curve defined by the equation:
+\[
+y^2=4a\paren{x+a\sin \frac{x}{a}}
+\]
+Prove that all points on this curve where the tangent is parallel to the $x$-axis must lie on the parabola
+$y^2 = 4ax$.
+\begin{gather*}
+    2yy'=4a(1+a\cos \frac{x}{a} \cdot \frac{1}{a})\\
+    y'=\frac{2a}{y}(1+\cos \frac{x}{a})=0\\
+    \cos \frac{x}{a}=-1 \implies \sin  \frac{x}{a}=0\\
+    y^2=4a(x+a\cdot 0)\\
+    \boxed{y^2=4ax}
+\end{gather*}
+
+\end{document}
+
