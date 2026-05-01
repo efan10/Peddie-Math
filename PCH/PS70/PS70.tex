@@ -1,0 +1,296 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 70} \\[0.5cm]
+    {\large Practicing Extrema} \\[0.35cm]
+    {\normalsize April 30, 2026}
+\end{center}
+
+% problems
+
+\problem{2}
+The graph of $f'(x)$, shown below on the interval $[0,10]$, consists of a semicircle of radius 2 and a line segment meeting at the point $(4,0)$. The line segment has right endpoint $(10,2)$. \vem
+
+\subproblem{a}
+For what value of $x$, $0<x<10$, does $f$ have a local minimum? Justify your answer. \vem
+
+$f(x)$ has a local minimum at $x=4$ as $f'(x)$ changes from negative to positive at $x=4$.\vem
+
+\subproblem{b}
+For what value of $x$, $0\le x \le 10$, does $f$ have an absolute maximum? Justify your answer. \vem
+
+As no other critical points are present, one attain the absolute maximum of the function by analyzing the end points. 
+\begin{align*}
+    f(10)&=f(0)+\int_0^{10}f'(x) \, dx\\
+    &=f(0)-\pi\cdot 2^2\cdot\frac{1}{2}+\frac{1}{2}\cdot2\cdot6\\
+    &=f(0)+6-2\pi
+\end{align*}
+\vspace{-2.5em}
+\begin{gather*}
+    f(10)<f(0) \implies \boxed{x=0}
+\end{gather*}
+Hence, $f(x)$ has an absolute maximum at $x=0$. \vem
+
+\problem{4}
+The velocity of a particle moving on the $x$-axis is given by $v(t)=t^3-6t^2$ for the time interval $0\le t \le 10$. \vem
+
+\subproblem{a}
+When is the particle farthest to the left?
+\begin{gather*}
+    v(t)=x'(t)\\
+    v(t)=0 \implies t^2(t-6)=0\\
+    t=6
+\end{gather*}
+As $v(t)$ changes from negative to positive at $t=6$, the particle is farthest to the left at $t=6.$ \vspace{0.5em}
+
+\subproblem{b}
+When is the velocity of the particle increasing the fastest?
+\begin{gather*}
+    v'(t)=3t^2-12t\\
+    v''(t)=6t-12\\
+    v''(t)=0 \implies t=1\\
+    v'(1)=-9\\
+    v'(0)=0\\
+    v'(10)=280
+\end{gather*}
+The velocity increases the fastest at $t=10$. \vem
+
+\problem{5}
+Let $\dfrac{dy}{dx}=2x+y$. \vem
+
+\subproblem{a}
+How do we know that $(1,-2)$ is a critical point for the function $y=f(x)$?
+\begin{gather*}
+    \dydx=0 \implies 2x+y=0\\
+    \boxed{2\cdot 1+(-2)=0}
+\end{gather*}
+
+\subproblem{b}
+Is the point $(1,-2)$ a relative maximum point, relative minimum point, or neither? Justify your answer.
+\begin{gather*}
+    \frac{d^2y}{dx^2}=2+\dydx\\
+    x=1 \implies \frac{d^2y}{dx^2}=2>0
+\end{gather*}
+As $f'(x)=0$ and $f''(x)>0$, $f(x)$ has a relative minimum point at $x=1$. \vem
+
+\problem{6}
+Let $f$ be a differentiable function with $f(4)=3$. On the interval $0\le x \le 7$, the graph of $f'$, the derivative of $f$, consists of a semicircle and two line segments, as shown in the figure below. \vem
+
+\subproblem{a}
+Find the $x$-coordinates of all points of inflection on the graph of $f$ for $0<x<7$. Justify your answer.
+\[
+f''(x)=0 \implies \boxed{x=2,6}
+\]
+$f''(x)$ changes sign at $x=2,6$. \vem
+
+\subproblem{b}
+Let $g$ be the function defined by $g(x)=f(x)-x$. On what intervals, if any, is $g$ decreasing for $0\le x\le 7$? Show the analysis that leads to your answer.
+\begin{gather*}
+    g'(x)=f'(x)-1\\
+    g'(x)<0, \quad x\in [0,5)
+\end{gather*}
+$g(x)$ decreases on $[0,5)$ as $g'(x)<0$ on this interval. \vem
+
+\subproblem{c}
+For the function $g$ defined in part (b), find the absolute minimum value on the interval $0\le x\le 7$. Justify your answer. 
+\begin{gather*}
+    g'(x)=0 \implies x=5 \tor 7
+\end{gather*}
+As $g'(x)$ changes from negative to positive at $x=5$, $g(x)$ has an absolute minimum at $x=5$. \vem
+
+\problem{7}
+The height of a tree at time $t$ is given by a twice-differentiable function $H$, where $H(t)$ is measured in meters and $t$ is measured in years. Selected values of $H(t)$ are given in the table below. \vem
+
+\subproblem{a}
+Use the data in the table to estimate $H'(6)$. Using correct units, interpret the meaning of $H'(6)$ in the context of the problem.
+\begin{gather*}
+    H'(6)\approx \frac{H(7)-H(5)}{7-5}\approx \frac{11-6}{7-5}\approx\boxed{\frac{5}{2} \text{ meters/years}}
+\end{gather*}
+$H'(6)$ represents the rate of growth of the tree at year 6. \vem
+
+\subproblem{b}
+Explain why there must be at least one time $t$, for $2<t<10$, such that $H'(t)=2$. \vem
+
+As $H(t)$ is twice-differentiable, $H(t)$ is continuous on $[3,5]$ and differentiable on $(3,5)$. \vem
+
+By the mean value theorem,
+\[
+\boxed{\exists c\in (3,5) \text{ s.t. } f'(c)=\frac{f(5)-f(3)}{5-3}=2}
+\]
+
+\problem{9}
+The function $f$ is differentiable on the closed interval $[-6,5]$ and satisfies $f(-2)=7$. The graph of $f'$, the derivative of $f$, consists of a semicircle and the line segments, as shown in the figure below. \vem
+
+\subproblem{a}
+On what intervals is $f$ increasing? Justify your answer.
+\begin{gather*}
+    f'(x)>0,\quad x\in [-6,-2) \cup (2,5)
+\end{gather*}
+$f(x)$ is increasing on $[-6,-2)$ and $(2,5)$ as $f'(x)>0$ on these intervals. \vem
+
+\subproblem{b}
+Find the absolute minimum value of $f$ on the closed interval $[-6,5]$. Justify your answer.
+\begin{gather*}
+    f'(x)=0 \implies x=-2,2
+\end{gather*}
+As $f'(x)$ changes from negative to positive at $x=2$, $f(x)$ has an absolute minimum at $x=2$. \vem
+
+\subproblem{c}
+For each of $f''(5)$ and $f''(3)$, find the value or explain why it doesn't exist. 
+\begin{gather*}
+    f''(5^+) \dne \implies \boxed{f'(5) \dne} \\
+    f''(3^-)=2, f''(3^+)=-1\\
+    f''(3^-) \ne f''(3^+) \implies \boxed{f'(3) \dne}\\
+    f'(5): \text{Endpoint Discontinuity}\\
+    f'(3): \text{Corner Discontinuity}
+\end{gather*}
+
+\problem{10}
+Let $f$ be the function given by $f(x)=\dfrac{\ln x}{x}$ for all $x>0$. The derivative of $f$ is given by
+\[
+f'(x)=\frac{1-\ln x}{x^2}.
+\]
+\subproblem{a}
+Write an equation for the line tangent to the graph of $f$ at $x=e^2$.
+\begin{gather*}
+    f'(e^2)=\frac{1-\ln e^2}{e^4}=-\frac{1}{e^4}\\
+    f(e^2)=\frac{\ln e^2}{e^2}=\frac{2}{e^2}\\
+    \boxed{y-\frac{2}{e^2}=-\frac{1}{e^4}(x-e^2)}
+\end{gather*}
+
+\subproblem{b}
+Find the $x$-coordinate of the critical point of $f$. Determine whether this point is a relative minimum, a relative maximum, or neither for the function $f$. Justify you answer.
+\begin{gather*}
+    f'(x)=\frac{1-\ln x}{x^2}=0\\
+    1-\ln x =0 \implies \boxed{x=e}
+\end{gather*}
+As $f'(x)$ changes from positive to negative at $x=e$, $f(x)$ has a relative maximum at $x=e$. \vem
+
+\subproblem{c}
+The graph of the function $f$ has exactly one point of inflection. Find the $x$-coordinate of this point.
+\begin{gather*}
+    f''(x)=\frac{2 \ln x-3}{x^3}\\
+    f''(x)=0 \implies 2\ln x=3\\
+    \ln x=\frac{3}{2}\implies \boxed{x=e^{\frac{3}{2}}}
+\end{gather*}
+
+\subproblem{d}
+Find $\lim\limits_{x \to 0^+}f(x)$.
+\begin{align*}
+    \lim\limits_{x \to 0^+}f(x)&=\lim\limits_{x \to 0^+}\frac{\ln x}{x}\to \boxed{-\infty}
+\end{align*}
+
+\end{document}
+
