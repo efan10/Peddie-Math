@@ -1,0 +1,292 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0pt}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\overfrac}[1]{\overset{[\frac{#1}{#1}]}{=}}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 72} \\[0.5cm]
+    {\large Indeterminate Forms and L'Hopital's Rule} \\[0.35cm]
+    {\normalsize May 5, 2026}
+\end{center}
+
+% problems
+
+\problem{4}
+Find the limit. Use L'Hopital's Rule where appropriate. If there is a more elementary method, consider using it. If L'Hoptial's Rule doesn't apply, explain why.\vem
+
+\subproblem{c}
+$\lim\limits_{x\to 0} \dfrac{\tan px}{\tan qx}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{x\to 0} \tan px=0\\
+        \lim\limits_{x\to 0} \tan qx=0
+    \end{cases}\\
+    \lim\limits_{x\to 0}\frac{\tan px}{\tan qx}\overset{[\frac{0}{0}]}{=}\lim\limits_{x\to 0}\frac{p \sec^2 px}{q \sec^2 qx}=\boxed{\frac{p}{q}}
+\end{gather*}
+
+\subproblem{d}
+$\lim\limits_{x\to \infty}\dfrac{\ln x}{\sqrt{x}}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{x\to \infty}\ln x\to \infty\\
+        \lim\limits_{x\to \infty}\sqrt{x} \to \infty
+    \end{cases}\\
+    \lim\limits_{x\to \infty}\frac{\ln x}{\sqrt{x}}\overset{[\frac{\infty{}}{\infty}]}{=}\lim\limits_{x\to \infty}\frac{\frac{1}{x}}{\frac{1}{2\sqrt{x}}}=\lim\limits_{x\to \infty}\frac{2}{\sqrt{x}}=\boxed{0}
+\end{gather*}
+
+\subproblem{e}
+$\lim\limits_{x\to 0^+}\dfrac{\ln x}{x}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{x\to 0^+}\ln x \to -\infty\\
+        \lim\limits_{x\to 0^+}\dfrac{1}{x} \to \infty
+    \end{cases}\\
+    \lim\limits_{x\to 0^+}\dfrac{\ln x}{x}\to \boxed{-\infty}
+\end{gather*}
+
+\subproblem{f}
+$\lim\limits_{x\to 0}\dfrac{e^x}{x^2}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{x\to 0^+}e^x=1\\
+        \lim\limits_{x\to 0^+}x^2=0
+    \end{cases}\\
+    \lim\limits_{x\to 0}\dfrac{e^x}{x^2}=\boxed{0}
+\end{gather*}
+
+\subproblem{g}
+$\lim\limits_{t\to 0}\dfrac{5^t-3^t}{t}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{t\to 0} 5^t-3^t=0\\
+        \lim\limits_{t\to 0}t=0
+    \end{cases}\\
+    \lim\limits_{t\to 0}\dfrac{5^t-3^t}{t} \overset{[\frac{0}{0}]}{=}\lim\limits_{t\to 0}\frac{5^t\ln 5-3^t \ln 3}{1}=\boxed{\ln5-\ln 3}
+\end{gather*}
+
+\subproblem{h}
+$\lim\limits_{x\to 0}\dfrac{1-\cos x}{x^2}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{x\to 0}1-\cos x=0\\
+        \lim\limits_{x\to 0}x^2=0
+    \end{cases}\\
+    \lim\limits_{x\to 0}\frac{1-\cos x}{x^2}\overfrac{0}\lim\limits_{x\to 0}\frac{\sin x}{2x}=\frac{1}{2}\lim\limits_{x\to 0}\frac{\sin x}{x}=\boxed{\frac{1}{2}}
+\end{gather*}
+
+\subproblem{i}
+$\lim\limits_{x\to 0}\dfrac{x+\sin x}{x+\cos x}$
+\begin{gather*}
+    \lim\limits_{x\to 0}\dfrac{x+\sin x}{x+\cos x}=\lim\limits_{x\to 0}\frac{0}{1}=\boxed{0}
+\end{gather*}
+
+\subproblem{j}
+$\lim\limits_{x\to 1}\dfrac{1-x+\ln x}{1+\cos \pi x}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{x\to 1}1-x+\ln x=0\\
+        \lim\limits_{x\to 1}1+\cos \pi x=0
+    \end{cases}\\
+    \lim\limits_{x\to 1}\dfrac{1-x+\ln x}{1+\cos \pi x}\overfrac{0}\lim\limits_{x\to 1}\frac{\frac{1}{x}-1}{-\pi \sin \pi x}\\
+    \begin{cases}
+        \lim\limits_{x\to 1}\dfrac{1}{x}-1=0\\
+        \lim\limits_{x\to 1}-\pi \sin \pi x=0
+    \end{cases}\\
+    \lim\limits_{x\to 1}\frac{\frac{1}{x}-1}{-\pi \sin \pi x}=\lim\limits_{x\to 1}\frac{-\frac{1}{x^2}}{-\pi ^2 \cos \pi}=\boxed{-\frac{1}{\pi^2}}
+\end{gather*}
+
+\subproblem{k}
+$\lim\limits_{x\to 1}\dfrac{x^a-ax+a-1}{(x-1)^2}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{x\to 1}x^a-ax+a-1=0\\
+        \lim\limits_{x\to 1}(x-1)^2=0
+    \end{cases}\\
+    \lim\limits_{x\to 1}\dfrac{x^a-ax+a-1}{(x-1)^2}\overfrac{0} \lim\limits_{x\to 1}\frac{ax^{a-1}-a}{2(x-1)}\\
+    \begin{cases}
+        \lim\limits_{x\to 1}ax^{a-1}-a=0\\
+        \lim\limits_{x\to 1}2(x-1)=0
+    \end{cases}\\
+    \lim\limits_{x\to 1}\frac{ax^{a-1}-a}{2x-2}\overfrac{0}\lim\limits_{x\to 1}\frac{a(a-1)x^{a-2}}{2}=\boxed{\frac{a^2-a}{2}}
+\end{gather*}
+
+\subproblem{l}
+$\lim\limits_{x\to \infty}x\sin\dfrac{\pi}{x}$
+\begin{gather*}
+    \lim\limits_{x\to \infty}x\sin\dfrac{\pi}{x}=\lim_{x\to\infty}\frac{\sin{\frac{\pi}{x}}}{\frac{\pi}{x}}\cdot\pi =\boxed{\pi}
+\end{gather*}
+
+\subproblem{m}
+$\lim\limits_{x\to 0}\cot 2x \sin 6x$
+\begin{gather*}
+    \lim\limits_{x\to 0}\frac{\cos 2x\sin 6x}{\sin 2x}\\
+    \begin{cases}
+        \lim\limits_{x\to 0} \cos 2x\sin 6x=0\\
+        \lim\limits_{x\to 0}\sin 2x=0
+    \end{cases}\\
+    \lim\limits_{x\to 0}\frac{\cos 2x\sin 6x}{\sin 2x}\overfrac{0}\lim\limits_{x\to 0}\frac{6\cos 2x \cos 6x-2\sin 2x\sin 6x}{\cos 2x}=\boxed{6}
+\end{gather*}
+
+\subproblem{n}
+$\lim\limits_{x\to \infty}x^3e^{-x^2}$
+\begin{gather*}
+    \lim\limits_{x\to \infty}\frac{x^3}{e^{x^2}}\\
+    \begin{cases}
+        \lim\limits_{x\to \infty}x^3\to \infty\\
+        \lim\limits_{x\to \infty}e^{x^2} \to \infty
+    \end{cases}\\
+    \lim\limits_{x\to \infty}\frac{x^3}{e^{x^2}}\overfrac{\infty}\lim\limits_{x\to \infty}\frac{3x^2}{2xe^{x^2}}=\lim\limits_{x\to \infty}\frac{3x}{2e^{x^2}}\\
+    \begin{cases}
+        \lim\limits_{x\to \infty}3x\to \infty\\
+        \lim\limits_{x\to \infty}2e^{x^2}\to \infty
+    \end{cases}\\
+    \lim\limits_{x\to \infty}\frac{3x}{2e^{x^2}}\overfrac{\infty}\lim\limits_{x\to \infty}\frac{3}{4xe^{x^2}}=\boxed{0}
+\end{gather*}
+
+\subproblem{o}
+$\lim\limits_{x\to 1^+}\ln x \tan\dfrac{\pi x}{2}$
+\begin{gather*}
+    \lim\limits_{x\to 1^+}\ln x \tan\dfrac{\pi x}{2}=\lim\limits_{x\to 1^+}\frac{\ln x \sin \frac{\pi x}{2}}{\cos \frac{\pi x}{2}}\\
+    \begin{cases}
+        \lim\limits_{x\to 1^+}\ln x \sin \frac{\pi x}{2}=0\\
+        \lim\limits_{x\to 1^+}\cos \frac{\pi x}{2}=0
+    \end{cases}\\
+    \lim\limits_{x\to 1^+}\frac{\ln x \sin \frac{\pi x}{2}}{\cos \frac{\pi x}{2}}\overfrac{0}\lim\limits_{x\to 1^+}\frac{\frac{\sin \frac{\pi x}{2}}{x}+\frac{\pi}{2}\ln x\cos \frac{\pi x}{2}}{-\frac{\pi}{2}\sin \frac{\pi x}{2}}=\boxed{-\frac{2}{\pi}}
+\end{gather*}
+
+\subproblem{p}
+$\lim\limits_{x\to 1}\left(\dfrac{x}{x-1}-\dfrac{1}{\ln x}\right)$
+\begin{gather*}
+    \lim\limits_{x\to 1}\left(\dfrac{x}{x-1}-\dfrac{1}{\ln x}\right)=\lim\limits_{x\to 1}\frac{x \ln x-x+1}{(x-1)\ln x}\\
+    \begin{cases}
+        \lim\limits_{x\to 1} x\ln x-x+1=0\\
+        \lim\limits_{x\to 1}(x-1)\ln x=0
+    \end{cases}\\
+    \lim\limits_{x\to 1}\frac{x \ln x-x+1}{(x-1)\ln x}\overfrac{0}\lim\limits_{x\to 1}\frac{\ln x}{\ln x+\frac{(x-1)}{x}}\\
+    \begin{cases}
+        \lim\limits_{x\to 1} \ln x=0\\
+        \lim\limits_{x\to 1} \ln x+\frac{(x-1)}x=0
+    \end{cases}\\
+    \lim\limits_{x\to 1}\frac{\ln x}{\ln x+\frac{(x-1)}{x}}\overfrac{0}\lim\limits_{x\to 1}\frac{\frac{1}{x}}{\frac{1}{x}+\frac{1}{x^2}}=\boxed{\frac{1}{2}}
+\end{gather*}
+
+\subproblem{q}
+$\lim\limits_{x\to \infty}\left(\sqrt{x^2+x}-x\right)$
+\begin{gather*}
+    \lim\limits_{x\to \infty}\left(\sqrt{x^2+x}-x\right)=\lim\limits_{x\to \infty}\frac{x}{\sqrt{x^2+x}+x}=\lim\limits_{x\to \infty}\frac{1}{\sqrt{1+\frac{1}{x}}+1}=\boxed{\frac{1}{2}}
+\end{gather*}
+
+
+
+\end{document}
+
