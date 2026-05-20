@@ -1,0 +1,246 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 76} \\[0.5cm]
+    {\large Optimization Part 2} \\[0.35cm]
+    {\normalsize May 19, 2026}
+\end{center}
+
+% problems
+
+\problem{4}
+ An observer stands at a point $P$, one unit away from a track. Two runners start at the point in the
+figure and run along the track. One runner runs three times as fast as the other. Find the maximum
+value of the observer’s angle of sight $\theta$ between the runners. [Hint: Maximize $\tan \theta$.]
+\begin{gather*}
+    y=\tan \theta\\
+    y=\tan (\theta_2-\theta _1)=\frac{3x-x}{1+3x^2}\\
+    y=\frac{2x}{1+3x^2},\quad x>0\\
+    \dydx=\frac{2(1+3x^2)-12x^2}{(1+3x^2)^2}\\
+    \dydx =0 \implies 1=3x^2 \implies \boxed{x=\frac{1}{\sqrt{3}}}
+\end{gather*}
+As $y'$ changes from positive to negative at $x=\dfrac{1}{\sqrt{3}}$, $y$ has a local maximum at $x=\dfrac{1}{\sqrt{3}}$.
+\begin{gather*}
+    \tan \theta = \frac{\frac{2}{\sqrt{3}}}{1+3\cdot \frac{1}{3}}=\frac{1}{\sqrt{3}}\implies \boxed{\theta = \frac{\pi}{6}}
+\end{gather*}
+The maximum value of the observer's angle of sight is $\dfrac{\pi}{6}$.
+
+\problem{5}
+ Where should the point P be chosen on the line segment AB so as to maximize the angle $\theta$?
+ \begin{gather*}
+     \begin{cases}
+         x+y=3\\
+         x=2\tan \theta _1\\
+         y=5\tan \theta_2
+     \end{cases}\\
+     x=2\tan \theta _1  \implies \theta_1=\arctan \frac{x}{2}\\
+     y=5\tan \theta_2 \implies \theta_2 = \arctan \frac{y}{5}\\
+     \theta = \theta_1+\theta_2 = \arctan \frac{x}{2}+ \arctan \frac{(3-x)}{5}, \quad 0<x<3\\
+     \frac{d\theta}{dx}=\frac{1}{1+\frac{x^2}{4}}\cdot \frac{1}{2}+\frac{1}{1+\frac{x^2-6x+9}{25}}\cdot (-\frac{1}{5})\\ 
+     \frac{d\theta}{dx}=0 \implies \frac{1}{1+\frac{x^2}{4}}\cdot \frac{1}{2}=\frac{1}{1+\frac{x^2-6x+9}{25}}\cdot \frac{1}{5}\\
+     20+5x^2=50+2x^2-12x+18\\
+     x^2+4x-16=0\\
+     x=\frac{-4\pm 4\sqrt{5}}{2} \implies \boxed{x=-2+2\sqrt{5}}
+ \end{gather*}
+ Point $P$ is $5-2\sqrt{5}$ above $A$.
+
+ \problem{6}
+Find the maximum area of a rectangle that can be circumscribed about a given rectangle with length $L$
+and width $W$. [Hint: Express the area as a function of an angle $\theta$.]
+\begin{gather*}
+    \begin{cases}
+        A=xy\\
+        x=L \cos \theta + W\sin \theta\\
+        y=L\sin \theta + W\cos \theta
+    \end{cases}\\
+    A=(L\cos \theta +W\sin \theta )(L\sin \theta + W\cos \theta)\\
+    A=(L^2+W^2)\sin \theta \cos \theta + WL (\sin^2\theta + \cos^2\theta)\\
+    A=(L^2+W^2)\cdot \frac{\sin 2\theta}{2}+ WL, \quad 0<\theta<\frac{\pi}{2}\\
+    A'=(L^2+W^2)\cos 2\theta\\
+    A'=0 \implies \theta = \frac{\pi}{4}
+\end{gather*}
+As $A'$ changes from positive to negative at $\theta = \dfrac{\pi}{4}$, $A$ has a local maximum at $\theta = \dfrac{\pi}{4}$.
+\begin{gather*}
+    A=(L^2+W^2)\cdot \frac{\sin 2\cdot \frac{\pi}{4}}{2}+ WL=\frac{L^2}{2}+\frac{W^2}{2}+WL\\
+    \boxed{A=\frac{1}{2}(W+L)^2}
+\end{gather*}
+The maximum area of a rectangle is $A=\dfrac{1}{2}(W+L)^2$.
+
+\problem{7}
+Ornithologists have determined that some species of birds tend to avoid flights over large bodies of water
+during daylight hours. It is believed that more energy is required to fly over water than over land because
+air generally rises over land and falls over water during the day. A bird with these tendencies is released
+from an island that is 5 km from the nearest point on a straight shoreline, flies to a point on the shoreline,
+and then flies along the shoreline to its nesting area. Assume that the bird instinctively chooses a path
+that will minimize its energy expenditure. Points and are 13 km apart. \vem
+
+\subproblem{a}
+In general, if it takes 1.4 times as much energy to fly over water as it does over land, to what point
+$C$ should the bird fly in order to minimize the total energy expended in returning to its nesting area?
+\begin{gather*}
+    x+y=13\\
+    J=\frac{W}{L}\sqrt{x^2+25}+y\\
+    J=\frac{W}{L}\sqrt{x^2+25}+13-x,\quad 0<x<13\\
+    J'=\frac{W}{L}\frac{x}{\sqrt{x^2+25}}-1\\
+    J'=0 \implies L\sqrt{x^2+25}=Wx\\
+    L^2x^2+25L^2=W^2x^2\\
+    \boxed{x=\sqrt{\frac{25L^2}{W^2-L^2}}}
+\end{gather*}
+Given $\dfrac{W}{L}=\dfrac{7}{5}$,
+\begin{gather*}
+    x=\sqrt{\frac{25\cdot 25}{49-25}}=\boxed{\frac{25}{2\sqrt{6}}}
+\end{gather*}
+The bird should fly to a point $\dfrac{25}{2\sqrt{6}}$ km away from $B$ towards $C$.
+
+\subproblem{b}
+Let $W$ and $L$ denote the energy (in joules) per kilometer flown over water and land, respectively.
+What would a large value of the ratio $W/L$ mean in terms of the bird’s flight? What would a small value
+mean? Determine the ratio $W/L$ corresponding to the minimum expenditure of energy. \vem
+
+As attained from part $\textbf{(a)}$:
+\[
+x=\sqrt{\frac{25L^2}{W^2-L^2}}=\sqrt{\frac{25}{(\frac{W}{L})^2-1}}
+\]
+A larger value of the ratio $W/L$ indicates that the bird first flies to a point on the shoreline closer to $B$, while a smaller value indicates that the bird first flies to a point on the shoreline closer to $C$. \vem
+
+Regarding the ratio of $W/L$ with the minimum expenditure of energy:
+\begin{gather*}
+    J'=0 \implies \frac{W}{L}\cdot \frac{x}{\sqrt{x^2+25}}-1=0\\
+    \boxed{\frac{W}{L}=\frac{\sqrt{x^2+25}}{x}}
+\end{gather*}
+
+\subproblem{c}
+What should the value of $W/L$ be in order for the bird to fly directly to its nesting area $D$? What
+should the value of $W/L$ be for the bird to fly to $B$ and then along the shore to $D$? \vem
+
+Plugging in the equation from part $\textbf{(b)}$ gives:
+\begin{gather*}
+    x=13 \implies \boxed{\frac{W}{L}=\frac{\sqrt{194}}{13}}\\
+    x=0 \implies \boxed{\frac{W}{L} \to \infty}
+\end{gather*}
+
+\subproblem{d}
+If the ornithologists observe that birds of a certain species reach the shore at a point 4 km from $B$,
+how many times more energy does it take a bird to fly over water than over land?
+\begin{gather*}
+    x=4 \implies \boxed{\frac{W}{L}=\frac{\sqrt{41}}{4}}
+\end{gather*}
+
+
+
+\end{document}
+
