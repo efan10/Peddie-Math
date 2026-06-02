@@ -1,0 +1,282 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 77} \\[0.5cm]
+    {\large Collection of Problems} \\[0.35cm]
+    {\normalsize May 25, 2026}
+\end{center}
+
+% problems
+
+\problem{3}
+Let $L=\lim\limits_{x\to 0} \dfrac{a-\sqrt{a-x^2}-\dfrac{x^2}{4}}{x^4}$ be a finite limit. Find the values of $a(a>0)$ and $L$.
+\begin{gather*}
+    L=\lim\limits_{x\to 0} \dfrac{a-\sqrt{a-x^2}-\dfrac{x^2}{4}}{x^4} \quad \left[\frac{0}{0}\right]\\
+    \begin{cases}
+        \lim\limits_{x\to 0} a-\sqrt{a-x^2}-\dfrac{x^2}{4}=0\\
+        \lim\limits_{x\to 0} x^4 =0
+    \end{cases}\\
+    L \lheqzero \lim\limits_{x\to 0}\frac{\frac{x}{\sqrt{a-x^2}}-\frac{x}{2}}{4x^3} = \lim\limits_{x\to 0}\frac{\frac{1}{\sqrt{a-x^2}}-\frac{1}{2}}{4x^2}\\
+    \begin{cases}
+        \lim\limits_{x\to 0} 4x^2=0\\
+        \lim\limits_{x\to 0} \dfrac{1}{\sqrt{a-x^2}}-\dfrac{1}{2}=0 \implies a=2
+    \end{cases}\\
+    L\lheqzero \lim\limits_{x\to 0}\frac{-\frac{1}{2}\cdot \frac{-2x}{(2-x^2)^{3/2}}}{8x}= \lim\limits_{x\to 0} \frac{1}{8\cdot 2^{3/2}}=\frac{\sqrt{2}}{32}\\
+    \boxed{a=2, L=\frac{\sqrt{2}}{32}}
+\end{gather*}
+
+\problem{4}
+Let $f(x)=(1-x)^2(\sin x)^2+x^2$ for all $x\in \mathbb{R}$. Consider the statements: \vem
+
+P: There exists some $x\in \mathbb{R}$ such that
+\[
+f(x)+2x=2(1+x^2)
+\]
+Q: There exists some $x\in \mathbb{R}$ such that
+\[
+2f(x)+1=2x(1+x)
+\]
+Then \vem
+
+(A) both P and Q are true \quad (B) P is true and Q is false \vem
+
+(C) P is false and Q is true \quad (D) both P and Q are false\vem
+
+Justify your answer.
+\begin{gather*}
+    $P$: f(x)=2x^2-2x+2\\
+    $Q$:f(x)=x^2+x-\frac{1}{2}
+\end{gather*}
+For P:
+\begin{align*}
+    (1-x)^2(\sin x)^2+x^2&=2x^2-2x+2\\
+    (1-x)^2\sin ^2x&=x^2-2x+2\\
+    (1-x)^2\sin ^2x&=(1-x)^2+1\\
+    (1-x)^2\cos^2x&=-1
+\end{align*}
+As no real $x$ satisfies the above equality, P is false. For Q:
+\begin{align*}
+    h(x)&=2f(x)+1-2x(1+x)\\
+    h(0)&=2f(0)+1-0=1\\
+    h(1)&=2f(1)+1-2\cdot 2=-2
+\end{align*}
+By the Intermediate Value Theorem, $h(x)$ holds a solution on $(0,1)$. Hence, $Q$ is true. 
+\[
+\boxed{$(C) P is false and Q is true$}
+\]
+
+\problem{5}
+Discuss continuity and differentiability
+\[
+f(x)=\begin{cases}
+    -x-\dfrac{\pi}{2} &$if $ x\le -\dfrac{\pi}{2}\\
+    -\cos x &$if $-\dfrac{\pi}{2}<x\le 0\\
+    x-1 &$if $ 0<x\le 1\\
+    \ln x &$if $ x>1
+\end{cases}
+\]
+\[
+f'(x)=\begin{cases}
+    -1 &$if $ x\le -\dfrac{\pi}{2}\\
+    \sin x &$if $-\dfrac{\pi}{2}<x\le 0\\
+    1 &$if $ 0<x\le 1\\
+    \dfrac{1}{x} &$if $ x>1
+\end{cases}
+\]
+At $x=-\dfrac{\pi}{2}$:
+\begin{gather*}
+    f(-\frac{\pi}{2}^-)=0,f(-\frac{\pi}{2}^+)=0,f(-\frac{\pi}{2})=0\\
+    f(-\frac{\pi}{2}^-)=f(-\frac{\pi}{2}^+)=f(-\frac{\pi}{2})\\
+    f'(-\frac{\pi}{2}^-)=-1,  f'(-\frac{\pi}{2}^+)=-1\\
+    f'(-\frac{\pi}{2}^-)= f'(-\frac{\pi}{2}^+) \implies f'(-\frac{\pi}{2})=-1
+\end{gather*}
+$f(x)$ is continuous and differentiable at $x=-\dfrac{\pi}{2}$. At $x=0$:
+\begin{gather*}
+    f(0^-)=-1,f(0^+)=-1,f(0)=-1\\
+    f(0^-)=f(0^+)=f(0)\\
+    f'(0^-)=0, f'(0^+)=1\\
+    f'(0^-)\ne f'(0^+) \implies f'(0)\dne 
+\end{gather*}
+$f(x)$ is continuous but not differentiable at $x=0$. At $x=1$:
+\begin{gather*}
+    f(1^-)=0, f(1^+)=0, f(1)=0\\
+    f(1^-)=f(1^+)=f(1)\\
+    f'(1^-)=1, f'(1^+)=1\\
+    f'(1^-)=f'(1^+) \implies f'(1)=1
+\end{gather*}
+$f(x)$ is continuous and differentiable at $x=1$.
+
+\problem{6}
+Find the domain of the derivative function
+\[
+f(x)=\begin{cases}
+    \arctan x & $if $ |x|\le 1\\
+    \dfrac{1}{2}(|x|-1) &$if $ |x|>1
+\end{cases}
+\]
+\[
+    f'(x)=\begin{cases}
+        \dfrac{1}{1+x^2} & $if $ |x|\le 1\\
+        \dfrac{1}{2}\sgn (x) &$if $ |x|>1
+    \end{cases}
+\]
+At $x=-1$:
+\begin{gather*}
+    f'(-1^-)=-\frac{1}{2},f'(-1^+)=\frac{1}{2}\\
+    f'(-1^-)=f'(-1^+)\implies f'(-1)\dne
+\end{gather*}
+$f(x)$ is not differentiable at $x=-1$. At $x=1$:
+\begin{gather*}
+    f'(1^-)=\frac{1}{2}, f'(1^+)=\frac{1}{2}\\
+    f'(1^-)=f'(1^+)\implies f'(1)=\frac{1}{2}
+\end{gather*}
+$f(x)$ is differentiable at $x=1$.
+\[
+\boxed{D_{f'} =(-\infty ,-1) \cup (-1,\infty)}
+\]
+
+\problem{7}
+Let $g(x)=\ln f(x)$ where $f(x)$ is twice differentiable positive function on $(0,\infty)$ such that $f(x+1)=xf(x)$. Find
+\[
+g''\paren{x+\frac{1}{2}}-g''\paren{\frac{1}{2}}
+\]
+(in terms of $N$), where $x=1,2,3,\dots ,N.$
+\begin{gather*}
+    \ln f(x+1)=\ln x+\ln f(x)\\
+    g(x+1)-g(x)=\ln x\\
+    g'(x+1)-g'(x)=\frac{1}{x}\\
+    g''(x+1)-g''(x)=-\frac{1}{x^2}\\ 
+    x=\frac{1}{2} \implies g''(\frac{3}{2})-g''(\frac{1}{2})=-4\\
+    x=\frac{3}{2} \implies g''(\frac{5}{2})-g''(\frac{3}{2})= -\frac{4}{9}\\
+    x=\frac{5}{2} \implies g''(\frac{7}{2})-g''(\frac{5}{2})=-\frac{4}{25}\\
+    \boxed{g''(N+\frac{1}{2})-g''(\frac{1}{2})=-4 \sum_{k=1}^N\frac{1}{(2k-1)^2}}
+\end{gather*}
+
+\problem{8}
+Let $f(\theta )=\sin \paren{\arctan \paren{\dfrac{\sin \theta}{\sqrt{\cos 3\theta}}}}$, where $-\dfrac{\pi}{4}<\theta < \dfrac{\pi}{4}$. Find $\dfrac{d}{d(\tan \theta)}(f(\theta ))$.
+\begin{align*}
+    &\dfrac{d}{d(\tan \theta)}(f(\theta ))\\
+    &= \frac{\frac{df}{d\theta}}{\frac{d(\tan \theta)}{d\theta}}\\
+    &= \frac{\cos \paren{\arctan \paren{\frac{\sin \theta}{\sqrt{\cos 3\theta}}}} \paren{\frac{1}{1+ \frac{\sin ^2\theta}{\cos 3\theta}}} (\frac{\sin \theta}{\sqrt{\cos 3\theta}})'}{\sec ^2\theta}\\
+    &=\cos \paren{\arctan \paren{\frac{\sin \theta}{\sqrt{\cos 3\theta}}}} \paren{\frac{1}{\sec^2 \theta(1+ \frac{\sin ^2\theta}{\cos 3\theta})}} \frac{\cos \theta \sqrt{\cos 3\theta}+\sin \theta \frac{3\sin 3\theta}{2\sqrt{\cos 3\theta}}}{\cos 3\theta}\\
+    &=\frac{\sqrt{\cos 3\theta}}{\sqrt{\cos 3\theta + \sin^2 \theta}}\paren{\frac{\cos^2 \theta \cos 3\theta}{\cos 3\theta+ \sin ^2\theta}} \frac{\cos \theta \sqrt{\cos 3\theta}+\sin \theta \frac{3\sin 3\theta}{2\sqrt{\cos 3\theta}}}{\cos 3\theta}\\
+    &= \boxed{\frac{\cos^2 \theta (2\cos\theta \cos 3 \theta + 3\sin \theta \sin 3 \theta)}{2(\cos 3\theta + \sin^2 \theta)^\frac{3}{2}}}
+\end{align*}
+
+
+\end{document}
+
