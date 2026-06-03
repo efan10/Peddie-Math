@@ -1,0 +1,440 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{PCH}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 76} \\[0.5cm]
+    {\large Optimization Part 1} \\[0.35cm]
+    {\normalsize May 15, 2026}
+\end{center}
+
+% problems
+
+\problem{1}
+Find two positive numbers whose product is 100 and whose sum is minimum.
+\begin{gather*}
+    \begin{cases}
+        S=x+y\\
+        xy=100
+    \end{cases}\\
+    S=x+\frac{100}{x}, \quad x>0\\
+    S'=1-\frac{100}{x^2}\\
+    S'=0 \implies x=10\\
+    \boxed{x=y=10}
+\end{gather*}
+The two positive integers are 10 and 10.
+
+\problem{2}
+Find the dimensions of a rectangle with perimeter 100 m whose area is as large as possible.
+\begin{gather*}
+    \begin{cases}
+        A=xy\\
+        2x+2y=100
+    \end{cases}\\
+    A=x(50-x)=-x^2+50x, \quad x>0\\
+    A'=-2x+50\\
+    A'=0 \implies \boxed{x=y=25}
+\end{gather*}
+The dimensions of the rectangle is 25 m by 25 m.
+
+\problem{3}
+A cylindrical can is to be made to hold 1 L of oil. Find the dimensions that will minimize the cost of the metal to manufacture the can.
+\begin{gather*}
+    \begin{cases}
+        \pi r^2h=1\\
+        A=2\pi r^2+2\pi rh
+    \end{cases}\\
+    A=2\pi r^2+\frac{2}{r}, \quad r>0\\
+    A'=4\pi r-\frac{2}{r^2}\\
+    A'=0 \implies \boxed{r=\cbrt{\frac{1}{2\pi}}, h=2\cbrt{\frac{1}{2\pi}}}
+\end{gather*}
+The cylindrical can has a radius of $r=\cbrt{\dfrac{1} {2\pi}}$ dm and a height of $h=2\cbrt{\dfrac{1}{2\pi}}$ dm.
+
+\problem{4}
+ A model used for the yield $Y$ of an agricultural crop as a function of the nitrogen level $N$ in the soil
+(measured in appropriate units) is
+\[
+Y=\frac{kN}{1+N^2}
+\]
+where $k$ is a positive constant. What nitrogen level gives the best yield?
+\begin{gather*}
+    Y=\frac{kN}{1+N^2}, \quad N>0\\
+    Y'=\frac{k(1+N^2)-2N\cdot kN}{(1+N^2)^2}=\frac{k(1-N^2)}{(1+N^2)^2}\\
+    Y'=0 \implies \boxed{N=1}
+\end{gather*}
+The optimal nitrogen level $N$ is 1.
+
+\problem{5}
+ A farmer wants to fence an area of 1.5 million square feet in a rectangular field and then divide it in half
+with a fence parallel to one of the sides of the rectangle. How can he do this so as to minimize the cost
+of the fence?
+\begin{gather*}
+    \begin{cases}
+        A=lh\\
+        P=3l+2h
+    \end{cases}\\
+    P=3l+\frac{2A}{l}, \quad l>0\\
+    P'=3-\frac{2A}{l^2}\\
+    P'=0 \implies l=\sqrt{\frac{2A}{3}} \implies \boxed{l=1000, h=1500}
+\end{gather*}
+To minimize the cost, the dimensions of the fence are 1000 ft by 1500 ft.
+
+\problem{6}
+Find the point on the line $y = 4x + 7$ that is closest to the origin.
+\begin{gather*}
+    \begin{cases}
+        y=4x+7\\
+        d=\sqrt{x^2+y^2}
+    \end{cases}\\
+    d=\sqrt{x^2+16x^2+56x+49}\\
+    d=\sqrt{17x^2+56x+49},\quad d>0\\
+    d'=0\implies 34x+56=0 \implies \boxed{x=-\frac{28}{17}}
+\end{gather*}
+The point is $\paren{-\dfrac{28}{17},\dfrac{7}{17}}$.
+
+\problem{7}
+Find the points on the ellipse $4x^2 + y^2 = 4$ that are farthest away from the point $(1, 0)$.
+\begin{gather*}
+    \begin{cases}
+        4x^2 + y^2 = 4\\
+        d^2=(x-1)^2+y^2
+    \end{cases}\\
+    d^2=(x-1)^2+4-4x^2\\
+    d^2=-3x^2-2x+5\\
+    (d^2)'=-6x-2\\
+    (d^2)'=0 \implies \boxed{x=-\frac{1}{3}}
+\end{gather*}
+The points are $\paren{-\dfrac{1}{3},\dfrac{4\sqrt{2}}{3}}$ and $\paren{-\dfrac{1}{3},-\dfrac{4\sqrt{2}}{3}}$.
+
+\problem{8}
+Find the dimensions of the rectangle of the largest area that can be inscribed in a circle of radius $r$.
+\begin{gather*}
+    \begin{cases}
+        x^2+y^2=r^2\\
+        A=xy
+    \end{cases}\\
+    A=x\sqrt{r^2-x^2}\\
+    A'=\sqrt{r^2-x^2}-\frac{x^2}{\sqrt{r^2-x^2}}\\
+    A'=0 \implies r^2=2x^2 \implies \boxed{x=\frac{r}{\sqrt{2}}}
+\end{gather*}
+The dimensions of the rectangle are $\sqrt{2}r$ by $\sqrt{2}r$.
+
+\problem{9}
+Find the dimensions of the rectangle of largest area that can be inscribed in an equilateral triangle of
+side $L$ if one side of the rectangle lies on the base of the triangle.
+\begin{gather*}
+    \begin{cases}
+        A=xy\\
+        y=-\sqrt{3}x+\dfrac{\sqrt{3}L}{2}
+    \end{cases}\\
+    A=x(-\sqrt{3}x+\frac{\sqrt{3}L}{2})=-\sqrt{3}x^2+\frac{\sqrt{3}Lx}{2}\\
+    A'=-2\sqrt{3}x+\frac{\sqrt{3}L}{2}\\
+    A'=0 \implies \boxed{x=\frac{L}{4},y=\frac{L\sqrt{3}}{4}}
+\end{gather*}
+The dimensions of the rectangle are $\dfrac{L}{2}$ by $\dfrac{\sqrt{3}L}{4}$.
+
+\problem{10}
+Find the dimensions of the isosceles triangle of largest area that can be inscribed in a circle of radius $r$.
+\begin{gather*}
+    \begin{cases}
+        A=\dfrac{1}{2}x^2 \sin 2\theta\\
+        x=2r \cos \theta
+    \end{cases}\\
+    A=\frac{1}{2}(2r\cos \theta )^2\sin 2\theta=2r^2 \cos^2 \theta \sin 2\theta, \quad \theta >0\\
+    A'=2r^2(2\cos \theta (- \sin \theta)\sin 2\theta + 2\cos^2 \theta \cos 2\theta )\\
+    A'=4r^2\cos \theta \cos 3\theta \\
+    A'=0 \implies \boxed{\theta =\frac{\pi}{6}}
+\end{gather*}
+The triangle is equilateral with a side length of $\sqrt{3}r$.
+
+\problem{11}
+ A right circular cylinder is inscribed in a sphere of radius $r$. Find the largest possible volume of such a
+cylinder.
+\begin{gather*}
+    \begin{cases}
+        v=2\pi x^2y\\
+        x^2+y^2=r^2
+    \end{cases}\\
+    v=2\pi y(r^2-y^2) ,\quad 0<y<r\\
+   v'=2\pi r^2-6\pi y^2\\
+   v'=0 \implies \boxed{y=\frac{r}{\sqrt{3}},x=r\sqrt{\frac{2}{3}}}
+\end{gather*}
+The volume of the cylinder is $\dfrac{4\pi r^3}{3\sqrt{3}}$.
+
+\problem{12}
+A right circular cylinder is inscribed in a sphere of radius $r$. Find the largest possible surface area of
+such a cylinder.
+\begin{gather*}
+    \begin{cases}
+        A=2\pi x^2+4\pi xy\\
+        x^2+y^2=r^2
+    \end{cases}\\
+    A=2\pi x^2+4\pi x\sqrt{r^2-x^2},\quad 0<x<r\\
+    A'=4\pi x + 4\pi (\sqrt{r^2-x^2}-\frac{x^2}{\sqrt{r^2-x^2}})\\
+    A'=0 \implies x=\frac{r^2-2x^2}{\sqrt{r^2-x^2}}\\
+    x^2(r^2-x^2)=4x^4-4r^2x^2+r^4\\
+    5x^4-5r^2x^2+r^4=0\\
+    \boxed{x=r\sqrt{\frac{5+\sqrt{5}}{10}}, y=r\sqrt{\frac{5-\sqrt{5}}{10}}}\\
+    A=2\pi x^2 + 4\pi xy\\
+    A= 2 \pi r^2 \cdot \frac{5+\sqrt{5}}{10} + 4\pi \cdot \frac{r^2}{\sqrt{5}}\\
+    \boxed{A=\pi r^2 (1+\sqrt{5})}
+\end{gather*}
+The largest possible surface area of the cylinder is $\pi r^2 (1+\sqrt{5})$.
+
+\problem{13}
+ A piece of wire 10 m long is cut into two pieces. One piece is bent into a square and the other is bent
+into an equilateral triangle. How should the wire be cut so that the total area enclosed is \vem
+
+\subproblem{a}a maximum?
+\begin{gather*}
+    x=0 \implies A=\frac{\sqrt{3}}{36}\cdot 10^2\\
+    x=10 \implies A=\frac{1}{16}\cdot 10^2\\
+    \boxed{x=10}
+\end{gather*}
+The maximum area is attained when the entire wire is bent into a square. \vem
+
+\subproblem{b}a minimum?
+\begin{gather*}
+    \begin{cases}
+        10=x+y\\
+        A=(\dfrac{x}{4})^2+\dfrac{\sqrt{3}}{4}\cdot (\dfrac{y}{3})^2
+    \end{cases}\\
+    A=\frac{x^2}{16}+\frac{\sqrt{3}}{36}\cdot (10-x)^2,  \quad 0\le x\le 10\\
+    A'=\frac{x}{8}-\frac{\sqrt{3}}{18}\cdot (10-x)\\
+    A'=0 \implies x=\frac{80\sqrt{3}}{18+8\sqrt{3}}\\
+    \boxed{x=\frac{120\sqrt{3}-160}{11}}
+\end{gather*}
+The minimum area is attained when a segment of length $\dfrac{120\sqrt{3}-160}{11}$ m is cut and bent into a square, while the rest is bent into a triangle.
+
+\problem{14}
+A cone-shaped drinking cup is made from a circular piece of paper of radius $R$ by cutting out a sector
+and joining the edges $CA$ and $CB$. Find the maximum capacity of such a cup.
+\begin{gather*}
+    \begin{cases}
+        V=\dfrac{1}{3} \pi r^2h\\
+        r^2+h^2=R^2
+    \end{cases}\\
+    V=\frac{\pi}{3}(R^2h-h^3),\quad 0<h<R\\
+    V'=\frac{\pi}{3}(R^2-3h^2)\\
+    V'=0 \implies h=\frac{R}{\sqrt{3}}, r=\frac{\sqrt{2}R}{\sqrt{3}}\\
+    V=\frac{\pi}{3}(\frac{2R^2}{3})(\frac{R}{\sqrt{3}})=\boxed{\dfrac{2\pi\sqrt{3}R^3}{27}}
+\end{gather*}
+The maximum capacity of the cup is $\dfrac{2\pi\sqrt{3}R^3}{27}$.
+
+\problem{15}
+A cone with height $h$ is inscribed in a larger cone with height $H$ so that its vertex is at the center of the base of the larger cone. Show that the inner cone has maximum volume when $h = \dfrac{1}{3}H$.
+\begin{gather*}
+    \begin{cases}
+        V=\dfrac{1}{3}\pi r^2h\\
+        r=\dfrac{R(H-h)}{H}
+    \end{cases}\\
+    V=\frac{\pi R^2(h^3-2Hh^2+H^2h)}{3H^2}, \quad 0<h<H\\
+    V'=\frac{\pi R^2}{3H^2}(3h^2-4Hh+H^2)\\
+    V'=0 \implies \boxed{h=\frac{H}{3}}
+\end{gather*}
+The inner cone has maximum volume when $h=\dfrac{H}{3}$.
+
+\problem{16}
+If a resistor of $R$ ohms is connected across a battery of $E$ volts with internal resistance $r$ ohms, then the
+power (in watts) in the external resistor is
+\[
+P=\frac{E^2R}{(R+r)^2}
+\]
+If $E$ and $r$ are fixed but $R$ varies, what is the maximum value of the power?
+\begin{gather*}
+    P'=\frac{E^2(R+r)^2-2E^2R(R+r)}{(R+r)^4}\\
+    P'=0 \implies R=r\\
+    \boxed{P=\frac{E^2}{4r}}
+\end{gather*}
+The maximum value of the power is $\dfrac{E^2}{4r}$ watts.
+
+\problem{17}
+In a beehive, each cell is a regular hexagonal prism, open at one end with a trihedral angle at the other end as in the Figure 2. It is believed that bees form their cells in such a way as to minimize the surface area for a given volume, thus using the least amount of wax in cell construction. Examination of these cells has shown that the measure of the apex angle $\theta$ is amazingly consistent. Based on the geometry of the cell, it can be shown that the surface area is given by
+\[
+S = 6sh - \frac{3}{2}s^2 \cot \theta + 3s^2 \frac{\sqrt{3}}{2} \csc \theta
+\]
+where $s$ the length of the sides of the hexagon, and $h$, the height, are constants. \vem
+
+\subproblem{a} Calculate $\dfrac{dS}{d\theta}$.
+\[
+\boxed{\dfrac{dS}{d\theta}=\frac{3}{2}s^2 \csc^2\theta - 3s^2 \frac{\sqrt{3}}{2} \csc \theta \cot \theta }
+\]
+
+\subproblem{b} What angle should the bees prefer?
+\begin{gather*}
+    \dfrac{dS}{d\theta}=0 \implies \frac{3}{2}s^2\csc \theta (\csc \theta -\sqrt{3}\cot \theta )=0\\
+    \csc \theta =\sqrt{3}  \cot \theta \\
+    \cos \theta =\frac{\sqrt{3}}{3}\\
+    \boxed{\theta =\arccos \frac{\sqrt{3}}{3}}
+\end{gather*}
+The preferred angle is $\arccos \dfrac{\sqrt{3}}{3}$.
+
+\subproblem{c} Determine the minimum surface area of the cell (in terms of $s$ and $h$).\vem
+
+\textit{Note: Actual measurements of the angle $\theta$ in beehives have been made, and the measures of this angles seldom differ from the calculated value by more than 2 deg.}
+\begin{align*}
+    S &= 6sh - \frac{3}{2}s^2 \cot \theta + 3s^2 \frac{\sqrt{3}}{2} \csc \theta\\
+    &= 6sh-\frac{3}{2}s^2\cdot \frac{1}{\sqrt{2}}+3s^2\frac{\sqrt{3}}{2}\cdot \frac{\sqrt{3}}{\sqrt{2}}\\
+    &=\boxed{6sh+\frac{3\sqrt{2}}{2}s^2}
+\end{align*}
+The minimum surface area of the cell is $6sh+\dfrac{3\sqrt{2}}{2}s^2$.
+
+\problem{18}
+An oil refinery is located on the north bank of a straight river that is 2 km wide. A pipeline is to
+be constructed from the refinery to storage tanks located on the south bank of the river 6 km east of
+the refinery. The cost of laying pipe is \$$400, 000$/km over land to a point $P$ on the north bank and
+\$$800, 000$/km under the river to the tanks. To minimize the cost of the pipeline, where should $P$ be
+located?
+\begin{gather*}
+    C=800000\sqrt{4+x^2}+400000(6-x), \quad 0\le x\le 6\\
+    C'=\frac{800000x}{\sqrt{4+x^2}}-400000\\
+    C'=0 \implies 2x=\sqrt{4+x^2}\\
+    4x^2=4+x^2\\
+    \boxed{x=\frac{2}{\sqrt{3}} $ km$}
+\end{gather*}
+Point $P$ is located $6-\dfrac{2}{\sqrt{3}}$ km west of the storage tanks. 
+
+\problem{19}
+The illumination of an object by a light source is directly proportional to the strength of the source and
+inversely proportional to the square of the distance from the source. If two light sources, one three times
+as strong as the other, are placed 10 ft apart, where should an object be placed on the line between the
+sources so as to receive the least illumination?
+\begin{gather*}
+    E = \frac{I}{d^2}+\frac{3I}{(10-d)^2},\quad 0<d<10\\
+    E'=-\frac{2I}{d^3}+\frac{6I}{(10-d)^3}\\
+    E'=0 \implies 3d^3=(10-d)^3\\
+    \cbrt{3}d=10-d\\
+    \boxed{d=\frac{10}{\cbrt{3}+1}}
+\end{gather*}
+The object is placed $\dfrac{10}{\cbrt{3}+1}$ ft away from the weaker light source. 
+
+\problem{20}
+Show that of all the isosceles triangles with a given perimeter, the one with the greatest area is equilateral.
+\begin{gather*}
+    \begin{cases}
+        P=2a+b\\
+        A=\sqrt{s(s-a)^2(s-b)}
+    \end{cases}\\
+    A=\sqrt{s(s-a)^2(2a-s)}\\
+    f(a)=(a^2-2as+s^2)(2a-s), \quad 0<a<s\\
+    f(a)=2a^3-5sa^2+4s^2a-s^3\\
+    f'(a)=6a^2-10sa+4s^2\\
+    f'(a)=0 \implies a=\frac{2s}{3}\\
+    \boxed{a=b=\frac{P}{3}}
+\end{gather*}
+Hence, the triangle with the greatest area is equilateral.
+
+\end{document}
+
