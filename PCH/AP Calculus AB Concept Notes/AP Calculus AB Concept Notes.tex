@@ -1,0 +1,700 @@
+\documentclass{article}
+\usepackage[letterpaper,portrait,top=0.4in, left=0.6in, right=0.6in, bottom=1in]{geometry}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{soul}
+\usepackage{graphicx, float}
+\usepackage{suffix}
+\usepackage{soul}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage{mdframed}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage[colorlinks, linkcolor=blue]{hyperref}
+\usepackage[per-mode=symbol]{siunitx}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
+
+\allowdisplaybreaks
+
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand{\vem}{\vspace{0.5em}}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\WithSuffix\newcommand\theorem*[1]{\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\example}[2]{\begin{tcolorbox}[title={Example: #1},colback=brown!5!white,colframe=brown!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\newcommand{\remark}[2]{\begin{tcolorbox}[title={#1},colback=black!5!white,colframe=black!75!black,parbox=false] #2 \end{tcolorbox}}
+\WithSuffix\newcommand\remark*[1]{\begin{tcolorbox}[colback=black!5!white,colframe=black!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\hlc}[2][yellow]{\sethlcolor{#1}\hl{#2}}
+
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\floor}[1]{\ensuremath{\lfloor #1\rfloor}}
+
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+
+\title{\vspace*{-40pt}\textsc{AP Calculus AB Concept Notes}}
+\author{Ethan Fan}
+\date{Spring Trimester, 2026}
+
+\begin{document}
+\setstretch{1.25}
+\fontsize{11pt}{12pt}\selectfont
+\setlength{\abovedisplayskip}{\abovedisplayskip/2}
+\setlength{\belowdisplayskip}{\belowdisplayskip/2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2ex plus 0.5ex minus 0.2ex}
+\maketitle
+
+\tableofcontents
+% \newpage
+
+\section{The Squeeze Theorem}
+\theorem{The Squeeze Theorem}{
+If $f(x)\le g(x) \le h(x)$ when $x$ is near $a$ (except possibly at $a$) and
+\begin{equation*}
+    \lim_{x \to a}f(x) = \lim_{x \to a} h(x) = L
+\end{equation*}
+then
+\begin{equation*}
+    \lim_{x \to a} g(x)=L.
+\end{equation*}
+}
+
+\section{Epsilon Delta Definition of a Limit}
+
+\theorem{Epsilon-Delta Definition of a Limit}{
+Let $f(x)$ be defined on some open interval $(I)$ that contains the number $a$, except possibly at $a$ itself, then we say:
+\begin{gather*}
+    \lim_{x \to a} f(x) = L \iff\\
+    \forall \epsilon >0, \quad \exists \delta > 0 \text{ s.t. } 0<|x-a|<\delta \implies |f(x)-L|< \epsilon
+\end{gather*}
+\begin{itemize}
+    \item $|f(x)-L|< \epsilon \iff L-\epsilon < f(x) < L+\epsilon$
+    \item $|x-a|<\delta \iff a-\delta < x < a + \delta$
+\end{itemize}
+}
+
+\textbf{Epsilon-Delta Proof Example 1}
+
+Prove that $\lim\limits_{x \to 3} 4x-5=7$.\\
+Given $\epsilon > 0$, find $\delta$ s.t. if $|x-3|<\delta$, then $|4x-5-7|<\epsilon$.
+\begin{gather*}
+    |4x-12|<\epsilon\\
+    \iff 4|x-3|<\epsilon\\
+    \iff |x-3|<\frac{\epsilon}{4}\\
+    \boxed{\text{Choose } \delta=\frac{\epsilon}{4}}
+\end{gather*}
+Actual Proof:\\
+Given $\epsilon > 0$, let $\delta=\frac{\epsilon}{4}$, we want to show if $|x-3|<\delta$, then $|4x-5-7|<\epsilon$.
+\begin{gather*}
+    |x-3|<\frac{\epsilon}{4}\\
+    \iff 4|x-3|<\epsilon\\
+    \iff |4x-12|<\epsilon\\
+    \iff |4x-5-7|<\epsilon
+\end{gather*}
+By the $\epsilon-\delta$ definition:
+\[
+\boxed{\lim_{x\to 3} (4x-5) = 7}
+\]
+
+\textbf{Epsilon-Delta Proof Example 2}
+
+Use the $\epsilon - \delta$ definition to prove that $\lim\limits_{x\to9}(\sqrt{x}+2)=5$.\\
+Given $\epsilon > 0$, find $\delta$ s.t. if $|x-9|<\delta$, then $|\sqrt{x}+2-5|<\epsilon$.
+\begin{gather*}
+    |\sqrt{x}-3|<\epsilon\\
+    \iff |\sqrt{x}-3|\cdot|\sqrt{x}+3|<\epsilon|\sqrt{x}+3|\\
+    \iff |x-9|<\epsilon|\sqrt{x}+3|
+\end{gather*}
+Let $\delta<1$.
+\begin{gather*}
+    8<x<10\\
+    2\sqrt{2}<\sqrt{x}<\sqrt{10}\\
+    2\sqrt{2}+3<\sqrt{x}+3<\sqrt{10}+3\\
+    2\sqrt{2}+3<|\sqrt{x}+3|<\sqrt{10}+3\\
+    |x-9|<\epsilon|\sqrt{x}+3|<(2\sqrt{2}+3)\epsilon\\
+    \boxed{\text{Choose } \delta=\min\{1,(2\sqrt{2}+3)\epsilon\}}
+\end{gather*}
+Given $\epsilon > 0$, let $\delta=(2\sqrt{2}+3)\epsilon$.
+\begin{gather*}
+    |x-9|<(2\sqrt{2}+3)\epsilon\\
+    \iff \frac{|x-9|}{|\sqrt{x}+3|}<\frac{(2\sqrt{2}+3)\epsilon}{|\sqrt{x}+3|}<\frac{(2\sqrt{2}+3)\epsilon}{2\sqrt{2}+3}\\
+    \iff |\sqrt{x}-3|<\epsilon\\
+    \iff |\sqrt{x}+2-5|<\epsilon
+\end{gather*}
+By the $\epsilon-\delta$ definition:
+\[
+\boxed{\lim\limits_{x\to9}(\sqrt{x}+2)=5}
+\]
+
+\section{Continuity}
+\theorem{Continuity at a number:}{
+A function $f$ is continuous at a number $a$ if
+$$\lim_{x\rightarrow a}f(x)=f(a).$$
+Notice that Definition 1 implicitly requires three things if $f$ is continuous at $a$:
+\begin{enumerate}
+    \item $f(a)$ is defined (that is, $a$ is in the domain of $f$).
+    \item $\lim\limits_{x\rightarrow a}f(x)$ exists (that is, one-sided limits exist and equal to each other).
+    \item $\lim\limits_{x\rightarrow a}f(x)=f(a)$.
+\end{enumerate}
+}
+
+\theorem{Discontinuity:}{
+$f(x)$ is said to be discontinuous at $x=a$ if
+\begin{enumerate}
+    \item $\lim\limits_{x\rightarrow a^{-}}f(x)$ and $\lim\limits_{x\rightarrow a^{+}}f(x)$ exists but are not equal.
+    \item $\lim\limits_{x\rightarrow a^{-}}f(x)$ and $\lim\limits_{x\rightarrow a^{+}}f(x)$ exists and are equal but not equal to $f(a)$
+    \item $f(a)$ is not defined.
+    \item At least one of the one-sided limits doesn't exist.
+\end{enumerate}
+}
+
+\theorem{Types of Discontinuity}{
+Removable: Missing point (a hole) and Isolated point \\
+Non-Removable: Jump, Infinite, Oscillatory
+}
+
+\theorem{Directional Continuity:}{
+A function $f$ is continuous from the right at a number $a$ if
+$$\lim_{x\rightarrow a^{+}}f(x)=f(a)$$
+and $f$ is continuous from the left at $a$ if 
+$$\lim_{x\to a^{-}}f(x)=f(a)$$
+}
+
+\textbf{Continuity Test Example}
+
+$f(x)=e^\frac{1}{x}$ at $x=0$
+\begin{gather*}
+    f(0) \text{ is undefined}\\
+    \lim_{x\to 0^-}e^\frac{1}{x}=0\\
+    \lim_{x\to 0^+}e^\frac{1}{x}\to \infty\\
+    \lim_{x\to 0^-}e^\frac{1}{x} \ne \lim_{x\to 0^+}e^\frac{1}{x} \implies \lim_{x\to0}e^\frac{1}{x} \ \mathrm{DNE}\\
+    \boxed{\text{Non-Removable Discontinuity: Infinite}}
+\end{gather*}
+
+\theorem{Continuity on Interval:}{
+A function $f(x)$ is continuous on the open interval $(a,b)$ if it is continuous at every point in the interval $(a, b)$. \vspace{0.5em} \\
+A function $f(x)$ is continuous on the closed interval $[a,b]$ if
+\begin{itemize}
+    \item (i) It is continuous at every point in the interval $(a,b)$.
+    \item (ii) It is continuous from the right.
+    \item (iii) It is continuous from the left.
+\end{itemize}
+}
+
+Functions attained from the sum, difference, product, and quotient of other functions follow the following continuity principles:
+\begin{itemize}
+    \item If $f(x)$ and $g(x)$ are continuous on an interval I, then the functions formed by their sum, difference, product, and quotient are also continuous on I. Note: The quotient $\dfrac{f(x)}{g(x)}$ is continuous only when $g(x)\ne0$ within the interval. 
+    \item If $f(x)$ is continuous and $g(x)$ is discontinuous at $x=a$, then $f(x)\pm g(x)$ is discontinuous at $x=a$. 
+    \item If $f(x)$ is continuous and $g(x)$ is discontinuous at $x=a$, then the product function $h(x)=f(x)g(x)$ may or may not be continuous at $x=a.$ 
+    \item If both functions $f(x)$ and $g(x)$ are discontinuous at $x=a,$ then a function formed by applying algebraic operations to $f(x)$ and $g(x)$ may or may not be continuous. 
+    \item If $g(x)$ is continuous at $x=a$ and $f(x)$ is continuous at $g(a)$ then the composite function $f(g(x))$ is continuous at $x=a.$ 
+\end{itemize}
+
+\theorem{Continuity of Function Involving Limit at Infinity}{We know that $\lim\limits_{n \to \infty} a^n =
+\begin{cases}
+0 & 0 \le a < 1 \\
+1 & a = 1 \\
+\to \infty & a > 1
+\end{cases}$\\
+Also, $\lim\limits_{n \to \infty} a^{2n}
+= \lim\limits_{n \to \infty} (a^2)^n
+=
+\begin{cases}
+0 & 0 \le a^2 < 1 \\
+1 & a^2 = 1 \\
+\to \infty & a^2 > 1
+\end{cases}
+=
+\begin{cases}
+0 & -1 < a < 1 \\
+1 & a = \pm 1 \\
+\to \infty & a < -1 \text{ or } a > 1
+\end{cases}$
+}
+
+\section{Differentiability}
+
+\theorem{Derivative of a function}{
+Derivative of a function $f$ at a fixed number $a$:
+\[
+f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h} = \lim_{x \to a} \frac{f(x) - f(a)}{x - a}
+\]
+Derivative as a function:
+\[
+f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+\]
+}
+
+\theorem{Definition 1}{
+A function $f$ is differentiable at $a$ if $f'(a)$ exists. It is differentiable on an open interval $(a, b)$ [or $(a, \infty)$ or $(-\infty, b)$ or $(-\infty, \infty)$] if it is differentiable at every number in the interval.
+}
+
+\theorem{Theorem 1 Differentiability implies Continuity}{
+If $f$ is differentiable at $a$, then $f$ is continuous at $a$.
+
+Note: The converse of Theorem 1 is false; that is, there are functions that are continuous but not differentiable.
+}
+
+\theorem{Reasons for Non-Differentiability}{
+Case A: $f(x)$ is continuous at $x = a$ and both $f'(a^+)$ and $f'(a^-)$ exist but are not equal.
+
+Case B: $f(x)$ is discontinuous at $x = a$.
+
+Case C: $f(x)$ is continuous at $x = a$ and either or both $f'(a^+)$ and $f'(a^-)$ are not finite.
+}
+
+\textbf{Differentiability Test Example}
+
+Discuss the differentiability of
+$f(x)=\begin{cases}
+    \dfrac{\sin x^2}{x} &\text{if $x\ne 0$} \\
+    0  &\text{if $x=0$}
+\end{cases}$ at $x=0$
+\begin{gather*}
+    f_-'(0)=\lim_{h \to 0^-} \frac{\frac{\sin h^2}{h}-0}{h}=\lim_{h \to 0^-} \frac{\sin h^2}{h^2}=1\\
+    f_+'(0)=\lim_{h \to 0^+} \frac{\frac{\sin h^2}{h}-0}{h}=\lim_{h \to 0^+} \frac{\sin h^2}{h^2}=1\\
+    f_-'(0)=f_+'(0)=1 \implies f'(0)=1\\
+    \boxed{\text{$f(x)$ is differentiable at $x=0$}}
+\end{gather*}
+
+Functions attained from the sum, difference, product, and quotient of other functions follow the following differentiability principles:
+\begin{itemize}
+    \item If $f(x)$ and $g(x)$ are differentiable on the interval $I$, then any function formed by their arithmetic combination—sum, difference, product, or quotient—is likewise differentiable and continuous on $I$, provided the denominator of the quotient is non-zero.
+    \item If a function $f(x)$ is differentiable at a point but $g(x)$ is not, their sum or difference $f(x) \pm g(x)$ will inherit the non-differentiability of $g(x)$ at that same point.
+    \item If a function $f(x)$ is differentiable and $g(x)$ is not differentiable at $x = a$, then the product function $f(x)g(x)$ may or may not be differentiable at $x = a$.
+    \item When two functions $f(x)$ and $g(x)$ are both non-differentiable at $x = a$, their sum, difference, product, or quotient may result in a function that is either differentiable or non-differentiable at that point.
+\end{itemize}
+
+\section{Derivative Rules}
+
+\theorem{Constant Times a Function}{
+\[
+(cf(x))' = c f'(x) \quad \text{(Euler/Lagrange)}
+\]
+\[
+\frac{d}{dx}(c f(x)) = c \frac{df(x)}{dx}\quad \text{(Leibniz)}
+\]
+}
+
+\theorem{Sum/Difference Rule}{
+$$(f(x) \pm g(x))' = f'(x) \pm g'(x)$$
+$$\frac{d}{dx}(f(x) \pm g(x)) = \frac{d}{dx}f(x) \pm \frac{d}{dx}g(x)$$
+}
+
+\theorem{Product Rule}{
+$$(f(x)g(x))' = f'(x)g(x) + f(x)g'(x)$$
+$$\frac{d}{dx}(fg) = f'g + fg'$$
+}
+
+\theorem{Quotient Rule}{
+$$\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$$
+$$\frac{d}{dx}\left(\frac{f(x)}{g(x)}\right) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$$
+}
+
+\theorem{Power Rule}{
+For any real number $n \neq 0$, the derivative of $x^n$ with respect to $x$ is given by
+$$
+\frac{d}{dx}(x^n) = n x^{n-1}
+$$
+}
+
+\theorem{The Chain Rule}{
+\begin{gather*}
+    (f(g(x)))' = f'(g(x)) \cdot g'(x)\\
+\textit{Differentiate the outside, leave the inside alone, then multiply by the derivative of the inside!}
+\end{gather*}
+}
+
+\theorem{Trigonometric Derivatives}{
+$$
+\frac{d}{dx}(\sin x) = \cos x, \quad
+\frac{d}{dx}(\cos x) = -\sin x,
+$$
+$$
+\frac{d}{dx}(\tan x) = \sec^2 x, \quad
+\frac{d}{dx}(\cot x) = -\csc^2 x,
+$$
+$$
+\frac{d}{dx}(\sec x) = \sec x \tan x, \quad
+\frac{d}{dx}(\csc x) = -\csc x \cot x.
+$$
+}
+
+\theorem{Exponential Derivatives}{
+$$
+\frac{d}{dx}(e^x) = e^x,
+$$
+$$
+\frac{d}{dx}(a^x) = a^x \ln a \quad (a > 0, a \neq 1).
+$$
+}
+
+\theorem{Logarithmic Derivatives}{
+$$
+\frac{d}{dx}(\ln x) = \frac{1}{x} \quad (x > 0),
+$$
+$$
+\frac{d}{dx}(\log_a x) = \frac{1}{x \ln a} \quad (a > 0, a \neq 1).
+$$
+}
+
+\theorem{ Implicit Differentiation } {
+    Implicit differentiation makes use of the Chain rule to differentiate a function which cannot be explicitly expressed in the form $y = f(x)$. Such a function is known as an implicitly defined function. By the Chain rule, the derivative with respect to $x$ of a function $f(y(x))$ is given by:
+    $$\frac{d}{dx}(f(y)) = f'(y) \cdot y' \quad \text{or} \quad \frac{d}{dx}(f(y)) = f'(y) \cdot \frac{dy}{dx}$$
+}
+
+\theorem{Logarithmic Differentiation}{
+Let $y = f(x)^{g(x)}$. Then $\ln y = g(x) \ln f(x)$. Differentiating with respect to $x$, yields\\
+\[
+\frac{1}{y} y' = g'(x)\ln f(x) + g(x)\frac{f'(x)}{f(x)}.
+\]\\
+Let $y = \dfrac{f_1(x)\cdot f_2(x)\cdot f_3(x)\cdots}{g_1(x)\cdot g_2(x)\cdot g_3(x)\cdots}$. Then\\
+\[
+\ln y = \ln(f_1(x)\cdot f_2(x)\cdot f_3(x)\cdots) - \ln(g_1(x)\cdot g_2(x)\cdot g_3(x)\cdots)
+\]
+\[
+\frac{1}{y}y' =
+\left[
+\frac{(f_1(x))'}{f_1(x)} +
+\frac{(f_2(x))'}{f_2(x)} +
+\frac{(f_3(x))'}{f_3(x)} + \cdots
+\right]
+-
+\left[
+\frac{(g_1(x))'}{g_1(x)} +
+\frac{(g_2(x))'}{g_2(x)} +
+\frac{(g_3(x))'}{g_3(x)} + \cdots
+\right].
+\]
+}
+
+\subsection{L'Hopital's Rule}
+\theorem{ L'Hôpital's Rule } {Suppose $f$ and $g$ are differentiable functions and $g'(x) \neq 0$ on an open interval $I$ that contains $a$ (except possibly at $a$). Suppose that$$ \lim_{x \to a} \frac{f(x)}{g(x)} = \frac{0}{0} \quad \text{OR} \quad \lim_{x \to a} \frac{f(x)}{g(x)} = \frac{\pm\infty}{\pm\infty}, $$where $a$ can be any real number, infinity or negative infinity. Then$$ \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}. $$}
+
+\textbf{L'Hopital Example 1}
+
+$\lim\limits_{x\to \infty}\dfrac{\ln x}{\sqrt{x}}$
+\begin{gather*}
+    \begin{cases}
+        \lim\limits_{x\to \infty}\ln x\to \infty\\
+        \lim\limits_{x\to \infty}\sqrt{x} \to \infty
+    \end{cases}\\
+    \lim\limits_{x\to \infty}\frac{\ln x}{\sqrt{x}}\overset{[\frac{\infty{}}{\infty}]}{=}\lim\limits_{x\to \infty}\frac{\frac{1}{x}}{\frac{1}{2\sqrt{x}}}=\lim\limits_{x\to \infty}\frac{2}{\sqrt{x}}=\boxed{0}
+\end{gather*}
+
+\theorem{ Indeterminate Powers: $0^0, \infty^0, 1^\infty$ } {Several indeterminate forms arise from the limit$$ \lim_{x \to a} [f(x)]^{g(x)} $$
+\begin{enumerate}
+    \item $\lim\limits_{x \to a} f(x) = 0$ and $\lim\limits_{x \to a} g(x) = 0$ \hfill \textbf{Type $0^0$}
+    \item $\lim\limits_{x \to a} f(x) = \pm\infty$ and $\lim\limits_{x \to a} g(x) = 0$ \hfill \textbf{Type $\pm\infty^0$}
+    \item $\lim\limits_{x \to a} f(x) = 1$ and $\lim\limits_{x \to a} g(x) = \pm\infty$ \hfill \textbf{Type $1^{\pm\infty}$}
+\end{enumerate}
+Each of these three cases can be treated either by taking the natural logarithm:
+
+Let$$ y = [f(x)]^{g(x)}, $$then$$ \ln y = g(x) \ln f(x) $$or by writing the function as an exponential:$$ [f(x)]^{g(x)} = e^{g(x) \ln f(x)}. $$}
+
+\textbf{L'Hopital Example 2}\\
+$\lim\limits_{x \to 0^+} x^{x^2}$
+\begin{gather*}
+    \lim\limits_{x \to 0^+} x^{x^2} \quad [0^0]\\
+    \lim_{x \to 0^+}y=\lim_{x \to 0^+}x^{x^2}\\
+    \lim_{x \to 0^+}\ln y =\lim_{x \to 0^+}x^2 \ln x=\lim_{x \to 0^+}\frac{\ln x}{\frac{1}{x^2}}\\
+    \begin{cases}
+        \lim\limits_{x \to 0^+} \ln x \to -\infty\\
+        \lim\limits_{x \to 0^+} \dfrac{1}{x^2} \to \infty
+    \end{cases}\\
+    \lim_{x \to 0^+}\frac{\ln x}{\frac{1}{x^2}} \underset{\text{L'H}}{\overset{\left[\frac{-\infty}{\infty}\right]}{=}}\lim_{x \to 0^+}\frac{\frac{1}{x}}{-\frac{2}{x^3}}=\lim_{x \to 0^+}-\frac{x^2}{2}=0\\
+    \lim_{x \to 0^+}x^{x^2}=\lim_{x \to 0^+}y=e^{\lim_{x \to 0^+} \ln y}=e^0=\boxed{1}
+\end{gather*}
+
+\subsection{Inverse Derivatives}
+\theorem{ Theorem 1 } {If $f$ is continuous and one-to-one on an interval $I$, then $f$ is either increasing or decreasing on that interval.}\theorem{ Theorem 2 } {If $f$ is continuous and one-to-one on an interval $I$, then $f^{-1}$ is also continuous.}\theorem{ Theorem 3 } {Let $f(x)$ be a continuous and one-to-one function, defined on an interval $I$. Let $y = f^{-1}(x)$ be the inverse of $f(x)$. For all $x$ satisfying $f'(f^{-1}(x)) \neq 0$,$$ \frac{dy}{dx} = \frac{d}{dx}(f^{-1}(x)) = (f^{-1})'(x) = \frac{1}{f'(f^{-1}(x))}. $$}
+
+\theorem{Inverse Trigonometric Derivatives} {$$ \frac{d}{dx}(\sin^{-1} x) = \frac{1}{\sqrt{1 - x^2}} \qquad \frac{d}{dx}(\cos^{-1} x) = -\frac{1}{\sqrt{1 - x^2}} $$$$ \frac{d}{dx}(\tan^{-1} x) = \frac{1}{1 + x^2} \qquad \frac{d}{dx}(\cot^{-1} x) = -\frac{1}{1 + x^2} $$$$ \frac{d}{dx}(\sec^{-1} x) = \frac{1}{|x|\sqrt{x^2 - 1}} \qquad \frac{d}{dx}(\csc^{-1} x) = -\frac{1}{|x|\sqrt{x^2 - 1}} $$}
+
+\textbf{Inverse Trig Example}\\
+$y=\cot^{-1} x$
+\begin{gather*}
+    \cot y=x\\
+    y'=-\frac{1}{\csc^2 x}\\
+    y'=-\frac{1}{x^2+1}\\
+    \boxed{\cot^{-1} x=-\frac{1}{x^2+1}}
+\end{gather*}
+
+\section{Existence Theorem}
+
+\subsection{Intermediate Value Theorem}
+\theorem{ The Intermediate Value Theorem (IVT): }{
+Suppose that $f$ is continuous on the closed interval $[a, b]$ and let $N$ be any number between $f(a)$ and $f(b)$, where $f(a)\ne f(b)$. Then there exists a number $c$ in $(a, b)$ such that $f(c)=N.$ 
+}
+
+\textbf{IVT Example}
+
+$f(x)=x^3-3x-19 $ or $ x^3-3x-19=0$ on interval $[1,5] \implies a=1,b=5$
+\begin{enumerate}
+    \item $f(x)$ is a continuous polynomial function on $[1,5]$.
+    \item $f(1)=-21, f(5)=91$
+\[
+-21<N<91 \implies \text{let }N=0
+\]
+    \item By the Intermediate Value Theorem, since $f(x)$ is continuous on $[1,5]$, and $f(1)<0<f(5)$, then there exist a number $c\in (1,5)$ such that $f(c)=0$. i.e. $c^3-3c-19=0$ is solvable on $(1,5)$.
+\end{enumerate}
+
+\subsection{Extreme Value Theorem}
+
+\theorem{Absolute Extrema}{
+A function $f$ has an absolute maximum (or global maximum) at $c$ if $f(c) \geq f(x)$ for all $x$ in the domain of $f$. The number $f(c)$ is called the maximum value of $f$. Similarly, $f$ has an absolute minimum at $c$ if $f(c) \leq f(x)$ for all $x$ in the domain of $f$ and the number $f(c)$ is called the minimum value of $f$. The maximum and minimum values of $f$ are called the extreme values of $f$.
+}
+
+\theorem{Local (Relative) Extrema}{
+A function $f$ has a local maximum (or relative maximum) at $c$ if $f(c) \geq f(x)$ when $x$ is near $c$. [This means that $f(c) \geq f(x)$ for all $x$ in some open interval containing $c$.] Similarly, has $f$ a local minimum at $c$ if $f(c) \leq f(x)$ when $x$ is near $c$.
+}
+
+\theorem{The Extreme Value Theorem (EVT)}{
+If $f$ is continuous on a closed interval $[a, b]$, then $f$ attains an absolute maximum value $f(c)$ and an absolute minimum value $f(d)$ at some numbers $c$ and $d$ in $[a, b]$.
+}
+
+\theorem{The Fermat’s Theorem}{
+If $f$ has a local maximum or minimum at $c$, and if $f'(c)$ exists, then $f'(c) = 0$.
+}
+
+\theorem{Critical Number}{
+A critical number of a function $f$ is a number $c$ in the domain of $f$ such that either $f'(c) = 0$ or $f'(c)$ does not exist.
+}
+
+\theorem{The Closed Interval Method}{
+To find the absolute maximum and minimum values of a continuous function $f$ on a closed interval $[a, b]$:
+
+\begin{enumerate}
+\item Find the values of $f$ at the critical numbers of $f$ in $(a, b)$.
+\item Find the values of $f$ at the endpoints of the interval.
+\item The largest of the values from Steps 1 and 2 is the absolute maximum value; the smallest of these values is the absolute minimum value.
+\end{enumerate}
+}
+
+\textbf{Closed Interval Method Example}
+
+For the following function, find the maximum and minimum values on the indicated intervals, by finding the critical points, and comparing the values at these points with the values at the endpoints. 
+
+$f(x)=3x^4-6x^3+6x^2$ on $\left[ -\dfrac{1}{2}, \dfrac{1}{2} \right]$
+\begin{gather*}
+    f'(x)=12x^3-18x^2+12x\\
+    6x(2x^2-3x+2)=0 \implies f'(0)=0\\
+    f(0)=0\\
+    f(-\frac{1}{2})=\frac{39}{16}\\
+    f(\frac{1}{2})=\frac{15}{16}\\
+    \boxed{\max:(-\frac{1}{2},\frac{39}{16}),\min :(0, 0)}
+\end{gather*}
+
+\subsection{Mean Value Theorem}
+
+\theorem{Rolle’s Theorem}{
+Let $f$ be a function that satisfies the following three hypotheses:
+\begin{enumerate}
+\item $f$ is continuous on the closed interval $[a, b]$.
+\item $f$ is differentiable on the open interval $(a, b)$.
+\item $f(a) = f(b)$
+\end{enumerate}
+Then there is a number $c$ in $(a, b)$ such that $f'(c) = 0$.
+}
+
+\theorem{The Mean Value Theorem}{
+Let $f$ be a function that satisfies the following hypotheses:
+\begin{enumerate}
+\item $f$ is continuous on the closed interval $[a, b]$.
+\item $f$ is differentiable on the open interval $(a, b)$.
+\end{enumerate}
+Then there is a number $c$ in $(a, b)$ such that
+\[
+f'(c) = \frac{f(b) - f(a)}{b - a}
+\]
+}
+
+\theorem{Theorem}{
+If $f'(x) = 0$ for all $x$ in an interval $(a, b)$, then $f$ is constant on $(a, b)$.
+}
+
+\theorem{Corollary}{
+If $f'(x) = g'(x)$ for all $x$ in an interval $(a, b)$, then $f - g$ is constant on $(a, b)$; that is, $f(x) = g(x) + c$ where $c$ is a constant.
+}
+
+\textbf{Rolle's Thoerem Example}
+
+Verify that the function satisfies the three hypotheses of Rolle's Theorem on the given interval. Then find all numbers that satisfy the conclusion of Rolle's Theorem. 
+
+$f(x)=\sqrt{x}-\dfrac{x}{3}, \quad [0,9]$
+\begin{enumerate}
+    \item $f(x)$ is continuous on $[0,9]$ as $f(x)$ is constructed by polynomial functions and $x\ge 0$.
+    \item $f(x)$ is differentiable on $(0,9)$.
+    \item $\begin{cases}
+        f(0)=\sqrt{0}-\dfrac{0}{3}=0 \vspace{0.5em}\\
+    f(9)=\sqrt{9}-\dfrac{9}{3}=0
+    \end{cases} \implies f(0)=f(9)$
+\end{enumerate}
+By Rolle's Theorem,
+\begin{gather*}
+    \boxed{\exists c \in (0,9) \text{ s.t. } f'(c)=0}\\
+    f'(c)=\frac{1}{2\sqrt{c}}-\frac{1}{3}=0\\
+    2\sqrt{c}=3\\
+    \boxed{c=\frac{9}{4}}
+\end{gather*}
+
+\textbf{MVT Example}
+
+Verify that the function satisfies the hypotheses of the Mean Value Theorem on the given interval. Then find all numbers $c$ that satisfy the conclusion of the Mean Value Theorem.
+
+$f(x)=3x^2+2x+5,\quad [-1,1]$
+\begin{enumerate}
+    \item $f(x)$ is continuous on $[-1,1]$ as $f(x)$ is constructed by polynomial functions.
+    \item $f(x)$ is differentiable on $(-1,1)$.
+\end{enumerate}
+By the Mean Value Theorem,
+\begin{gather*}
+    \boxed{\exists c \in (-1,1) $ s.t. $ f'(c)=2}\\
+    f'(c)=6c+2=2\\
+    \boxed{c=0}
+\end{gather*}
+
+\section{Derivatives with Function Graph}
+\subsection{Monotonicity and Concavity}
+\theorem{ Increasing/Decreasing Test } {
+    \begin{itemize}
+        \item If $f'(x) > 0$ on an interval, then $f$ is increasing on that interval.
+        \item If $f'(x) < 0$ on an interval, then $f$ is decreasing on that interval.
+    \end{itemize}
+}
+
+\theorem{ The First Derivative Test } {
+    Suppose that $c$ is a critical number of a continuous function $f$:
+    \begin{itemize}
+        \item If $f'$ changes from positive to negative at $c$, then $f$ has a local maximum at $c$.
+        \item If $f'$ changes from negative to positive at $c$, then $f$ has a local minimum at $c$.
+        \item If $f'$ doesn't change sign at $c$, then $f$ has no local maximum or minimum at $c$.
+    \end{itemize}
+}
+
+\theorem{ Definition of Concavity } {
+    If the graph of $f$ lies above all of its tangents on an interval $I$, then it is called concave upward on $I$. If the graph of $f$ lies below all of its tangents on an interval $I$, then it is called concave downward on $I$.
+}
+
+\theorem{ Concavity Test } {
+    \begin{itemize}
+        \item If $f''(x) > 0$ for all $x$ in $I$, then the graph of $f$ is concave upward in $I$.
+        \item If $f''(x) < 0$ for all $x$ in $I$, then the graph of $f$ is concave downward in $I$.
+    \end{itemize}
+}
+
+\theorem{ Inflection Point } {
+    A point $P$ on a curve $y=f(x)$ is called an inflection point if $f$ is continuous there and the curve changes from concave upward to concave downward or from concave downward to concave upward.
+}
+
+\theorem{ The Second Derivative Test } {
+    Suppose $f''$ is continuous near $c$. Then:
+    \begin{itemize}
+        \item If $f'(c) = 0$ and $f''(c) > 0$ then $f$ has a local minimum at $c$.
+        \item If $f'(c) = 0$ and $f''(c) < 0$ then $f$ has a local maximum at $c$.
+    \end{itemize}
+}
+
+\textbf{Function Analysis Example} \vem
+
+$f(x)=\dfrac{\ln x}{\sqrt{x}}$
+\begin{gather*}
+    x>0\\
+    f'(x)=\frac{\frac{\sqrt{x}}{x}-\frac{\ln x}{2\sqrt{x}}}{x}=\frac{2-\ln x}{2x\sqrt{x}}\\
+    f'(x)=0\implies \ln x=2\implies x=e^2\\
+    f'(x)>0, \quad \forall 0<x <e^2\\
+    f'(x)<0, \quad \forall x >e^2
+\end{gather*}
+$f(x)$ is increasing on $(0, e^2)$ because $f'(x)>0$ on this interval.\vem
+
+$f(x)$ is decreasing on $(e^2, \infty)$ because $f'(x)<0$ on this interval. \vem
+
+$f'(x)$ changes from positive to negative at $x=e^2$. Therefore, $f(x)$ has a local maximum at $x=e^2$.
+\begin{gather*}
+    f(e^2)=\frac{\ln e^2}{\sqrt{e^2}}=\frac{2}{e}\\
+    \boxed{\max: \frac{2}{e}}\\
+    f''(x)=\frac{(\ln x-2)3\sqrt{x}-2\sqrt{x}}{4x^3}\\
+    f''(x)=0 \implies 3\ln x = 8 \implies x= e^{\frac{8}{3}}\\
+    f''(x)>0, \quad \forall x > e^{\frac{8}{3}}\\
+    f''(x)<0, \quad \forall 0 <x < e^{\frac{8}{3}}
+\end{gather*}
+$f(x)$ is concave up on $(e^{\frac{8}{3}}, \infty)$ because $f''(x)>0$ on this interval. \vem
+
+$f(x)$ is concave down on $(0, e^{\frac{8}{3}})$ because $f''(x)<0$ on this interval. \vem
+
+Inflection point: $\boxed{x=e^{\frac{8}{3}}}$ \vem
+
+\subsection{Calculus Graphing}
+To sketch the graph of curves using calculus techniques, one analyzes the following aspects of the function:
+\begin{enumerate}
+    \item Domain
+    \item Intercepts
+    \item Symmetry: odd: $f(-x)=-f(x)$; even: $f(-x)=f(x)$; or no symmetry
+    \item Vertical asymptote, horizontal asymptote, and oblique asymptote
+    \item Intervals of increase/decrease
+    \item Local minimum and maximum (FDT)
+    \item Concavity and inflection
+\end{enumerate}
+
+\section{Applications of Derivatives}
+
+\subsection{Related Rates}
+
+\textbf{Related Rates Example}
+
+A plane flying horizontally at an altitude of 1 mi and a speed of 500 mi/h passes directly over a radar station. Find the rate at which the distance from the plane to the station is increasing when it is 2 mi away from the station. \vem
+
+Given: $h=1$ mi, $\dxdt=500$ mi/h\vem
+
+Unknown: $\dydt \Big|_{x= 2}$
+\begin{gather*}
+    y^2=h^2+x^2=1+x^2\\
+    2y\cdot \dydt=2x\cdot \dxdt\\
+    \dydt=\frac{x}{\sqrt{1+x^2}}\cdot  \dxdt=\frac{2}{\sqrt{5}}\cdot 500=\boxed{200\sqrt{5} \text{ mi/h}}
+\end{gather*}
+The distance from the plane to the station is increasing at a rate of $200\sqrt{5} \text{ mi/h}$.
+
+\subsection{Optimization}
+
+\textbf{Optimization Example}
+
+ An observer stands at a point $P$, one unit away from a track. Two runners start at the point in the
+figure and run along the track. One runner runs three times as fast as the other. Find the maximum
+value of the observer’s angle of sight $\theta$ between the runners. [Hint: Maximize $\tan \theta$.]
+\begin{gather*}
+    y=\tan \theta\\
+    y=\tan (\theta_2-\theta _1)=\frac{3x-x}{1+3x^2}\\
+    y=\frac{2x}{1+3x^2},\quad x>0\\
+    \dydx=\frac{2(1+3x^2)-12x^2}{(1+3x^2)^2}\\
+    \dydx =0 \implies 1=3x^2 \implies \boxed{x=\frac{1}{\sqrt{3}}}
+\end{gather*}
+As $y'$ changes from positive to negative at $x=\dfrac{1}{\sqrt{3}}$, $y$ has a local maximum at $x=\dfrac{1}{\sqrt{3}}$.
+\begin{gather*}
+    \tan \theta = \frac{\frac{2}{\sqrt{3}}}{1+3\cdot \frac{1}{3}}=\frac{1}{\sqrt{3}}\implies \boxed{\theta = \frac{\pi}{6}}
+\end{gather*}
+The maximum value of the observer's angle of sight is $\dfrac{\pi}{6}$.
+
+\end{document}
