@@ -1,2 +1,2 @@
-# Why are you attempting to STEAL my math hw???
+# Why are you STEALing my math hw???
 :<
