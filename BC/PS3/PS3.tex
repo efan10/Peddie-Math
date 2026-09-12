@@ -1,0 +1,274 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 3} \\[0.5cm]
+    {\large Upper and Lower Sums/Convergence} \\[0.35cm]
+    {\normalsize September 9, 2026}
+\end{center}
+
+% problems
+
+\problem{1}
+
+\subproblem{f}
+\begin{gather*}
+    M_5=20+30+32+26+12=120mC\\
+    M_5=L_5=120mC
+\end{gather*}
+No, the agreement is an accident. $Q$ does lie inside the bracket.
+\begin{gather*}
+    E_L=\frac{5}{3}mC\\
+    E_M=\frac{5}{3}mC\\
+    E_R=\frac{25}{3}mC
+\end{gather*}
+
+\problem{3}
+
+\subproblem{a}
+\[
+L_3=R_3=6+6+4=16L
+\]
+The agreement does not indicate that the result is accurate.\vem
+
+\subproblem{b}
+\begin{gather*}
+    F'=-2t+3\\
+    \max:(1.5,6.25)\\
+    t_1 \implies \max : 6, \min :4\\
+    t_2 \implies \max : 6.25, \min :6\\
+    t_3 \implies \max : 6, \min :4\\
+    \overline{S}_3=6+6.25+6=18.25L\\
+    \underline{S}_3=4+6+4=14L  
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \overline{S}_3,\underline{S}_3 \implies [14,18.25], w=4.25L\\
+    R_3,L_3\implies \{16\}, w=0L
+\end{gather*}
+The second approach assumes that the function is monotonically increasing over the interval.\vem
+
+\subproblem{d}
+\begin{gather*}
+    16.5 \in [14,18.25]\\
+    16.5 \notin \{16\}
+\end{gather*}
+
+\subproblem{e}
+The second rectangle, as $F(t)$ changes monotonicity in the interval. \vem
+
+\subproblem{f}
+For functions that are monotonically increasing or decreasing. Otherwise, the lower and upper Riemann sums must be considered. 
+
+\problem{4}
+
+\subproblem{a}
+\[
+\overline{S}_n-\underline{S}_n=R_n-L_n=\sum_{k=1}^n f(x_{k})\Delta x-\sum_{k=1}^n f(x_{k-1})\Delta x=\sum_{k=1}^n \paren{f(x_k)-f(x_{k-1})}\Delta x
+\]
+
+\subproblem{b}
+\begin{gather*}
+    \overline{S}_4-\underline{S}_4=\Delta x\sum_{k=1}^4 \paren{f(x_k)-f(x_{k-1})}=\Delta x\paren{f(x_4)-f(x_0)}\\
+    \overline{S}_n-\underline{S}_n=\sum_{k=1}^n \paren{f(x_k)-f(x_{k-1})}\Delta x=\paren{f(b)-f(a)}\Delta x=\frac{(b-a)\paren{f(b)-f(a)}}{n}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+   \lim_{n \to \infty} \overline{S}_n-\underline{S}_n=\lim_{n \to \infty}\frac{(b-a)\paren{f(b)-f(a)}}{n} =0
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+ \overline{S}_n-\underline{S}_n=\frac{(b-a)\paren{f(b)-f(a)}}{n}\\
+    \overline{S}_4-\underline{S}_4=\frac{(b-a)\paren{f(b)-f(a)}}{4}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    \overline{S}_n-\underline{S}_n=\frac{(b-a)\paren{f(b)-f(a)}}{n} < 0.001\\
+    n>1000(b-a)\paren{f(b)-f(a)}\\
+    \frac{\overline{S}_n-\underline{S}_n}{2}=\frac{(b-a)\paren{f(b)-f(a)}}{n} < 0.001\\
+    n>500(b-a)\paren{f(b)-f(a)}
+\end{gather*}
+The existence of the identity reduces the amount of arithmetic needed to a minimal degree.\vem
+
+\subproblem{f}
+Identity for $f$ decreasing:
+\[
+\overline{S}_n-\underline{S}_n=\frac{(b-a)\paren{f(a)-f(b)}}{n}
+\]
+Problem 3's $F$ satisfies neither, as the function is not monotonic over the whole interval. The formulas and a proper amount of arithmetic are then needed to bound the value of the function.
+
+\problem{5}
+
+\[
+D(x)=\begin{cases}
+    1,\quad x \text{ rational}\\
+    0,\quad x \text{ irrational}
+\end{cases}
+\]
+
+\subproblem{a}
+\begin{gather*}
+    u\in \mathbb{Q} \implies \lim_{x \to 0+}u\in \mathbb{I}\\
+    u\in \mathbb{I} \implies \lim_{x \to 0+}u\in \mathbb{Q}\\
+    x\in [u,v] \implies D(x)\in \{0,1\}\\
+    \text{sup }D=1, \text{inf } D=0\\
+    \overline{S}_n=\sum_{k=1}^n1\cdot \frac{1}{n}=1\\
+    \underline{S}_n=\sum_{k=1}^n0\cdot \frac{1}{n}=0\\
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    S_{\mathbb{Q}}= \sum_{k=1}^n D\paren{\frac{k}{n}}= \sum_{k=1}^n \frac{1}{n}\cdot 1=1\\
+    S_{\mathbb{I}}= \sum_{k=1}^n D\paren{\frac{k-1}{n}+\frac{1}{\sqrt{2}n}}= \sum_{k=1}^n \frac{1}{n}\cdot 0=0\\
+\end{gather*}
+The result of integrating $D(x)$ over $[0,1]$ solely depends on the set of points chosen, rendering no single value to be called as the result. \vem
+
+\subproblem{c}
+\begin{gather*}
+    \overline{S}_n-\underline{S}_n=1-0=1
+\end{gather*}
+The difference between the sums remains as a constant no matter the size of $n$.
+\[
+\underline{S}_n<S_n<\overline{S}_n
+\]
+The range remains large and fails to be helpful towards more precise measurements. \vem
+
+\subproblem{d}
+\begin{gather*}
+    T_n=\frac{1}{2}(L_n+R_n)=\frac{1}{2}(\overline{S}_n+\underline{S}_n)\\
+    \underline{S}_n<A<\overline{S}_n\\
+    |A-T_n| \le \frac{1}{2}(\overline{S}_n-\underline{S}_n)=\frac{(b-a)\paren{f(b)-f(a)}}{2n}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    \overline{S}_n-\underline{S}_n=\paren{f(b)-f(a)}\cdot \frac{(b-a)}{n}\le \frac{V(b-a)}{n}=V \Delta x\\
+    f(x)=\sin x\implies V =1+1=2\\
+    \overline{S}_n-\underline{S}_n\le \frac{2\pi}{n}\\
+    \frac{2\pi}{n} \le \frac{1}{100} \implies n \ge 200\pi\\
+    \boxed{n=629}
+\end{gather*}
+
+
+
+
+
+\end{document}
+
