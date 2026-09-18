@@ -1,0 +1,279 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 6} \\[0.5cm]
+    {\large The Fundamental Theorem of Calculus} \\[0.35cm]
+    {\normalsize September 17, 2026}
+\end{center}
+
+% problems
+
+\problem{3}
+
+\subproblem{c}
+Both formulas remain the same. \vem
+
+\problem{4}
+
+\subproblem{b}
+\begin{gather*}
+    \deriv  \int_1^{x^4} \sec t\, dt\\
+    =\boxed{4x^3\sec x^4}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \deriv \int_x^\pi{ \sqrt{1+\sec t}} \, dt\\
+    = \boxed{- \sqrt{1+\sec x}}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    \deriv \int_1^{\tan x} \sqrt{t+\sqrt{t}} \, dt\\
+    =\boxed{\sec ^2 x \sqrt{\tan x+\sqrt{\tan x}}}
+\end{gather*}
+
+\subproblem{f}
+\begin{gather*}
+    \deriv \int_{1-3x}^1 \frac{v}{v^3+1} \, dv\\
+    =\boxed{\frac{3(1-3x)}{(1-3x)^3+1}}
+\end{gather*}
+
+\problem{6}
+
+\subproblem{a}
+\begin{gather*}
+    F'(x)=\ddx \int_1^x f(t)\, =f(x)\\
+    F''(x)=f'(x)= \ddx \int_1^{x^2} \frac{\sqrt{1+u^4}}{u} \, du =2x \frac{\sqrt{1+x^8}}{x^2}\\
+    F''(2)=2\cdot 2 \cdot \frac{\sqrt{1+2^8}}{4}=\boxed{\sqrt{257}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    y'=\ddx \int_0^x \frac{1}{1+t+t^2} \, dt= \frac{1}{1+x+x^2}\\
+    y''=\ddx \frac{1}{1+x+x^2}=-\frac{2x+1}{(1+x+x^2)^2}\\
+    y''>0 \implies 1+2x<0 \implies \boxed{x\in (-\infty , -\frac{1}{2})}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    6+\int_a^x \frac{f(t)}{t^2} \, dt=2\sqrt{x}\\
+    \ddx \paren{6+\int_a^x \frac{f(t)}{t^2} \, dt} = \ddx 2\sqrt{x}\\
+    \frac{f(x)}{x^2}=\frac{1}{\sqrt{x}}\\
+    \boxed{f(x)=x\sqrt{x}}\\
+    6+\int_a^x \frac{1}{\sqrt{x}} \, dt=2\sqrt{x}\\
+    x=a \implies 6+0 = 2\sqrt{a}\\
+    \boxed{a=9}
+\end{gather*}
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    \int_1^2 h''(u) \, du= h'(2)-h'(1)=5-2=3
+\end{gather*}
+The integral of $h''(u)$ only depends on its anti-derivative, which is $h'(u)$.\vem
+
+\subproblem{b}
+\begin{gather*}
+    \int_1^2 h'(u) \, du= h(2)-h(1)=6-(-2)=8
+\end{gather*}
+
+\subproblem{c}
+\[
+V(20) - V(0) = \int_0^{20} V'(t)\, dt = \int_0^{20} r(t)\, dt
+\]
+The initial value does not matter, as the answer only measures the net change in volume.
+
+\problem{8}
+
+\subproblem{a}
+As the function is positive for all values of $x\ne 0$, the area under the curve cannot possibly be negative. It fails because the function is not continuous on the interval.\vem
+
+\subproblem{b}
+
+\vem
+(i) 
+\begin{gather*}
+    \frac{g(x+h)-g(x)}{h}=\frac{1}{h}\paren{\int _a^{x+h} f(t) \, dt-\int _a^{x} f(t) \, dt}=\frac{1}{h} \int _x^{x+h} f(t) \, dt
+\end{gather*}
+
+(ii)
+\begin{gather*}
+    m_h \le f(t) \le M_h\\
+    \int _x^{x+h} m_h \, dt\le \int _x^{x+h} f(t) \, dt \le \int _x^{x+h} M_h \, dt\\
+    h \cdot m_h \le g(x+h)-g(x)\le h \cdot M_h\\
+    m_h\le \frac{g(x+h)-g(x)}{h} \le M_h
+\end{gather*}
+
+(iii)
+\begin{gather*}
+    \lim_{h \to 0^+} m_h=\lim_{h \to 0^+}M_h = f(x)\\
+    \lim_{h \to 0^+} g'(x)=\lim_{h \to 0^+}\frac{g(x+h)-g(x)}{h}=f(x)
+\end{gather*}
+For $h<0$, both the interval of integration and the value of $h$ changes, but the result remains the same. \vem
+
+\subproblem{c}
+\begin{gather*}
+    F'(x)=g'(x)=f(x)\\
+    F(x)=g(x)+C\\
+    F(a)=g(a)+C=\int_a^a f(t)\, dt+C=C\\
+    F(b)=g(b)+C=\int_a^b f(t)\, dt+C\\
+    \int_a^b f(t)\, dt=F(b)-C=F(b)-F(a)
+\end{gather*}
+
+\subproblem{d}
+
+\vem
+(i)
+\begin{gather*}
+    x \in [-1,0] \implies g(x)=0\\
+    x\in (0,1] \implies g(x)=\int_0^x 1\, dt=x\\
+    g(x)=\begin{cases}
+        0,\quad x\in [-1,0]\\
+        x, \quad x\in (0,1]
+    \end{cases}
+\end{gather*}
+
+(ii)
+\begin{gather*}
+    g(0)=\lim_{x\to 0^-} g(x)=\lim_{x\to 0^+} g(x)=0\\
+    \lim_{x\to 0^-} g'(x)=0\\
+    \lim_{x\to 0^+} g'(x)=1\\
+    \lim_{x\to 0^-} g'(x) \ne \lim_{x\to 0^+} g'(x)
+\end{gather*}
+
+(iii)
+As $f$ is not continuous on the interval, differentiability is not guaranteed for $g(x)$. The accumulation is good, as it renders $g(x)$ a continuous function. However, sharp corners in the graph still exist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
