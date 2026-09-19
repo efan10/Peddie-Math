@@ -1,0 +1,267 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 7} \\[0.5cm]
+    {\large The Net Change Theorem} \\[0.35cm]
+    {\normalsize September 18, 2026}
+\end{center}
+
+% problems
+
+\problem{5}
+
+\subproblem{a}
+\begin{gather*}
+    \boxed{v(t)=t^2+3t-4}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    v(t)=(t-1)(t+4)\\
+    x(t)=\frac{1}{3}t^3+\frac{3}{2}t^2-4t+C\\
+    \int_0^3 |v(t)|\, dt = \int_1^3 v(t)\, dt- \int_0^1 v(t)\, dt\\
+    =x(3)-2\cdot x(1) \\
+    =9+13.5-12-2(\frac{1}{3}+\frac{3}{2}-4)\\
+    =\boxed{\frac{89}{6}m}
+\end{gather*}
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    \max: 230\\
+    \min: 172
+\end{gather*}
+The increasing condition is required, as the estimates are dependent on the left and right ends of the interval being the maximums and the minimums. \vem
+
+\subproblem{b}
+\begin{gather*}
+    Q(6)=6+17+30+41+50+57=201
+\end{gather*}
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    A(t)=200+\int_0^t R(t)-D(t) \, dt\\
+    =200+\int_0^t40-t-\frac{t^2}{20}\, dt\\
+    =200+(-\frac{t^3}{60} - \frac{t^2}{2}+40t) \Big|^t_0\\
+    A(t)=200+40t-\frac{t^2}{2}-\frac{t^3}{60}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    A'(t)=40-t-\frac{t^2}{20}\\
+    A'(10)>0\\
+    A'(25)<0
+\end{gather*}
+The amount of water is increasing at $t=10$, but is decreasing at $t=25$.\vem
+
+\subproblem{c}
+\begin{gather*}
+    A'(t)=0 \implies 40-t-\frac{t^2}{20}=0\\
+    t^2+20t-800=0\\
+    (t+40)(t-20)=0 \implies t=20\\
+    A(20)=200+800-200-\frac{400}{3}=\frac{2000}{3}
+\end{gather*}
+The amount of water is greatest at $t=20$, with $\dfrac{2000}{3}$ liters of water.\vem
+
+\subproblem{d}
+\begin{gather*}
+    t=30 \implies A(30)=500
+\end{gather*}
+The net change is not the same as the total amount of water entering, as the net change considers both the amount of water entering and leaving.
+
+\problem{9}
+
+\subproblem{a}
+\begin{gather*}
+    P'(x)=3-0.01x+0.000006x^2\\
+    P(x)=3x-0.005x^2+0.000002x^2\\
+    \int_{2000}^{4000}P'(x)\, dx\\
+    =P(4000)-P(2000)\\
+    =60000-2000\\
+    =\boxed{58000}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    P(t)=300\sin \paren{\frac{\pi t}{12}}\\
+    \int_0^{12} P(t)\, dt\\
+    =-\frac{3600}{\pi}\cos \paren{\frac{\pi t}{12}} \Big|^{12}_0\\
+    =\frac{7200}{\pi}\text{ Wh}\\
+    =\boxed{\frac{7.2}{\pi} \text{ kWh}}
+\end{gather*}
+
+\problem{10}
+\begin{gather*}
+    3\int_0^a e^x\, dx= \int_0^b e^x\, dx\\
+    3e^a-3=e^b-1\\
+    3e^a-2=e^b\\
+    \boxed{b=\ln (3e^a-2)}
+\end{gather*}
+
+\problem{11}
+
+\subproblem{a}
+\begin{gather*}
+    D(T)=\int_0^T v(t)\, dt=\int_0^T t^2-4t+3\, dt= \frac{T^3}{3}-2T^2+3T\\
+    D(T)=\frac{T}{3}(T-3)^2\\
+    D(T)=0 \implies \boxed{T=3}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    T\ge 0 \implies D(T)=\frac{T}{3}(T-3)^2\ge 0
+\end{gather*}
+The particle is always at or to the right of its starting position. \vem
+
+\subproblem{c}
+\begin{gather*}
+    \int_0^3|v(t)|\, dt=\int_0^1v(t)\, dt-\int_1^3 v(t)\, dt = 2\cdot D(1)-D(3)= \boxed{\frac{8}{3}}
+\end{gather*}
+The total distance traveled is 8 meters. The particle can travel for the same distance in opposite directions to attain zero displacement.\vem
+
+\subproblem{d}
+\begin{gather*}
+    \frac{8}{3}+\int_3^T v(t)\, dt=4\\
+    \frac{T}{3}(T-3)^2=\frac{4}{3}\\
+    \boxed{T=4}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    v(t)=(t-a)(t-b)=t^2-(a+b)t+ab\\
+    D(T)=\int_0^T v(t)\, dt=\int_0^T t^2-(a+b)t+ab \, dt= \frac{T^3}{3}-\frac{(a+b)T^2}2+abT\\
+    D(b)=\frac{b^3}{3}-\frac{ab^2+b^3}{2}+ab^2=\frac{b^2}{6}(3a-b)\\
+    D(b)=0 \implies \boxed{b=3a}\\
+    \int_0^{3a} |v(t)|\, dt = \int_0^a v(t)\, dt- \int_a^{3a} v(t)\, dt\\
+    =2\cdot D(a)-D(3a)=2\paren{\frac{a^3}{3}-2a^3+3a^3}=\boxed{\frac{8a^3}{3}}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
