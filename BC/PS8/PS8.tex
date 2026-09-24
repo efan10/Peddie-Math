@@ -1,0 +1,285 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 8} \\[0.5cm]
+    {\large Graphing Antiderivatives, Average Value, and the MVT for Integrals} \\[0.35cm]
+    {\normalsize September 23, 2026}
+\end{center}
+
+% problems
+
+\problem{3}
+
+\subproblem{a}
+\begin{gather*}
+    f(x)=4-x^2\\
+    \int_0^3 4-x^2\, dx=4x-\frac{x^3}{3} \Big|^3_0 =12-9=3\\
+    \frac{3}{3}=1\\
+    f(c)=4-c^2=1 \implies c=\sqrt{3}
+\end{gather*}
+
+\problem{4}
+
+\subproblem{c}
+One measures the velocity, which accounts for the direction, while the speed does not. As velocity accounts for the sign of the direction, it is always smaller than the speed. The magnitude of the speed and velocity will be equal if $v$ maintains the same sign over the interval. \vem
+
+\subproblem{d}
+\begin{gather*}
+    v(c)=c^2-4c+3=\frac{1}{3}\\
+    c=\frac{6\pm 2\sqrt{3}}{3}
+\end{gather*}
+The mean value theorem guarantees that at least one such time exists. \vem
+
+\subproblem{e}
+\begin{gather*}
+    v(c)=c^2-4c+3=1\\
+    c=2\pm \sqrt{2}
+\end{gather*}
+There exist values where the instantaneous speed equals the average speed.
+
+\problem{5}
+
+\subproblem{a}
+\begin{gather*}
+    \int_0^5 f(x)\, dx=f(c)(5)=20\\
+    \iff f(c)=4
+\end{gather*}
+The Mean Value Theorem for Integrals. \vem
+
+\subproblem{b}
+No, $f(x)=4$.\vem
+
+\subproblem{c}
+Yes, $f$ must take the value $10$ on the interval. By the IVT, there exists $c\in (0,5)$ such that $4<f(c)=10<25$.\vem
+
+\subproblem{d}
+\[
+f(x)=\begin{cases}
+    5, \quad 0\le x<4\\
+    0, \quad 4\le x\le 5
+\end{cases}
+\]
+The Mean Value Theorem for Integrals relies on the Intermediate Value Theorem, which relies on the condition of continuity.
+
+\problem{6}
+\begin{gather*}
+    f(x)=2+6x-3x^2\\
+    \int_0^b2+6x-3x^2\, dx=\paren{2x+3x^2-x^3}\Big|^b_0=2b+3b^2-b^3\\
+    -b^2+3b+2=3\\
+    b^2-3b+1=0\\
+    \boxed{b=\frac{3\pm \sqrt{5}}{2}}
+\end{gather*}
+The second interval may sweep out a larger area but also over a larger interval, equaling the average value of the first interval. \vem
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    M_3=10\cdot (38+29+48)=1150\\
+    1150/30=\boxed{\frac{115}{3}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    M_3=\frac{f(25)+f(35)+f(45)}{3}=\frac{115}{3}
+\end{gather*}
+The $\Delta x=10$ cancels with the width of the interval $30$.\vem
+
+\subproblem{c}
+\begin{gather*}
+    T_6=\frac{5}{30}(\frac{42}{2}+38+31+29+35+48+\frac{60}{2})=\boxed{\frac{116}{3}}
+\end{gather*}
+I trust the trapezoidal estimate more, as it separates the interval into more, smaller pieces. I would need to know about $f''$ to be more confident. 
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    f_{avg}=\frac{1}{3}\int_1^414\pi x^2=\frac{14}{9}\pi x^3 \Big|^4_1=\boxed{98\pi}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    g_{avg}=\frac{1}{k}\int_0^k k^2\sin \paren{\frac{\pi x}{2k}}=\frac{2k^2}{\pi} \paren{-\cos \paren{\frac{\pi x}{2k}}}\Big|^k_0=\boxed{\frac{2k^2}{\pi}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    98\pi = \frac{2k^2}{\pi}\\
+    k=\boxed{7\pi}
+\end{gather*}
+
+\problem{9}
+
+\subproblem{a}
+By the Mean Value Theorem for Integrals, as $f$ is continuous on $[0,x]$, for any $x\in (0,1]$, there exists $c\in (0,x)$ such that $A(x)=f(c)$. Taking the limit gives:
+\begin{gather*}
+    \lim_{x \to 0^+} A(x)=\lim_{x \to 0^+}f(c)=f(0)=A(0)
+\end{gather*}
+Thus, $A(x)$ is continuous at $x=0$.\vem
+
+\subproblem{b}
+\begin{gather*}
+    A'(x)=\ddx \frac{1}{x}\int_0^xf(t)\, dt = \frac{x\cdot f(x)-\int_0^x f(t)\, dt}{x^2}=\boxed{\frac{f(x)-A(x)}{x}}
+\end{gather*}
+The average increases when the new value is larger than the average, decreases when the new value is smaller than the average, and remains the same when the new value equals the average.\vem
+
+\subproblem{c}
+\begin{gather*}
+    A(x)=\frac{1}{x}\int_0^xf(t)\, dt\le \frac{1}{x}\int_0^x f(x)\, dt=f(x)\\
+    A'(x)=\frac{f(x)-A(x)}{x}\ge 0
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    A'(c)=0 \implies \frac{f(c)-A(c)}{c}=0 \implies \boxed{f(c)=A(c)}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    f(x)=A(x)+x\cdot A'(x)\\
+    f(x)=A(x)\implies A'(x)=0\\
+    A(x)=k=f(x)\\
+    \boxed{f(x)=k,\quad k\in \mathbb{R}}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
