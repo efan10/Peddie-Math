@@ -1,0 +1,326 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 12} \\[0.5cm]
+    {\large Odd, Even, and Periodic Functions} \\[0.35cm]
+    {\normalsize October 1, 2026}
+\end{center}
+
+% problems
+
+\problem{2}
+
+\subproblem{a}
+\begin{gather*}
+    f(x)=-f(-x),\, g(x)=-g(-x)\\
+    h(x)=f(x)g(x)\\
+    h(-x)=f(-x)g(-x)=(-f(x))(-g(x))=h(x)\\
+    \boxed{h(x) \text{ is even}}\\
+    f(x)=-f(-x),\, h(x)=h(-x)\\
+    k(x)=f(x)h(x)\\
+    k(-x)= f(-x)h(-x)=-f(x)h(x)=-k(x)\\
+    \boxed{k(x) \text{ is odd}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    f(x)=f(-x)\\
+    f'(x)=-f'(-x)\\
+    \boxed{f'(x)\text{ is odd}}\\
+    g(x)=-g(-x)\\
+    g'(x)=g'(-x)\\
+    \boxed{g'(x)\text{ is even}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    f(x)=-f(-x)\\
+    g(x)=\int_a^x f(t)\, dt\\
+    g'(x)=f(x)\\
+    h(x)=g(x)-g(-x)\\
+    h'(x)=g'(x)+g'(-x)=f(x)+f(-x)=0\\
+    h(0)=g(0)-g(0)=0\\
+    g(x)-g(-x)=0 \implies \boxed{g(x)=g(-x)}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    a=0 \implies F(x)=\int_0^x f(t)\, dt\\
+    f(t)=f(-t)\\
+    F(-x)=\int_0^{-x} f(t)\, dt= -\int_0^x f(-x)\, dx = -\int_0^x f(x)\, dx \\
+    \boxed{F(x)=-F(-x)}\\
+    a\ne 0,\, f(x)=1\\
+    F(x)=\int_1^x f(t)\, dt = x-1\\
+    F(-x) = -x-1\\
+    \boxed{F(x)\ne -F(-x)}
+\end{gather*}
+
+\subproblem{e}
+No, only one where the constant $C=0$ is odd.
+
+\problem{3}
+
+\subproblem{d}
+\begin{align*}
+    &\int_{-2}^2 \frac{\arcsin (\sin x)+\arccos (\cos x)}{(1+x^2)\paren{1+\floor{\frac{x^2}{5}}}}\, dx\\
+    =&\int_{-2}^2 \frac{\arcsin (\sin x)}{(1+x^2)\paren{1+\floor{\frac{x^2}{5}}}}\, dx + \int_{-2}^2 \frac{\arccos (\cos x)}{(1+x^2)\paren{1+\floor{\frac{x^2}{5}}}}\, dx\\
+    =& \, 0+ 2 \int_0^2 \frac{\arccos (\cos x)}{(1+x^2)\paren{1+\floor{\frac{x^2}{5}}}}\, dx\\
+    =&\, 2 \int_0^2 \frac{x}{1+x^2} \, dx\\
+    = &\, \int_1^5 \frac{1}{u} \, du\\
+    =&\, \ln 5 - \ln 1\\
+    =&\,\boxed{\ln 5}
+\end{align*}
+
+\problem{4}
+
+\subproblem{a}
+\begin{gather*}
+    E(x)=\frac{f(x)+f(-x)}{2}\\
+    E(-x)=\frac{f(-x)+f(-(-x))}{2}=\frac{f(x)+f(-x)}{2}\\
+    \boxed{E(x)=E(-x)}\\
+    O(x)=\frac{f(x)-f(-x)}{2}\\
+    O(-x)=\frac{f(-x)-f(-(-x))}{2}=\frac{f(-x)-f(x)}{2}\\
+    \boxed{O(x)=-O(-x)}\\
+    f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}=E(x)+O(x)
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \cosh x=\frac{e^x+e^{-x}}{2}\\
+    \sinh x=\frac{e^x-e^{-x}}{2}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int_{-a}^af(x)\, dx=\int_0^af(x)\, dx+\int_{-a}^0 f(x)\, dx=\int_0^a[f(x)+f(-x)]\, dx
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    \frac{1}{1+e^x}+\frac{1}{1+e^{-x}}=\frac{2+e^x+e^{-x}}{2+e^x+e^{-x}}=1\\
+    \int_{-1}^1\frac{dx}{1+e^x} = \int_0^1 \frac{1}{1+e^x}+\frac{1}{1+e^{-x}}\, dx= \int_0^1 1\, dx=\boxed{1}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    \frac{x^2}{1+e^{x^3}}+\frac{x^2}{1+e^{-x^3}} = x^2\\
+    \int_{-2}^2 \frac{x^2}{1+e^{x^3}}\, dx = \int_0^2 \frac{x^2}{1+e^{x^3}}+\frac{x^2}{1+e^{-x^3}} \, dx = \int_0^2 x^2\,dx = \boxed{\frac{8}{3}}
+\end{gather*}
+
+\problem{5}
+
+\subproblem{a}
+\begin{gather*}
+    \int_a^{a+T} f(x)\, dx= \int_a^T f(x)\, dx+\int_T^{a+T} f(x)\, dx\\
+    = \int_a^T f(x)\, dx+\int_0^{a} f(x)\, dx = \int_0^T f(x)\, dx
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int_0^{nT}f(x)\, dx = \sum_{k=0}^{n-1} \int_{kT}^{(k+1)T} f(x)\, dx = n\int_0^T f(x)\,dx
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    T_{|\sin x|} = \pi \\
+    \int_0^\frac{16\pi}{3} |\sin x|\, dx =  5\int_0^\pi |\sin x| \, dx + \int_0^\frac{\pi}{3}|\sin x |\, dx\\
+    =5\cdot 2+1-\frac{1}{2}=\boxed{\frac{21}{2}}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    F(x+T)-F(x)=\int_0^{x+T} f(t)\, dt - \int_0^x f(t)\, dt=\int_x^{x+T} f(t)\, dt = \int_0^T f(t)\, dt\\
+    F(x+T) = F(x) \implies F(x+T)-F(x)=0\\
+    \iff  \int_0^T f(t)\, dt =0
+\end{gather*}
+
+\subproblem{e}
+As $\int_0^T f(t)\, dt \ne 0$, the shape of $F(x)$ is not periodic.
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    t\in \{0,2\pi,4\pi\} \implies y=1\\
+    t\in (0, \frac{\pi}{2}] \cup  [\frac{3\pi}{2}, 2\pi )\cup (2\pi ,  \frac{5\pi}{2}] \cup [\frac{7\pi}{2},4\pi) \implies y=0\\
+    t\in (\frac{\pi}{2}, \frac{3\pi}{2}) \cup (\frac{5\pi}{2},\frac{7\pi}{2})\implies y=-1\\
+    T=2\pi 
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int_0^{2\pi} \floor{\cos x} = -\pi 
+\end{gather*}
+The isolated point does not matter, as its width is too insignificant compared to the rest of the function. \vem
+
+\subproblem{c}
+\begin{gather*}
+    \int_0^x \floor{\cos t}\, dt = \int_0^{2\pi n} \floor{\cos t}\, dt = n\cdot -\pi =\boxed{-n\pi}
+\end{gather*}
+
+\subproblem{d}
+G is constant on the intervals where $y=0$ and decreasing on the intervals where $y=-1$.\vem
+
+\subproblem{e}
+\begin{gather*}
+    T=1\\
+    \int_0^{7.5} s(t)\,d t=7\cdot \frac{1}{2}+ \frac{1}{2}\cdot \frac{1}{4}=\boxed{\frac{29}{8}}
+\end{gather*}
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    \frac{g(x)}{1+b^x}+\frac{g(x)}{1+b^{-x}} = g(x)\cdot \frac{2+b^x+b^{-x}}{2+b^x+b^{-x}} =g(x)\\
+    \int_{-a}^a \frac{g(x)}{1+b^x}\, dx= \int_0^a \frac{g(x)}{1+b^x}+\frac{g(x)}{1+b^{-x}} \, dx = \int_0^a  g(x)\, dx
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    I_n =\int_0^\pi \frac{\sin nx}{\sin x}\, dx\\
+    I_{n+2} - I_n = \int_0^\pi \frac{\sin((n+2)x) - \sin(nx)}{\sin x} \, dx\\
+    =\int_0^\pi 2\cos \paren{(n+1)x}\, dx\\
+    = \frac{2}{n+1} \sin \paren{(n+1)x} \Big|^\pi_0 = 0\\
+    \boxed{I_{n+2} =I_n}\\
+    I_1= \int_0^\pi 1\, dx =\pi \\
+    I_2 = \int_0^\pi 2\cos x\, dx = 0
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int_{-\pi }^\pi \frac{\sin (2027x)}{(1+2^x)\sin x}\, dx = \int_0^\pi \frac{\sin 2027 x}{\sin x} = \boxed{\pi} \\
+    \int_{-\pi }^\pi \frac{\sin (2026x)}{(1+2^x)\sin x}\, dx = \int_0^\pi \frac{\sin 2026 x}{\sin x} = \boxed{0}
+\end{gather*}
+
+\subproblem{d}
+The bases cancel out upon combining two intervals together for an even function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
