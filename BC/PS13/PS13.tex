@@ -1,0 +1,380 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 13} \\[0.5cm]
+    {\large Integration by Parts I} \\[0.35cm]
+    {\normalsize October 2, 2026}
+\end{center}
+
+% problems
+
+\problem{2}
+
+\subproblem{a}
+\begin{gather*}
+    \int xe^x\, dx = 
+    \begin{bmatrix} e^x & x \,dx\\
+    e^x \, dx& \frac{1}{2}x^2
+    \end{bmatrix} = \frac{e^x}{2}x^2 - \int \frac{e^x}{2}x^2\, dx
+\end{gather*}
+The integral is harder to solve. \vem
+
+\subproblem{b}
+\begin{gather*}
+    \int x^3 e^{x^2}\, dx =
+    \begin{bmatrix}
+        x^2 & xe^{x^2} \, dx\\
+        2x\, dx & \frac{1}{2}e^{x^2}
+    \end{bmatrix} 
+    \frac{1}{2}x^2e^{x^2} - \int xe^{x^2} \, dx\\
+    \int xe^{x^2} \, dx = \frac{1}{2}e^{x^2}\\
+    \int x^3 e^{x^2}\, dx = \boxed{\frac{1}{2}(x^2-1)e^{x^2}+C}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int u\, dv = u(v+C) - \int v+C\, du=uv + uC - \int v \, du-uC = uv-\int v\, du\\
+    \int \ln (x+1)\, dx= 
+    \begin{bmatrix}
+        \ln(x+1) & dx\\
+        \frac{1}{x+1}\, dx & x+1
+    \end{bmatrix}
+    (x+1)\ln (x+1) - \int 1\, dx \\= \boxed{ (x+1)\ln (x+1)-x+C}
+\end{gather*}
+
+\subproblem{d}
+The integrals on each side could hold different constants of integration, thereby differing the numerical value of each side of the equation by one.
+
+\problem{3}
+
+\subproblem{a}
+The two areas under the curve equal the area formed by the large rectangle subtracting the small rectangle. \vem
+
+\subproblem{b}
+\begin{gather*}
+    u=x=\sin y\\
+    v=y=\arcsin x\\
+    \int_0^1 \arcsin x\, dx+\int_0^{\pi /2} \sin y \, dy = \frac{\pi}{2}\\
+    \int_0^1 \arcsin x\, dx = \frac{\pi }{2} - \int_0^{\pi /2} \sin y \, dy = \boxed{\frac{\pi}{2}-1}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int_1^e \ln x \, dx = e -\int_0^1 e^x\, dx = \boxed{1}
+\end{gather*}
+
+\problem{4}
+\begin{gather*}
+    f_{ave}=\frac{\int_1^3x^2\ln x\, dx}{2}\\
+    \int_1^3x^2\ln x\, dx = 
+    \begin{bmatrix}
+        \ln x & x^2\, dx\\
+        \frac{1}{x}\, dx & \frac{1}{3}x^3\,
+    \end{bmatrix}
+    \frac{1}{3}x^3\ln x\Big|^3_1 - \int_1^3 \frac{1}{3}x^2 \, dx\\
+    = 9 \ln 3 + \frac{1}{9} - 3  = 9 \ln 3 - \frac{26}{9}\\
+    f_{ave} = \frac{1}{2}(9 \ln 3 - \frac{26}{3}) = \boxed{\frac{9 \ln 3}{2}- \frac{13}{9}}
+\end{gather*}
+
+\problem{5}
+
+\subproblem{a}
+\begin{gather*}
+    \int x^2 \sin x\, dx = \boxed{- x^2 \cos x + 2x \sin x + 2 \cos x +C}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int  e^x \sin x\, dx = e^x \sin x - e^x \cos x - \int  e^ x \sin x \, dx\\
+    \int  e^x \sin x\, dx = \boxed{\frac{e^x (\sin x -\cos x )}{2}+C}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int x^3 e^{2x} \, dx = x^3 \cdot \frac{1}{2}e^{2x} - 3x^2 \cdot \frac{1}{4}e^{2x} + 6x \cdot \frac{1}{8}e^{2x} - 6 \cdot \frac{1}{16}e^{2x}\\
+    = \boxed{\frac{e^{2x}}{8}(4x^3-6x^2+6x-3)+C}
+\end{gather*}
+
+\subproblem{d}
+The table in (c) stops, as differentiating a polynomial will reach 0 eventually, while exponential and trig functions perpetuate. The method of (b) utilizes the fact that the original integral will appear on the other side after a finite number of integrations by parts. 
+
+\problem{6}
+
+\subproblem{c}
+\begin{gather*}
+    \int f^{-1}(x)\, dx =  
+    \begin{bmatrix}
+        f^{-1}(x) & dx \\
+        (f^{-1})'(x)\, dx & x 
+    \end{bmatrix}
+    xf^{-1}(x) - \int x(f^{-1})'(x)\, dx\\
+    \int x(f^{-1})'(x)\, dx = \int f(y)\, dy = F(y)=F(f^{-1}(x))\\
+    \int f^{-1}(x)\, dx =  \boxed{xf^{-1}(x) - F(f^{-1}(x)) +C}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    f(x)=e^x \implies f^{-1}(x)=\ln x\\
+    \int \ln x \, dx = x \ln x - e^{\ln x } +C= \boxed{x\ln x -x+C}
+\end{gather*}
+
+\problem{7}
+
+\subproblem{b}
+\begin{gather*}
+    \int \sin x \cos 4x \, dx=
+    \begin{bmatrix}
+        \sin x & \cos 4 x\, dx\\
+        \cos x \, dx& \frac{1}{4}\sin 4x
+    \end{bmatrix}
+    \frac{1}{4}\sin x \sin 4x-\frac{1}{4}\int \cos x \sin 4 x\, dx\\
+    =\begin{bmatrix}
+        \cos x & \sin 4 x\, dx\\
+        -\sin x \, dx & -\frac{1}{4}\cos 4x
+    \end{bmatrix}
+    \frac{1}{4}\sin x \sin 4x + \frac{1}{16}\cos x \cos 4x + \frac{1}{16}\int \sin x \cos 4x\, dx\\
+    \frac{15}{16}\int \sin x \cos 4x\, dx = \frac{1}{4}\sin x \sin 4x + \frac{1}{16}\cos x \cos 4x\\
+    \int \sin x \cos 4x\, dx  = \boxed{\frac{4}{15}\sin x \sin 4x + \frac{1}{15}\cos x \cos 4x+C}
+\end{gather*}
+If the question is different, the $u$-sub may be applied. \vem
+
+\subproblem{c}
+\begin{gather*}
+    \int \frac{xe^{2x}}{(2x+1)^2} \, dx =
+    \begin{bmatrix}
+        xe^{2x} & (2x+1)^{-2 } \, dx\\
+        e^{2x}(2x+1)\, dx & - \frac{1}{2(2x+1)}
+    \end{bmatrix}
+    -\frac{xe^{2x}}{4x+2} + \int \frac{e^{2x}}{2} \, dx \\
+    = -\frac{xe^{2x}}{4x+2} + \frac{e^{2x}}{4}+C = \boxed{\frac{e^{2x}}{8x+4} + C}
+\end{gather*}
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    \int \sec x \, dx  = \int \frac{\sec^2 x+\sec x \tan x }{\sec x + \tan x }\, dx \\
+    u=\sec x + \tan x\\
+    du = \sec^2x +\sec x \tan x \, dx\\
+    \int \frac{du}{u} = \ln |u|=\boxed{\ln |\sec x + \tan x | + C}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int \sec^3 x\, dx =
+    \begin{bmatrix}
+        \sec x & \sec^2x \, dx\\
+        \sec x \tan x \, dx & \tan x
+    \end{bmatrix}
+    \sec x \tan x - \int \sec x \tan^2 x \, dx\\
+    = \sec x \tan  x- \int \sec^3 x -\sec x \, dx\\
+    2 \int \sec ^3 x\, dx= \sec x \tan x + \ln |\sec x + \tan x |\\
+    \int \sec^3 x \,dx = \boxed{\frac{1}{2}\paren{\sec x \tan x + \ln | \sec x + \tan x |} +C}
+\end{gather*}
+
+\problem{9}
+
+\subproblem{a}
+\begin{gather*}
+    J_n= \int _0^1 x^ne^{-x}\, dx = 
+    \begin{bmatrix}
+        x^n & e^{-x}\, dx\\
+        nx^{n-1 }\, dx & -e^{-x}
+    \end{bmatrix}
+    -x^ne^{-x}\Big|^1_0 + n\int_0^1 x^{n-1}e^{-x}\,dx= \boxed{n J_{n-1} - \frac{1}{e}}\\
+    J_0= \int_0^1  x^0 e^{-x}\, dx = \int_0^1 e^{-x}\, dx = -e^{-x} \Big|^1_0 = \boxed{1- \frac{1}{e}}
+\end{gather*}
+
+\subproblem{b}
+\vem
+\textit{Proof.}
+\[
+J_n=n!-\frac{n!}{e}\sum_{k=0}^n \frac{1}{k!},\quad n\ge 0
+\]
+Base case ($n=0$):
+\[
+J_0=0!- \frac{0!}{e} \sum_{k=0}^0 \frac{1}{k!} =1-\frac{1}{e}\cdot \frac{1}{1}= 1-\frac{1}{e}
+\]
+Inductive step: 
+
+Assume the statement holds for $n=m,\quad m\ge 0$:
+\[
+J_m= m! - \frac{m!}{e}\sum_{k=0}^m \frac{1}{k!}
+\]  
+We now show that the statement holds for $n=m+1$:
+\begin{align*}
+    J_{m+1} &= (m+1)J_{m} - \frac{1}{e}\\
+    &= (m+1)\paren{m! - \frac{m!}{e}\sum_{k=0}^m \frac{1}{k!}} - \frac{1}{e}\\
+    &=(m+1)m!- \frac{(m+1)m!}{e} \sum_{k=0}^m \frac{1}{k!} - \frac{1}{e}\\
+    &=(m+1)m!- \frac{(m+1)m!}{e} \paren{\sum_{k=0}^m \frac{1}{k!} + \frac{1}{(m+1)!}}\\
+    &= (m+1)! - \frac{(m+1)!}{e} \sum_{k=0}^{m+1} \frac{1}{k!}
+\end{align*}
+Hence, the statement holds for $n=m+1$. Therefore, by the Principle of Mathematical Induction:
+\[
+J_n=n!-\frac{n!}{e}\sum_{k=0}^n \frac{1}{k!},\quad n\ge 0
+\]
+
+\subproblem{c}
+\begin{gather*}
+    J_n=\int_0^1 x^ne^{-x}\, dx\\
+    x^n, e^{-x }>0 \implies J_n>0\\
+    J_n=\int_0^1 x^ne^{-x}\, dx < \int_0^1 x^n\, dx = \frac{x^{n+1}}{n+1} \Bigg|^1_0=\frac{1}{n+1}\\
+    \boxed{0 < J_n< \frac{1}{n+1}}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    let \, e=\frac{p}{q},n\ge \max (q,2)\\
+    J_n=n!-\frac{n!}{e}\sum_{k=0}^n \frac{1}{k!}\\
+    e\, J_n= e\cdot n! - n! \sum_{k=0}^n \frac{1}{k!}\\
+    e\, J_n= \boxed{\frac{p}{q}\cdot n! - n! \sum_{k=0}^n \frac{1}{k!}}\\
+    0 < J_n< \frac{1}{n+1}\\
+    0 < e\, J_n< \frac{e}{n+1}\\
+    n \ge 2 \implies n +1 \ge  3 \implies \frac{e}{n+1}<1\\
+    \boxed{0< e\, J_n < 1}
+\end{gather*}
+As the value of $e\, J_n$ is within this range, it cannot be an integer, thus contradicting the assumption that $e$ is rational.\vem
+
+\subproblem{e}
+\begin{gather*}
+    J_n=n!-\frac{n!}{e}\sum_{k=0}^n \frac{1}{k!}\\
+    \sum_{k=0}^n \frac{1}{k!} = e - \frac{e \, J_n}{n!}\\
+    0< e\, J_n < 1 \implies \lim_{n \to \infty }\frac{e \, J_n}{n!} =0\\
+    \boxed{\lim_{n\to \infty} \sum_{k=0}^n \frac{1}{k!} =e}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
