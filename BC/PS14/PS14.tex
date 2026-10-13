@@ -1,0 +1,353 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 14} \\[0.5cm]
+    {\large Integration by Parts II} \\[0.35cm]
+    {\normalsize October 12, 2026}
+\end{center}
+
+% problems
+
+\problem{2}
+
+\subproblem{a}
+\begin{gather*}
+    \int (2x+3)e^x\, dx = \begin{bmatrix}
+        u =2x+3 & dv=e^x \, dx\\
+        du=2dx  & v=e^x
+    \end{bmatrix}\\
+    (2x+3)e^x - 2\int  e^x\, dx = \boxed{(2x+1)e^x}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int x^3 \sqrt{1+x^2} \, dx = 
+    \begin{bmatrix}
+        u=x^2 & dv = x \sqrt{1+x^2} \, dx\\
+        du = 2x\, dx & v=\frac{\sqrt{1+x^2}^3}{3}
+    \end{bmatrix}\\
+    \frac{x^2(1+x^2)^\frac{3}{2}}{3} -\int  \frac{2x(1+x^2)^\frac{3}{2}}{3} \, dx\\
+    = \frac{x^2(1+x^2)^\frac{3}{2}}{3} - \frac{2}{15}(1+x^2)^\frac{5}{2}\\
+    = \boxed{ \frac{1}{15}(1+x^2)^\frac{3}{2}(3x^2-2)+C}
+\end{gather*}
+
+\problem{4}
+
+\subproblem{a}
+\begin{gather*}
+    \int \sin^2 x \,d x= - \frac{1}{2}\cos x \sin x + \frac{1}{2} \int 1\, dx = \boxed{\frac{x}{2}-\frac{\sin 2x}{4}+C}
+\end{gather*}
+
+\subproblem{b}
+\begin{align*}
+    \int \sin ^4 x\, dx &= -\frac{1}{4}\cos x \sin^3 x+\frac{3}{4} \int \sin^2 x\, dx\\
+    & =-\frac{1}{4}\cos x \sin^3 x +\frac{3}{4} \paren{\frac{x}{2}-\frac{\sin 2x}{4}}\\
+    &= \boxed{ \frac{3}{8}x - \frac{3}{16}\sin 2x -\frac{1}{4}\cos x \sin^3 x + C}
+\end{align*}
+
+\problem{5}
+
+\subproblem{a}
+\begin{gather*}
+    W_n = \int_0^\frac{\pi}{2}\sin^n x\, dx = -\frac{1}{n}\cos x \sin ^{n-1}x\Big|^\frac{\pi}{2}_0 + \frac{n-1}{n} \int_0^\frac{\pi}{2} \sin^{n-2}x\, dx = \frac{n-1}{n}W_{n-2}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    W_0=\int_0^\frac{\pi}{2} 1 \, dx=\frac{\pi}{2}\\
+    W_1 = \int_0^\frac{\pi}{2} \sin x\, dx=1\\
+    W_3 = \frac{2}{3}\cdot 1= \frac{2}{3}\\
+    W_5 = \frac{4}{5} \cdot \frac{2}{3} =\frac{8}{15}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    W_{2n+1}= \frac{2n}{2n+1}W_{2n-1}=\dots = \frac{2\cdot 4 \cdot 6 \dots (2n)}{3\cdot 5\cdot 7\dots (2n+1)}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    W_{2n} = \frac{2n-1}{2n}W_{2n-2}=\dots = \frac{3\cdot 5\cdot 7\dots (2n-1)}{2\cdot 4\cdot 6\dots (2n)} \cdot \frac{\pi}{2}
+\end{gather*}
+The $\pi$ originates in the term $W_0$. \vem
+
+\subproblem{e}
+Fractions with values less than 1 are being multiplied.
+
+\problem{6}
+
+\subproblem{a}
+\begin{gather*}
+    \int \ln^n x\, dx = 
+    \begin{bmatrix}
+        u =\ln^n x & dv=dx\\
+        du = \frac{n}{x}\ln^{n-1}x\, dx & v=x
+    \end{bmatrix}\\
+    \boxed{x \ln ^n x- n\int \ln^{n-1}x\, dx }
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int \ln x = x\ln x -x\\
+    \int \ln^2 x = x \ln^2 x -2 x\ln x + 2x\\
+    \int \ln^3 x = \boxed{x^3\ln x - 3x\ln ^2 x + 6x\ln x - 6x +C}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int \tan^n x\, dx = \int \tan^{n-2} (\sec ^2 x -1)\, dx\\
+    \int \tan^{n-2} \sec^2 x \, dx= \begin{bmatrix}
+        u=\tan x\\
+        du=\sec^2 x \, dx
+    \end{bmatrix} \int u^{n-2} \, du = \frac{\tan^{n-1} x}{n-1}\\
+    \int \tan^n x\, dx  =\boxed{\frac{\tan^{n-1} x}{n-1} - \int \tan^{n-2} x\, dx}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    \int \tan x \, dx= \ln |\sec x|\\
+    \int \tan^3 x = \frac{\tan^2 x}{2} -\ln |\sec x |\\
+    \int \tan^5 x= \boxed{\frac{1}{4}\tan^4 x-\frac{1}{2}\tan^2 x+\ln |\sec x|+C}
+\end{gather*}
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    s(t)=\int t^2e^{-t}\, dt = 
+    \begin{bmatrix}
+        u=t^2 & dv=e^{-t}\, dt\\
+        du=2t\, dt & v= -e^{-t}
+    \end{bmatrix}
+    -t^2e^{-t} + \int 2te^{-t}\, dt\\
+    = \begin{bmatrix}
+        u=t & dv=e^{-t}\, dt\\
+        du=dt & -e^{-t}
+    \end{bmatrix}
+    -t^2e^{-t}-2te^{-t} + \int 2e^{-t}\,dt = -(t^2+2t+2)e^{-t}\\
+    s(t)-s(0)=\boxed{2-(t^2+2t+2)e^{-t}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \lim_{t\to \infty}2-(t^2+2t+2)e^{-t}=\boxed{2}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    v(t)=t^2e^{-t}\\
+    v'(t)=2te^{-t}-t^2e^{-t}\\
+    v'(t)=0 \implies \boxed{t=2}
+\end{gather*}
+
+\problem{9}
+
+\subproblem{a}
+\begin{gather*}
+    f(x)-f(a)=\int_a^x f'(t)\,dt\\
+    \int_a^x f'(t)\,dt =
+    \begin{bmatrix}
+        u=f'(t) & dv = dt\\
+        du=f''(t) \,dt& v=t-x
+    \end{bmatrix}
+    (t-x)f'(t)\Big|_a^x - \int_a^x (t-x)f''(t)\,dt\\
+    f(x)-f(a)=(t-x)f'(t)\Big|_a^x - \int_a^x (t-x)f''(t)\,dt\\
+    f(x)=f(a)+(x-a)f'(a) + \int_a^x (x-t)f''(t)\, dt\\
+    \boxed{f(x)=L(x)+\int_a^x (x-t)f''(t)\, dt}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    |f(x)-L(x)|=|\int_a^x (x-t)f''(t)\, dt|\\
+    |f''(t)| \le M \implies \int_a^x (x-t)f''(t)\, dt \le M \int_a^x x-t\, dt\\
+    M \int_a^x x-t\, dt= -\frac{M(x-t)^2}{2}\Big|^x_a = \frac{M}{2}(x-a)^2\\
+    \boxed{|f(x)-L(x)| \le \frac{M}{2}(x-a)^2}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    f(x)-L(x)=\int_a^x (x-t)f''(t)\,dt\\
+    f''(t)\ge  0 \implies \int_a^x (x-t)f''(t)\,dt\ge 0\\
+    \boxed{f(x) \ge L(x)}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    \int_a^x (x-t)f''(t)\, dt =
+    \begin{bmatrix}
+        u=f''(t) & dv=(x-t)\, dt\\
+        du = f'''(t)\, dt & v = -\frac{(x-t)^2}{2}
+    \end{bmatrix}\\
+    -\frac{1}{2}(x-t)^2f''(t)\Big|^x_a + \int_a^x \frac{1}{2}(x-t)^2f'''(t)\, dt\\
+    \boxed{f(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2}(x-a)^2+\int_a^x \frac{f'''(t)}{2}(x-t)^2 \, dt}
+\end{gather*}
+
+\problem{10}
+
+\subproblem{a}
+\begin{gather*}
+    B(m,n) = \int_0^1 x^m (1-x)^n \, dx\\
+    =\begin{bmatrix}
+        u=(1-x)^n & dv=x^m\, dx\\
+        du=-n(1-x)^{n-1} & v=\frac{x^{m+1}}{m+1}
+    \end{bmatrix}
+    \frac{1}{m+1}(1-x)^nx^{m+1}\Big|^1_0 \\+  \int_0^1 \frac{n}{m+1}x^{m+1}(1-x)^{n-1}\\
+    = \boxed{\frac{n}{m+1} B(m+1,n-1)}
+\end{gather*}
+
+\subproblem{b}
+\begin{align*}
+    B(m,n)&=\frac{n}{m+1}B(m+1,n-1)\\
+    &=\frac{n}{m+1} \cdot \frac{n-1}{m+2}B(m+2,n-2)\\
+    &= \frac{n}{m+1} \cdot \frac{n-1}{m+2} \cdot \frac{n-2}{m+3}B(m+3,n-3)\\
+    &\dots \\
+    &=\frac{n(n-1) \cdots 1}{(m+1)(m+2)\cdots (m+n)}B(m+n,0)\\
+    &=\frac{n!}{(m+1)(m+2)\cdots (m+n)(m+n+1)}\\
+    &=\boxed{\frac{m!\, n!}{(m+n+1)!}}
+\end{align*}
+
+\subproblem{c}
+\begin{gather*}
+    \int_0^1 \frac{x^4(1-x)^4}{1+x^2} \, dx = \int_0^1 \left( x^6 - 4x^5 + 5x^4 - 4x^2 + 4 - \frac{4}{1+x^2} \right) dx\\
+    =\frac{x^7}{7} - \frac{2x^6}{3} + x^5 - \frac{4x^3}{3} + 4x - 4\arctan(x)\Big|^1_0=\boxed{\frac{22}{7}-\pi}\\
+    \int_0^1 \frac{x^4(1-x)^4}{1+x^2} \, dx > 0 \implies \boxed{\pi < \frac{22}{7}}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    B(4,4)=\int_0^1 x^4(1-x)^4 \, dx = \frac{4!\cdot 4!}{9!} = \frac{1}{630}\\
+    \frac{1}{2}\le \frac{1}{1+x^2} \le 1  \\
+    \frac{1}{1260} \le \int_0^1 \frac{x^4(1-x)^4}{1+x^2} \, dx \le \frac{1}{630}\\
+    \frac{1}{1260} \le \frac{22}{7} - \pi \le \frac{1}{630}\\
+    \frac{1979}{630} \le \pi \le \frac{3959}{1260}\\
+    \boxed{3.1413 \le \pi \le 3.1421}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
