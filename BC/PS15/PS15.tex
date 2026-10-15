@@ -1,0 +1,401 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 15} \\[0.5cm]
+    {\large Products of Powers of Trigonometric Functions} \\[0.35cm]
+    {\normalsize October 15, 2026}
+\end{center}
+
+% problems
+
+\problem{1}
+
+\subproblem{a}
+\begin{gather*}
+    \int \sin^3 x\cos^2 x\, dx = \int (\cos^2 x-\cos ^4 x)\sin x\, dx\\
+    =\int u^4-u^2\, du= \frac{u^5}{5}-\frac{u^3}{3}+C=\boxed{\frac{1}{5}\cos^5 x -\frac{1}{3}\cos^3x+C}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    u=3x \implies \frac{1}{3}du=dx\\
+    \int \sin^43x\cos^3 3x\, dx = \frac{1}{3} \int \sin^4 u \cos^3 u\, du\\
+    = \frac{1}{3} \int (\sin^4 u- \sin^6u)\cos u \, du\\
+    =\frac{1}{3} \int v^4-v^6 \, dv = \frac{1}{3}(\frac{v^5}{5} - \frac{v^7}{7})+C\\
+    = \boxed{\frac{1}{15} \sin^5 3x - \frac{1}{21} \sin^7 3x+C}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int \sin^2 5x\cos^2 5x\, dx\\
+    =\frac{1}{4}\int (1-\cos 10x)(1+\cos 10x)\, dx\\
+    =\frac{1}{4}\int 1-\cos^210x\, dx\\
+    =\frac{1}{4} \int 1-\frac{1}{2} - \frac{\cos 20x}{2}\, dx\\
+    =\frac{1}{8}(x-\frac{\sin 20x}{20})+C\\
+    =\boxed{\frac{1}{8}x - \frac{1}{160} \sin 20x+C}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    \int \cos^5x \, dx = \int (1-2\sin^2x +\sin^4x)\cos x\, dx\\
+    =\int u^4-2u^2+1\, du = \boxed{\frac{1}{5}\sin^5x -\frac{2}{3}\sin^3 x+\sin x+C}
+\end{gather*}
+
+\problem{2}
+
+\subproblem{a}
+\begin{gather*}
+    f_{ave} = \frac{\int_{-\pi}^\pi \sin^2 x \cos^3 x\, dx}{2\pi }\\
+    \int_{-\pi}^\pi \sin^2 x \cos^3 x\, dx =  2 \int_{0}^\pi \sin^2 x \cos^3 x\, dx\\
+    = 2 \int_{0}^\pi (\sin^2 x - \sin^4 x) \cos x\, dx = 2 \int_{0}^{0} u^2 - u^4  \, du = 0\\
+    f_{ave} = \boxed{0}\\
+    u =  \pi -x \implies \int_0^{\pi} \sin^2 u \cos^3 u\, du =  -\int_{-\pi}^0 \sin^2 u \cos^3 u\, du
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int_{-\pi}^\pi \sin^2 x \cos^2  x \, dx = 2 \int_0^\pi \sin^2x\cos^2x\,dx\\
+    = \frac{1}{2} \int_0^\pi (1-\cos 2x)(1+\cos 2x)\,dx\\
+    = \frac{1}{2} \int_0^\pi 1-\cos^2 2x\,dx\\
+    = \frac{1}{2} \int_0^\pi 1-\frac{1}{2}-\frac{1}{2} \cos 4x\,dx\\
+    = \frac{1}{2}(\frac{1}{2}x - \frac{1}{8}\sin 4x) \Big|^\pi_0 = \frac{\pi}{4}\\
+    g_{ave} = \frac{\pi}{4}\cdot \frac{1}{2\pi} = \boxed{\frac{1}{8}}
+\end{gather*}
+
+\problem{3}
+
+\subproblem{a}
+\begin{align*}
+    s(t) &= \int \sin (\omega t)\cos^2(\omega t)\, dt\\
+    &= \begin{bmatrix}
+        u =\cos \omega t\\
+        du= -\omega \sin \omega t\, dt
+    \end{bmatrix} 
+    -\frac{1}{\omega} \int u^2\, du\\
+    &= \boxed{- \frac{\cos^3(\omega t)}{3\omega } + \frac{1}{3\omega}}
+\end{align*}
+
+\subproblem{b}
+\begin{gather*}
+    - \frac{\cos^3(\omega t)}{3\omega } \in [-\frac{1}{3\omega},\frac{1}{3\omega}]\\
+    \iff - \frac{\cos^3(\omega t)}{3\omega } + \frac{1}{3\omega} \in [0,\frac{2}{3\omega}]\\
+    \cos^3(\omega t)= -1 \implies \boxed{t=\frac{\pi}{\omega}}
+\end{gather*}
+
+\subproblem{c}
+Yes, it is periodic.
+\begin{gather*}
+    t= \frac{2\pi}{\omega } \\
+    s(\frac{\pi}{\omega}) - s(0)= \frac{2}{3\omega}\\
+    2\cdot \frac{2}{3\omega} = \boxed{\frac{4}{3\omega}}
+\end{gather*}
+
+\problem{4}
+
+\subproblem{a}
+\begin{gather*}
+    \int \tan^3 x \sec^3 x \, dx = \int \sec^2x(\sec^2x -1) \sec x \tan x \, dx\\
+    =\int u^4-u^2\, du = \frac{u^5}{5} -\frac{u^3}{3}+C\\
+    =\boxed{\frac{1}{5} \sec^5 x-\frac{1}{3}\sec^3 x+C}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int \tan^4 x \sec^4x \, dx = \int \tan^4x(1+\tan^2x) \sec^2 x\, dx\\
+    =\int u^4+u^6\,  du = \boxed{\frac{1}{7}\tan^7x+\frac{1}{5}\tan^5x+C}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int \tan^2 x\sec x\, dx = \int \sec^3 x-\sec x \, dx\\
+    =\boxed{ \frac{1}{2}\sec x\tan x -\frac{1}{2}\ln |\sec x + \tan x |+C}
+\end{gather*}
+
+\problem{5}
+
+\subproblem{a}
+\begin{align*}
+    \int \sec^nx\, dx &= \begin{bmatrix}
+        u=\sec^{n-2}x & dv=\sec^2 x\\
+        du=(n-2)\sec^{n-2} x \tan x \, dx & v = \tan x 
+    \end{bmatrix}\\
+    & \,\,\,\,\,\,\,\sec^{n-2}x\tan x - (n-2)\int \sec^{n-2}x\tan^2 x\, dx\\
+    &=  \sec^{n-2}x\tan x - (n-2)\int \sec^{n}x\, dx +(n-2)\int \sec^{n-2}x\, dx\\
+    &= \boxed{\frac{\sec^{n-2}x\tan x}{n-1} +\frac{n-2}{n-1}\int \sec^{n-2}x\, dx}
+\end{align*}
+
+\subproblem{b}
+\begin{gather*}
+    \int \sec^3 x \, dx = \boxed{\frac{1}{2}\sec x \tan x + \frac{1}{2} \ln |\sec x +\tan x |+C}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int \sec^5  x\,d x = \frac{\sec^3x\tan x}{4} + \frac{3}{4}(\frac{1}{2}\sec x \tan x + \frac{1}{2} \ln |\sec x +\tan x |)+C\\
+    =\boxed{\frac{1}{4} \sec^3 x\tan x +\frac{3}{8} \sec x \tan x +\frac{3}{8} \ln|\sec x +\tan x| +C}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    \int \tan^2 x \sec^3 x \,d x = \int \sec^5x-\sec^3 x \, dx\\
+    =\boxed{\frac{1}{4} \sec^3 x\tan x -\frac{1}{8} \sec x \tan x -\frac{1}{8} \ln|\sec x +\tan x| +C}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    \int \sec^4 x\, dx= \boxed{\frac{1}{3}\sec^2 x\tan x +\frac{2}{3} \tan x +C}
+\end{gather*}
+
+\problem{6}
+
+\subproblem{a}
+\begin{gather*}
+    \int \frac{\cos^3x}{\sqrt{\sin x }} \, dx =\int \frac{1-\sin^2x}{\sqrt{\sin x}} \, \cos x \, dx\\
+    = \int \frac{1}{\sqrt{u}} - u^\frac{3}{2} \, du = 2\sqrt u - \frac{2}{5} u^\frac{5}{2}+C\\
+    = \boxed{2\sqrt{\sin x} - \frac{2}{5}\sin ^\frac{5}{2}x+C}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int \frac{\sin^2x}{\cos^4 x} \, dx = \int \sec^2 x\tan ^2 x\, dx\\
+    =\boxed{\frac{1}{3}\tan^3  x + C}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int \cot^3x \csc ^3 x \, dx = \int (\csc ^4 x - \csc ^2 x )\cot x \csc x \, dx\\
+    = \boxed{\frac{1}{3}\csc^3 x -\frac{1}{5}\csc ^5 x +C}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    \int \tan^3 x\, dx = \int \frac{\sec^2x-1}{\sec x} \sec x\tan x \, dx\\
+    = \boxed{\frac{1}{2}\sec^2 x - \ln |\sec x|+C}
+\end{gather*}
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    \int_{-\pi} ^\pi \cos^2 (nx)\, dx = 2 \int _0^\pi \cos^2 nx\, dx\\
+    = \int_0^\pi 1+ \cos 2nx\, dx =x+ \frac{1}{2n} \sin 2nx\Big|^\pi_0 = \boxed{\pi}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    E(a)=\int_{-\pi}^\pi \paren{f(x)-a\cos(nx)}^2\, dx\\
+    = \int_{-\pi}^\pi f(x)^2-2a\cos (nx)f(x)+a^2\cos(nx)^2 \, dx\\
+    = a^2 \int_{-\pi}^\pi \cos(nx)^2 \, dx - 2a\int_{-\pi}^\pi \cos (nx)f(x)\, dx + \int_{-\pi}^\pi f(x)^2\, dx\\
+    = \pi a^2  - 2a\int_{-\pi}^\pi \cos (nx)f(x)\, dx + \int_{-\pi}^\pi f(x)^2\, dx\\
+    a= \boxed{\frac{1}{\pi} \int_{-\pi}^\pi \cos (nx)f(x)\, dx }
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    a_1=\boxed{-4}\\
+    a_2=\boxed{1}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    a=\frac{1}{\pi} \int_{-\pi}^\pi x^2\cos (nx)\, dx= \frac{2}{\pi} \int_{0}^\pi x^2\cos (nx)\, dx\\
+    = \begin{bmatrix}
+        u=x^2 & dv=\cos nx \, dx\\
+        du =2x\, dx & v =\frac{1}{n}\sin nx \, dx
+    \end{bmatrix}
+    \frac{2}{n\pi} x^2\sin nx \Big|^\pi_0 - \frac{4}{n\pi} \int_0^\pi x \sin nx \, dx\\
+    = \begin{bmatrix}
+        u=x & dv=\sin nx\, dx\\
+        du=dx & v= -\frac{1}{n} \cos nx
+    \end{bmatrix}
+    +\frac{4}{n^2\pi} x\cos nx \big|^\pi_0 - \frac{4}{n^2\pi} \int_0^\pi \cos nx\, dx\\
+    = \boxed{\frac{4(-1)^n}{n^2} }
+\end{gather*}
+The equation is a great approximation of the function $y=x^2$ with cosine.
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    I_n= \int_0^{\frac{\pi}{2}} \cos^n x\cos (nx)\, dx\\
+    =\begin{bmatrix}
+        u=\cos^n x & dv=\cos (nx)\, dx\\
+        du=-n\cos^{n-1}x\sin x  & u=\frac{1}{n}\sin (nx)
+    \end{bmatrix} \frac{1}{n}\cos^n x\sin nx\Big|^\frac{\pi}{2}_0 \\
+    + \int_0^\frac{\pi}{2} \cos ^{n-1}x\sin x \sin (nx)\, dx = \boxed{\int_0^\frac{\pi}{2} \cos ^{n-1}x\sin x \sin (nx)\, dx}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \cos ((n-1)x)=\cos nx \cos x +\sin nx\sin x\\
+    2I_n=\int_0^{\frac{\pi}{2}} \cos^n x\cos (nx)\, dx + \int_0^\frac{\pi}{2} \cos ^{n-1}x\sin x \sin (nx)\, dx\\
+    = \int_0^\frac{\pi}{2} \cos^{n-1}x(\cos nx \cos x +\sin nx\sin x)\, dx\\
+    =\int_0^\frac{\pi}{2} \cos^{n-1}x\cos ((n-1)x)\, dx = I_{n-1}\\
+    I_n = \frac{1}{2}I_{n-1}, I_0 = \frac{\pi}{2} \implies \boxed{I_n = \frac{\pi}{2^{n+1}}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    K_n = \int_0^{\frac{\pi}{2}} \cos^n x \sin (nx)\, dx\\
+    =\begin{bmatrix}
+        u=\cos^n x & dv=\sin (nx)\, dx\\
+        du=-n\cos^{n-1}x\sin x  & v=-\frac{1}{n}\cos (nx)
+    \end{bmatrix} -\frac{1}{n}\cos^n x\cos nx\Big|^\frac{\pi}{2}_0 \\
+    + \int_0^\frac{\pi}{2} \cos ^{n-1}x\sin x \cos (nx)\, dx = \frac{1}{n} - \int_0^\frac{\pi}{2} \cos ^{n-1}x\sin x \cos (nx)\, dx\\
+    \sin((n-1)x) = \sin nx \cos x - \cos nx \sin x\\
+    K_{n-1} = \int_0^{\frac{\pi}{2}} \cos^{n-1}x \sin((n-1)x)\, dx \\= \int_0^{\frac{\pi}{2}} \cos^{n-1}x (\sin nx \cos x - \cos nx \sin x)\, dx\\
+    = \int_0^{\frac{\pi}{2}} \cos^n x \sin nx \, dx - \int_0^{\frac{\pi}{2}} \cos^{n-1} x \sin x \cos nx \, dx  = 2K_n - \frac{1}{n}\\
+    \boxed{K_n = \frac{1}{2}K_{n-1} + \frac{1}{2n}}\\
+    K_n = \frac{1}{2}K_{n-1} + \frac{1}{2n} = \frac{1}{4}K_{n-2} + \frac{1}{2n} + \frac{1}{4(n-1)}\\
+    = \dots = \paren{\frac{1}{2}}^nK_0 + \sum_{k=1}^n \paren{\frac{1}{2}}^{n-k+1}\frac{1}{k}\\
+    \boxed{K_n = \frac{1}{2^{n+1}}\sum_{k=1}^n \frac{2^k}{k}}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    I_1=\frac{\pi}{4}, I_2=\frac{\pi}{8}\\
+    K_1=\frac{1}{2},K_2=\frac{1}{2}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
