@@ -1,0 +1,293 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 18} \\[0.5cm]
+    {\large Areas Between Curves I} \\[0.35cm]
+    {\normalsize October 19, 2026}
+\end{center}
+
+% problems
+
+\problem{2}
+
+\subproblem{b}
+\begin{gather*}
+    y=\sqrt{x+3} ,y=\frac{x+3}{2}\\
+    \sqrt{x+3} = \frac{x+3}{2} \implies (x-1)(x+3)=0\\
+    A=\int_{-3}^1 \sqrt{x+3} - \frac{x+3}{2}\, dx\\
+    = \int_0^4 \sqrt{u} - \frac{u}{2}\, du\\
+    = \frac{2}{3}u^\frac{3}{2} - \frac{x^2}{4} \Big|^4_0 = \boxed{\frac{4}{3}}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    y=\sec^2 x , y=8\cos x\\
+    \sec x =2\implies x=\pm \frac{\pi}{3}\\
+    A= \int_{-\frac{\pi}{3}}^\frac{\pi}{3} 8\cos x-\sec ^2 x\, dx\\
+    = 8\sin x -\tan x \Big|_{-\frac{\pi}{3}}^\frac{\pi}{3} \\
+    = 8\sqrt{3} - 2\sqrt{3} = \boxed{6\sqrt{3}}
+\end{gather*}
+
+\subproblem{f}
+\begin{gather*}
+    x=2y^2,x=4+y^2\\
+    y=2 \implies x=8\\
+    A=\int_{-2}^{2} 4+y^2-2y^2\, dy\\
+     = \int_{-2}^{2}  4-y^2\, dy\\
+     = 4y-\frac{y^3}{3} \Big|_{-2}^{2} = \boxed{\frac{32}{3}}
+\end{gather*}
+
+\subproblem{h}
+\begin{gather*}
+    y=\cos x,y=1-\frac{2x}{\pi}\\
+    x=0 \tor \frac{\pi}{2} \tor \pi \\
+    A=2\int_0^\frac{\pi}{2} \frac{2x}{\pi}-1+ \cos x\, dx\\
+    = 2(\sin x -x +\frac{x^2}{2})\Big|^\frac{\pi}{2}_0 = \boxed{2-\frac{\pi}{2}}
+\end{gather*}
+
+\problem{3}
+
+\subproblem{b}
+\begin{gather*}
+    \sin x -\cos 2x=0\\
+    \sin x + 2\sin^2x -1=0\\
+    (2\sin x -1)(\sin x+1)=0\\  
+    \sin x=\frac{1}{2} \implies x=\frac{\pi}{6}\\
+    \int_0^\frac{\pi}{2} |\sin x -\cos 2x| \, dx\\
+    = \int_0^\frac{\pi}{6} \cos 2x -\sin x \,d x + \int_\frac{\pi}{6}^\frac{\pi}{2} \sin x -\cos 2x\, dx\\
+    = \frac{1}{2}\sin 2x +\cos x \Big|_0^\frac{\pi}{6} + \frac{1}{2}\sin 2x+\cos x \Big|_\frac{\pi}{2}^\frac{\pi}{6}\\
+    = \frac{\sqrt{3}}{2} + \sqrt{3} - 1 - 0 = \boxed{\frac{3\sqrt{3}}{2} -1}
+\end{gather*}
+
+\problem{4}
+
+\subproblem{a}
+\begin{gather*}
+    \sqrt{x}=x-2 \implies x=4\\
+    A=\int_0^2 \sqrt{x} \, dx + \int_2^4 \sqrt{x} -x+2\, dx\\
+    = \frac{2}{3}x^\frac{3}{2}\Big|^2_0 + \frac{2}{3}x^\frac{3}{2} - \frac{x^2}{2}+2x\Big|^4_2\\
+    = \frac{16}{3} -8 +8 + 2-4 = \boxed{\frac{10}{3}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    A = \int_0^2 y+2-y^2\, dy\\
+    = \frac{y^2}{2}+2y-\frac{y^3}{3} \Big|^2_0\\
+    = 2+4- \frac{8}{3} = \boxed{\frac{10}{3}}
+\end{gather*}
+
+\subproblem{c}
+The second method is simpler. The general rule is to choose integration where fewer pieces are involved.
+
+\problem{5}
+\begin{gather*}
+    A=\int_{-1}^0 -\frac{5}{3}x+\frac{13}{3} + 6x\, dx + \int_0^2 -\frac{5}{3}x+\frac{13}{3} -\frac{1}{2}x\, dx\\
+    = \frac{13}{6}x^2+\frac{13}{3}x\Big|^0_{-1} -\frac{13}{12}x^2 + \frac{13}{3}x\Big|_0^2\\
+    = \frac{13}{3} - \frac{13}{6}  - \frac{13}{3} + \frac{26}{3} = \boxed{\frac{13}{2}}\\
+    A=\frac{1}{2}|2 \cdot 6 - (-1)\cdot 1| = \boxed{\frac{13}{2}}
+\end{gather*}
+
+\problem{6}
+\begin{gather*}
+    A=\int_0^1 \cos^2(\frac{\pi x}{4})-\sin ^2 (\frac{\pi x} {4})\, dx\\
+    = \int_0^1 \cos \frac{\pi x}{2}\, dx\\
+    = \frac{2}{\pi} \sin \frac{\pi x}{2} \Big|^1_0 = \boxed{\frac{2}{\pi}}
+\end{gather*}
+
+\problem{7}
+
+\subproblem{a}
+$L(x)=x$ represents perfect equality.
+\begin{gather*}
+    G=2\int_0^1 (x-L(x))\, dx \ge 0\\
+    G = 1 - 2 \int_0^1 L(x) \, dx \implies G<1\\
+    \boxed{0 \le G <1}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    G=2\int_0^1 (x-x^3)\, dx = 2 (\frac{x^2}{2} - \frac{x^4}{4})\Big|^1_0 = \boxed{\frac{1}{2}}\\
+    G=2\int_0^1 (x-\frac{e^x-1}{e-1})\, dx =  2(\frac{x^2}{2} - \frac{e^x-x}{e-1})\Big|^1_0=\boxed{\frac{3-e}{e-1}}
+\end{gather*}
+The second function of $L(x)$ describes more equality.\vem
+
+\subproblem{c}
+\begin{gather*}
+    G=2\int_0^1 (x-x^p)\, dx = 2(\frac{x^2}{2} - \frac{x^{p+1}}{p+1})\Big|^1_0 = \boxed{ \frac{p-1}{p+1}}\\
+    \lim_{p\to \infty} G = \lim_{p \to \infty} \frac{p - 1}{p + 1} = \boxed{1}
+\end{gather*}
+It describes a society with absolute inequality.
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    y=(a+b)(x-a)+a^2 = (a+b)x-ab\\
+    A= \int_a^b (a+b)x-ab-x^2\, dx\\
+    = \paren{ \frac{a+b}{2}x^2 -abx -\frac{1}{3}x^3}\Big|^b_a\\
+    = \frac{a+b}{2}(b^2-a^2) + ab (a-b) + \frac{1}{3}(a^3-b^3)\\
+    = \boxed{\frac{(b-a)^3}{6}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    y=x^2 \implies y'=2x\\
+    a+b=2x \implies x = \frac{a+b}{2}\\
+    A=\frac{1}{2} (b-a)\paren{ \frac{(a+b)^2}{2}- ab -\frac{(a+b)^2}{4} }\\
+    = \boxed{ \frac{(b-a)^3}{8}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    y=2a(x-a)+a^2=2ax-a^2\\
+    y=2b(x-b)+b^2=2bx-b^2\\
+    b^2-a^2=2(b-a)x \implies x=\frac{a+b}{2}\\
+    A= \int_a^\frac{a+b}{2} (x-a)^2\, dx + \int_\frac{a+b}{2}^b (x-b)^2, dx\\
+    = \frac{(x-a)^3}{3} \Big|_a^\frac{a+b}{2} + \frac{(x-b)^3}{3} \Big|_\frac{a+b}{2}^b\\
+    = \boxed{\frac{(b-a)^3}{12}}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    y=x^3 \implies y'=3x^2\\
+    y=3t^2(x-t)+t^3 = 3t^2x - 2t^3\\
+    x^3-3t^2x+2t^3=0\\
+    (x-t)^2(x+2t)=0\implies \boxed{x=-2t}\\
+    A=\int_{-2t}^t x^3-3t^2x+2t^3\, dt\\
+    = \frac{x^4}{4} - \frac{3t^2x^2}{2} + 2t^3x \Big|_{-2t}^t\\
+    = \boxed{\frac{27}{4}t^4}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
