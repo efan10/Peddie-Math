@@ -1,0 +1,296 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 19} \\[0.5cm]
+    {\large Areas Between Curves II} \\[0.35cm]
+    {\normalsize October 21, 2026}
+\end{center}
+
+% problems
+
+\problem{4}
+
+\subproblem{a}
+\begin{gather*}
+    x^2+4x-8x=0 \implies x= \boxed{0 \tor 4}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    A = \int_0^4 2\sqrt{x}\, dx + \int_4^8 \sqrt{8x-x^2}\, dx = \boxed{\frac{32}{3} + 4\pi}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    A= \int_0^4 \left(\sqrt{8x-x^2} - 2\sqrt{x}\right) dx \\
+    \int_0^4 \sqrt{8x-x^2}\, dx = \begin{bmatrix}
+        u=x-4\\
+        du=dx
+    \end{bmatrix} \int_{-4}^0\sqrt{16-u^2}\, du
+    =  16\int_{-\pi/2}^0 \cos^2\theta \, d\theta \\
+    =  8\theta + 8\sin\theta\cos\theta \Big|_{-\pi/2}^0
+    = 8\arcsin\frac{u}{4}+\frac{u\sqrt{16-u^2}}{2} \Big|_{-4}^{0}\\
+    A = \boxed{4\pi - \frac{32}{3}}
+\end{gather*}
+
+\problem{5}
+
+\subproblem{a}
+\begin{gather*}
+    a>b \implies \frac{1}{a^2}<\frac{1}{b^2}\\
+    \frac{x^2}{a^2}+\frac{y^2}{a^2} \le \frac{x^2}{a^2}+\frac{y^2}{b^2}=1\\
+    \boxed{x^2+y^2\le a^2}\\
+    x^2+y^2=a^2 \implies \boxed{y=0,x=\pm a}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    A_c =\pi a^2,A_e=\pi ab\\
+    \Delta A = \boxed{\pi a(a-b)}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \frac{x^2}{a^2}+\frac{y^2}{b^2} = 1 \implies y=\sqrt{b^2-\frac{b^2}{a^2}x^2}\\
+    y=\sqrt{a^2-x^2}- \sqrt{b^2-\frac{b^2}{a^2}x^2} = (1-\frac{b}{a})\sqrt{a^2-x^2}\\
+    \frac{x^2}{a^2} + \frac{y^2}{(a-b)^2}=1 \implies (1-\frac{b}{a})\sqrt{a^2-x^2}
+\end{gather*}
+
+\problem{6}
+
+\begin{gather*}
+    y=\frac{x^2+3x+2}{x^2-3x+2} = 0\implies x=-1\tor -2\\
+    \int_{-1}^{-2} \frac{x^2+3x+2}{x^2-3x+2}\, dx = \int_{-1}^{-2} 1+ \frac{12}{x-2} -\frac{6}{x-1}\, dx\\
+    = x +12\ln |x-2|-6\ln |x-1| \Big|_{-1}^{-2}\\
+    = -1 +24\ln 2-6\ln 3- 12\ln 3+6\ln 2\\
+    =\boxed{30\ln 2 -18 \ln 3-1}
+\end{gather*}
+
+\problem{7}
+
+\begin{gather*}
+    \frac{y^2}{4}=y+2 \implies y=2+2\sqrt{3}\\
+    \int_{0}^{4 + 2\sqrt{3}} 2\sqrt{x} \, dx = \frac{4}{3}x^{3/2} \Big|_{0}^{4 + 2\sqrt{3}} = \frac{40}{3} + 8\sqrt{3}\\
+    A=\frac{40}{3} + 8\sqrt{3}- \frac{\pi}{2} - 8 - 4\sqrt{3}\\
+    =\boxed{\frac{16}{3} +4\sqrt{3}- \frac{\pi}{2}}
+\end{gather*}
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    A(c) = \int_{0}^{c} (f(c) - f(x)) \, dx + \int_{c}^{a} (f(x) - f(c)) \, dx
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    A(c) = c \cdot f(c)-\int_0^c f(x)\, dx +\int_c^af(x)\, dx -f(c) \cdot (a-c)\\
+    A'(c)=c\cdot f'(c) - f(c) - f'(c)(a-c)+ f(c)= \boxed{(2c-a)f'(c)}\\
+    f(x)=\sqrt{\arctan x} \implies f'(c)>0\\
+    2c-a =0 \implies \boxed{c=\frac{a}{2}}
+\end{gather*}   
+
+\subproblem{c}
+Given that the function is monotonically increasing, the value of $A'(x)$ only depends on the relative ratio of $c$ to $a$, as demonstrated above. 
+
+\problem{9}
+
+\subproblem{a}
+$g(x)$ exists as $f(x)$ is monotonically increasing.
+\begin{gather*}
+    f(0)=0+0+1=1 \implies g(1)=\boxed{0}\\
+    f(3)=27+9+1=37 \implies g(37)=\boxed{3}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \int_0^3 f(x)\, dx= \int_0^3 x^3+3x+1\, dx \\
+    = \frac{x^4}{4}+\frac{3x^2}{2}+x\Big|^3_0 = \frac{81}{4}+\frac{27}{2}+3 = \frac{147}{4}\\
+    A=3\cdot 37 - \frac{147}{4}=\boxed{\frac{297}{4}}
+\end{gather*}
+
+\problem{10}
+
+\subproblem{a}
+\begin{gather*}
+    y=4-x^2 \implies x=-2\tor 2\\
+    \int_{-2}^2 4-x^2\, dx = 4x-\frac{x^3}{3}\Big|_{-2}^2 = \frac{32}{3}\\
+    \int_{-\sqrt{4-b}}^{\sqrt{4-b}} 4-x^2 -b\, dx =(4-b)x-\frac{x^3}{3}\Big|_{-\sqrt{4-b}}^{\sqrt{4-b}}=\frac{16}{3}\\
+    2(4-b)^\frac{3}{2}=\frac{16}{3} + \frac{2(4-b)^\frac{3}{2}}{3}\\
+    (4-b)^\frac{3}{2} = 4\\
+    b=  \boxed{4-2\cbrt2}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    y=x-x^2 \implies x=0 \tor 1\\
+    \int_{0}^{1} x - x^2 \, dx = \frac{x^2}{2} - \frac{x^3}{3} \Big|_{0}^{1} = \frac{1}{6}\\
+    kx=x-x^2 \implies x=1-k\\
+    \int_0^{1-k} (1-k)x-x^2\, dx = \frac{(1-k)x^2}{2}-\frac{x^3}{3}\Big|_0^{1-k}=\frac{(1-k)^3}{6}\\
+    \frac{(1-k)^3}{6} = \frac{1}{12}\\
+    k=\boxed{1-\frac{1}{\cbrt2}}
+\end{gather*}
+
+\problem{11}
+
+\subproblem{a}
+\begin{gather*}
+    3x^3-2x+c=0 \implies c=x_1,x_2\\
+    c x_1-\int_0^{x_1} 2x-3x^3\, dx = cx_1-x^2+\frac{3x^4}{4}\Big|_0^{x_1}\\
+    \int_{x_1}^{x_2}2x-3x^3-c \, dx = x^2-\frac{3x^4}{4}-cx\Big|_{x_1}^{x_2}    \\
+    cx_1-x^2+\frac{3x^4}{4}\Big|_0^{x_1} = x^2-\frac{3x^4}{4}-cx\Big|_{x_1}^{x_2} \\
+    c(x_1-x_1+x_2)=x^2-\frac{3x^4}{4}\Big|_{0}^{x_2}\\
+    cx=x^2-\frac{3}{4}x^4 \implies \frac{3}{4}x^3-x+c=0\\
+    3x^3-4x+4c=0 \implies 2x=3c\\
+    \frac{81}{8}c^3-3c+c=0 \\
+    c=\boxed{\frac{4}{9}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    A_1 = \int_{0}^{x_1} c - f(x) \, dx\\
+    A_2 = \int_{x_1}^{x_2} f(x) - c \, dx\\
+    A_1=A_2 \implies \boxed{\int_0^{x_2}(f(x) - c) \, dx=0}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    \int_0^{\pi-\alpha} \sin x - \sin \alpha \, dx=0\\
+    -\cos x -x\sin \alpha \Big|_0^{\pi-\alpha } =0\\
+    \cos \alpha -(\pi -\alpha ) \sin \alpha +1=0\\
+    \boxed{\cos \alpha +1=(\pi -\alpha )\sin \alpha }\\
+    \boxed{c\approx 0.725}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
