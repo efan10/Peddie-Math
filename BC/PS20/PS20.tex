@@ -1,0 +1,265 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 20} \\[0.5cm]
+    {\large Volumes of Revolution I: Disks and Washers} \\[0.35cm]
+    {\normalsize October 26, 2026}
+\end{center}
+
+% problems
+
+\problem{1}
+
+\subproblem{b}
+\begin{gather*}
+    V=\pi \int_{r-h}^{r} r^2-x^2\, dx = \pi (r^2 x-\frac{x^3}{3})\Big|_{r-h}^{r}\\
+    =\pi (r^3-\frac{r^3}{3} - r^3 + r^2h + \frac{r^3}{3}-r^2h+rh^2-\frac{h^3}{3})\\
+    = \boxed{\pi h^2(r-\frac{h}{3})}
+\end{gather*}
+
+\problem{2}
+
+\subproblem{b}
+\begin{gather*}
+    A=\pi kx\\
+    V=\pi \int_0^ a kx \, dx=\pi (\frac{1}{2}kx^2)\Big|^a_0= \boxed{\frac{\pi}{2}ka^2} 
+\end{gather*}
+
+\problem{4}
+
+\subproblem{a}
+\begin{gather*}
+    V=\pi \int_1^2(2-\frac{x}{2})^2\, dx = \pi \int_1^2 \frac{x^2}{4}-2x+4\, dx\\
+    =\pi (\frac{x^3}{12}- x^2+4x)\Big|_1^2 =\pi (\frac{7}{12}-3+4)=\boxed{\frac{19\pi}{12}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=\pi \int_1^2 \frac{1}{x^2}\, dx=\pi (-\frac{1}{x})\Big|_1^2=\boxed{\frac{\pi}{2}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V=\pi \int_0^9 4y\, dy =2\pi (y^2)\Big|^9_0=\boxed{162\pi }
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    V=\pi \int_0^1x^2-x^6\, dx =\pi (\frac{x^3}{3}-\frac{x^7}{7})\Big|^1_0= \boxed{\frac{4\pi}{21}}
+\end{gather*}
+
+\subproblem{f}
+\begin{gather*}
+    V=\pi \int_0^4 (2-\frac{y}{2})^4\, dy = \begin{bmatrix}
+        u=2-\frac{y}{2}\\
+        -2du=\, dy
+    \end{bmatrix}
+    \pi \int_0^2 2u^4\, dy= 2\pi (\frac{u^5}{5})\Big|^2_0=\boxed{\frac{64\pi}{5}}
+\end{gather*}
+
+\problem{6}
+The true geometric area is expressed as $A=\pi (R^2-r^2)$.
+\begin{gather*}
+    V=\pi \int_0^1 (x^2-x^4)\, dx = \pi (\frac{x^3}{3}-\frac{x^5}{5})\Big|^1_0=\boxed{\frac{2\pi}{15}}\\
+    R^2-2Rr+r^2=R^2-r^2\\
+    2r(R-r)=0 \implies \boxed{r=0 \tor R}
+\end{gather*}
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    V=\pi \int_0^{h } y\, dy=  \boxed{\frac{\pi h^2}{2}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=\frac{\pi}{2}h^2\implies dV=\pi h \, dh\\
+    \frac{dh}{dt}=\frac{dV}{dt}\cdot \frac{dh}{dV}=\frac{1}{4\pi}\cdot 2=\boxed{\frac{1}{2\pi} \text{ cm/s}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V(10)=50\pi  \\
+    25\pi =\frac{\pi}{2}h^2\\
+    h=\boxed{5\sqrt{2}\text{ cm}}
+\end{gather*}
+The bowl gets wider as the height increases.
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    (x-R)^2+y^2=a^2\\
+    x=\boxed{R\pm \sqrt{a^2-y^2}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=\pi \int_{-a}^a (R+ \sqrt{a^2-y^2})^2-(R- \sqrt{a^2-y^2})^2\, dy\\
+    =\pi \int_{-a}^a 4R\sqrt{a^2-y^2} \, dy = \pi \cdot 4R\cdot \frac{1}{2}\pi a^2\\
+    =\boxed{2\pi ^2Ra^2}
+\end{gather*}
+
+\subproblem{c}
+\[
+2\pi^2Ra^2=(2\pi R) (\pi a^2)
+\]
+$\pi a^2$: area of the rotated circle. \\
+$2\pi R$: the distance traveled by the center of the circle. 
+
+\problem{9}
+
+\subproblem{a}
+Upper bound: $y=\sqrt{r^2-x^2}$.\\
+Lower bound: $y=\sqrt{r^2-\frac{h^2}{4}}$.
+
+\subproblem{b}
+\begin{gather*}
+    V= \pi \int_{-\frac{h}{2}}^{\frac{h}{2}}  r^2-x^2-r^2+\frac{h^2}{4}\, dx\\
+    = \pi ( - \frac{x^3}{3} +\frac{h^2}{4}x)\Big|_{-\frac{h}{2}}^{\frac{h}{2}} \\
+    =2\pi\cdot \frac{2h^3}{24} = \boxed{\frac{\pi h^3}{6}}
+\end{gather*}
+
+\subproblem{c}
+The volumes are the same. For the Earth, the radius of the hole is also extremely long, rendering the actual thickness extremely small, which cancels out and leaves an equal volume. \vem
+
+\subproblem{d}
+\begin{gather*}
+    V=2\pi h^2(r-\frac{h}{3})\\
+    =2\pi \cdot \frac{1}{4}\cdot \frac{5}{6}\\
+    =\boxed{\frac{5\pi}{12}}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
