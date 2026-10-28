@@ -1,0 +1,261 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 21} \\[0.5cm]
+    {\large Volumes of Revolution II: Other Axes} \\[0.35cm]
+    {\normalsize October 27, 2026}
+\end{center}
+
+% problems
+
+\problem{9}
+
+\subproblem{a}
+\begin{gather*}
+    S=\int_0^33x-x^2\, dx = \frac{3}{2}x^2-\frac{x^3}{3}\Big|^3_0=\boxed{\frac{9}{2}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=\pi \int_0^3 (4x-x^2+2)^2-(x+2)^2\, dx\\
+    =\pi \int_0^3 x^4+16x^2+4-4x^2+16x-8x^3-x^2-4x-4\, dx\\
+    \pi (\frac{x^5}{5}-2x^4+\frac{11}{3}x^3+6x^2)\Big|_0^3\\
+    = \boxed{\frac{198\pi}{5}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V = \pi \int_{0}^{3} \left(2 + \sqrt{4-y}\right)^2 - (4-y)^2  dy \\+ \pi \int_{3}^{4}  \left(2 + \sqrt{4-y}\right)^2 - \left(2 - \sqrt{4-y}\right)^2 dx
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    W(k) = \pi \int_{0}^{3} (f(x) + k)^2 - (g(x) + k)^2 dx\\
+    W'(k)=2\pi \int_0^3 f(x)-g(x)\, dx\\
+    =\boxed{9\pi}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    V=2\pi (k-y)A\\
+    \frac{198\pi}{5}=2\pi (y+2)\frac{9}{2}\\
+    22=5y+10 \implies y= \frac{12}{5}\\
+    k=\frac{12}{5}+\frac{22}{5}=\boxed{\frac{34}{5}}
+\end{gather*}
+
+\problem{10}
+
+\subproblem{a}
+\begin{gather*}
+    T=\int_0^2\frac{4}{4+x^2} \, dx = 4\cdot \frac{1}{2} \arctan 1 = \boxed{\frac{\pi}{2}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    T=\pi \int_0^2\paren{\frac{4}{4+x^2}}^2 \, dx\\
+    =\pi \int_0^2 \frac{16}{(4+x^2)^2}\,dx\\
+    = 16\pi \int_0^\frac{\pi}{4} \frac{2\sec^2\theta\, d\theta }{16\sec^4 \theta }\\
+    = \pi \int_0^\frac{\pi}{4} 2\cos^2 \theta \,d\theta \\
+    =\pi \int_0^\frac{\pi}{4} \cos 2\theta +1\,d\theta\\
+    = \pi (\frac{\sin 2\theta}{2}+\theta )\Big|_0^\frac{\pi}{4}\\
+    = \boxed{\frac{\pi^2}{4}+\frac{\pi}{2}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    y=\frac{4}{4+x^2} \implies x=2\sqrt{\frac{1}{y}-1}\\
+    V=\pi \int_0^\frac{1}{2}4\, dy+\pi \int_{\frac{1}{2}}^1 \frac{4}{y}-4\, dy\\
+    =2\pi + \pi (4\ln y )\Big|^1_\frac{1}{2}-2\pi\\
+    =\boxed{4\pi \ln 2}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    V=\pi \int_0^21-(1-\frac{4}{4+x^2})^2\, dx\\
+    =\pi \int_0^2 2\cdot \frac{4}{4+x^2} - \paren{\frac{4}{4+x^2}}^2\, dx\\
+    = 2\pi \cdot  \frac{\pi}{2} - \frac{\pi^2}{4}-\frac{\pi}{2}\\
+    = \boxed{\frac{3\pi^2}{4}-\frac{\pi}{2}}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    T=\int_0^b\frac{4}{4+x^2} \, dx = 4\cdot \frac{1}{2} \arctan \frac{b}{2} = \frac{\pi}{4}\\
+    b=\boxed{2 \tan \paren{\frac{\pi}{8}}}
+\end{gather*}
+
+\subproblem{f}
+The volume of the piece with $0\le x\le b$ is larger, as more distance is traveled by the centroid. 
+\begin{gather*}
+    V= \pi \int_0^\frac{\pi}{8}\cos 2\theta +1\,d\theta\\
+    = \pi (\frac{\sin 2\theta}{2}+\theta )\Big|_0^\frac{\pi}{8}\\
+    = \boxed{\frac{\pi^2}{8} + \frac{\sqrt{2}\pi}{4}}
+\end{gather*}
+
+\problem{11}
+
+\subproblem{a}
+\begin{gather*}
+    x-y=0\\
+    y=x^2 \implies x-x^2=0\\
+    d= \boxed{\frac{x-x^2}{\sqrt{2}}}\\
+    X-x^2=-(X-x)\\
+    X=\frac{x^2+x}{2}\\
+    u=\boxed{\frac{x^2+x}{\sqrt{2}}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+        V=\int_0^{\sqrt{2}}\pi d^2\, du\\
+        =\pi \int_0^1 \paren{\frac{x-x^2}{\sqrt{2}}}^2 \cdot \frac{2x+1}{\sqrt{2}}\, dx\\
+        = \frac{\pi}{2\sqrt{2}}\int_0^1 2x^5-3x^4+x^2\, dx\\
+        = \frac{\pi}{2\sqrt{2}} ( \frac{2x^6}{6} - \frac{3x^5}{5}+ \frac{x^3}{3})\Big|_0^1\\
+        =\boxed{\frac{\pi}{30\sqrt{2}}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    A =\int_0^1 x-x^2\, dx = \frac{x^2}{2}-\frac{x^3}{3}\Big|_0^1=\frac{1}{6}\\
+    \delta = \frac{\frac{1}{2}-\frac{2}{5}}{\sqrt{2}} = \frac{1}{10\sqrt{2}}\\
+    \frac{\pi}{30\sqrt{2}} = 2\pi \cdot \frac{1}{10\sqrt{2}}\cdot \frac{1}{6}\\
+    \boxed{V=2\pi \delta A}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    A=1\\
+    \delta = \frac{\frac{3}{2}+\frac{1}{2}}{\sqrt{2}} = \sqrt{2}\\
+    V=2\pi \cdot \sqrt{2} \cdot 1 = \boxed{2\pi \sqrt{2}}
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
