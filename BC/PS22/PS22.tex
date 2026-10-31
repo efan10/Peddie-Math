@@ -1,0 +1,333 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 22} \\[0.5cm]
+    {\large Volumes III: Known Cross-Sections} \\[0.35cm]
+    {\normalsize October 29, 2026}
+\end{center}
+
+% problems
+
+\problem{3}
+
+\begin{gather*}
+    V=4\int_{-1}^1 \frac{\sqrt{3}}{4}(1-x^2)\, dx \\
+    =\sqrt{3} (x-\frac{x^3}{3})\Big|_{-1}^1\\
+    =\boxed{\frac{4\sqrt{3}}{3}}
+\end{gather*}
+
+\problem{4}
+
+\subproblem{b}
+\begin{gather*}
+    V=\int_0^1 x^2\, dx\\
+    = \frac{x^3}{3} \Big|^1_0 = \boxed{\frac{1}{3}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V=\int_{-1}^1 \frac{1}{2}(1-x^2)^2\, dx\\
+    =\frac{1}{2} \int_{-1}^1  x^4-2x^2+1\, dx\\
+    = \frac{1}{2}(\frac{x^5}{5}-\frac{2x^3}{3}+x)\Big|_{-1}^1\\
+    = \boxed{\frac{8}{15}}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    V=\int_0^3 \frac{1}{2} \cdot \frac{5}{3}x\cdot \frac{4}{3}x\, dx\\
+    = \frac{10}{9}\cdot \frac{x^3}{3} \Big|^3_0\\
+    = \boxed{10}
+\end{gather*}
+
+\problem{5}
+
+\subproblem{a}
+\begin{gather*}
+    V=\int_0^h \frac{h^2}{L^2}\cdot y^2 \, dy\\
+    = \frac{L^2}{h^2} (\frac{y^3}{3})\Big|_0^h\\
+    = \boxed{ \frac{1}{3}L^2h}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=\int_0^h \frac{r^2}{h^2} \cdot \pi y^2\, dy\\
+    = \frac{\pi r^2}{h^2} (\frac{y^3}{3})\Big|_0^h\\
+    =\boxed{\frac{1}{3}\pi r^2h}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V= \int A(y)\, dy
+\end{gather*}
+The precise location of every single layer may shift, as long as the area of each piece remains the same.\vem
+
+\subproblem{d}
+\begin{gather*}
+    A_1=\pi (r^2-y^2)\\
+    A_2= \pi r^2-\pi y^2\\
+    A_1=A_2\\
+    V_{sphere} = \frac{1}{3}\pi r^2h+\pi r^2h=\boxed{\frac{4}{3}\pi r^2h}
+\end{gather*}
+
+\problem{6}
+
+\subproblem{b}
+\begin{gather*}
+    r_1=1.5^2+2.2^2+3.7^2+3.2^2), r_2=2.2,r_3=3.7, r_4=3.2\\
+    V=2\pi (1.5^2+2.2^2+3.7^2+3.2^2) = \boxed{62.04\pi}
+\end{gather*}
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    V= \frac{\pi}{8} \int_{0}^{\pi} \sin^2 x \, dx\\
+    = \frac{\pi}{8} \int_0^\pi \frac{1-\cos 2x}{2}\, dx\\
+    = \frac{\pi}{8}(\frac{x}{2}- \frac{\sin 2x}{4}) \Big|_0^\pi\\
+    =  \boxed{\frac{\pi^2}{16}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=\int_0^1 \frac{1}{1+x^2} \, dx\\
+    = \arctan x \Big|^1_0\\
+    = \boxed{\frac{\pi}{4}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V= \frac{\sqrt{3}}{4}\int_1^e \ln^2x\,d x\\
+    = \begin{bmatrix}
+        u=\ln^2x & dv=dx\\
+        du = \frac{2\ln x}{x}\, dx & v=x
+    \end{bmatrix}  \frac{\sqrt{3}}{4}(x\ln ^2 x \Big|^e_1 - \int_1^e 2\ln x\, dx)\\
+    =\frac{\sqrt{3}}{4} e + \frac{\sqrt{3}}{2}(x\ln x-x)\Big|_e^1\\
+    =\boxed{\frac{\sqrt{3}}{4}(e-2)}
+\end{gather*}
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    R=\int_0^4 \sqrt{x} -\frac{x}{2}\, dx\\
+    = (\frac{2}{3}x^\frac{3}{2}-\frac{x^2}{4})\Big|^4_0\\
+    = \boxed{ \frac{4}{3}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=\int_0^4 (\sqrt{x} -\frac{x}{2})^2\, dx\\
+    = \int_0^4 \frac{x^2}{4}- x^\frac{3}{2}+x\, dx\\
+    = (\frac{x^3}{12}- \frac{2}{5}x^\frac{5}{2}+\frac{x^2}{2})\Big|^4_0\\
+    = \boxed{\frac{8}{15}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V= \frac{\pi}{8} \cdot \frac{8}{15}=\boxed{\frac{\pi}{15}}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    V=\int_0^2 (2y-y^2)^2\, dy\\
+    =\int_0^2 y^4-4y^3+4y^2\, dy\\
+    = (\frac{y^5}{5}-y^4+ \frac{4y^3}{3})\Big|^2_0\\
+    =\boxed{\frac{16}{15}}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    V  = \int_0^4 \frac{x^2}{4}- x^\frac{3}{2}+x\, dx\\
+    \int_0^c \frac{x^2}{4}- x^\frac{3}{2}+x\, dx = \frac{4}{15}
+\end{gather*}
+The volume is strictly increasing on the interval $(0,4)$.
+
+\problem{9}
+
+\subproblem{a}
+\begin{gather*}
+    2\cos x-\sec x\\
+    =2\cos x-\frac{1}{\cos x}\\
+    = \frac{2\cos ^2 x-1}{\cos x}\\
+    = \frac{2\cos x}{\cos x} \ge 0\\
+    s(x)=2\cos x-\sec x\\
+    s(x)^2= 4\cos ^2 x - 4 + \sec^2 x
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=\int_{-\frac{\pi}{4}}^\frac{\pi}{4} 4\cos ^2 x-4+\sec ^2 x\, dx\\
+    =\int_{-\frac{\pi}{4}}^\frac{\pi}{4} 2\cos 2 x-2+\sec ^2 x\, dx\\
+    =  (\sin 2x-2x+\tan x)\Big|_{-\frac{\pi}{4}}^\frac{\pi}{4}\\
+    =2 (1-\frac{\pi}{2} +1)\\
+    =\boxed{4-\pi}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V= \frac{\sqrt{3}}{4}(4-\pi )= \boxed{\sqrt{3}- \frac{\sqrt{3}}{4}\pi}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    s^2(\frac{\pi}{8})= 2+\sqrt{2}-4+4-2\sqrt{2}=2-\sqrt{2}\\
+    V=2\cdot \frac{\pi}{4}\cdot (2-\sqrt{2})= \boxed{ \frac{\pi}{2}(2-\sqrt{2})}
+\end{gather*}
+The Midpoint Rule overestimates the real value.
+
+\problem{10}
+
+\subproblem{a}
+\begin{gather*}
+    V=\int_{-r}^r \frac{1}{2}(r^2-x^2) \, dx\\
+    =\frac{1}{2}(r^2x - \frac{x^3}{3}) \Big|_{-r}^r\\
+    =\boxed{\frac{2}{3}r^3}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    V=4\int_{-r}^r r^2-z^2\, dz\\
+    = 4(r^2z - \frac{z^3}{3})\Big|_{-r}^r\\
+    = \boxed{\frac{16}{3}r^3}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    A_1=4r^2-4z^2\\
+    A_2=\pi r^2-\pi z^2\\
+    V=\int_{-r}^r \pi (r^2-z^2)\, dz\\
+    = \boxed{\frac{4}{3}\pi r^3}
+\end{gather*}
+
+\subproblem{d}
+The $\pi$ disappears as a result of the area; all the radicals disappear, leaving a simple polynomial behind. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
