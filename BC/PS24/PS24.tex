@@ -1,0 +1,401 @@
+\documentclass[12pt]{article}
+
+\setlength{\parindent}{0pt}
+\setcounter{secnumdepth}{3}
+\usepackage[margin=1in]{geometry}
+
+% packages
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{graphicx, float}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{interval}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{titling}
+\usepackage{vwcol}
+\usepackage{setspace}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{esdiff}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{esdiff}
+\usepackage{tikzsymbols}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{varwidth}
+\usepackage{pgfplots}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\intervalconfig {
+	soft open fences
+}
+
+% header
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ethan Fan}
+\rhead{AP Calculus BC}
+\cfoot{\thepage}
+
+% section format
+\titleformat{\section}
+  {\large \bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+
+\titleformat{\subsection}[runin]
+  {\bfseries}
+  {}
+  {0em}
+  {}
+\titlespacing*{\subsection}{0pt}{0pt}{0em}
+
+\titleformat{\subsubsection}[runin]
+  {\itshape}
+  {(\roman{subsubsection})}
+  {0em}
+  {}
+
+% commands
+\newcommand{\alignedintertext}[1]{%
+  \noalign{%
+    \vskip\belowdisplayshortskip
+    \vtop{\hsize=\linewidth#1\par
+    \expandafter}%
+    \expandafter\prevdepth\the\prevdepth
+  }%
+}
+
+\newcommand*{\paren}[1]{\ensuremath\left(#1\right)}
+\newcommand*{\limit}[2][x]{\ensuremath{\displaystyle\lim_{#1\to#2}}}
+\newcommand*{\Limit}[3][x]{\ensuremath{\displaystyle\lim_{#1\to#2}\left[#3\right]}}
+\newcommand*{\deriv}[1][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}}}
+\newcommand*{\Deriv}[2][x]{\ensuremath{\dfrac{\mathrm{d}}{\mathrm{d}#1}\left[#2\right]}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\dydt}{\dfrac{dy}{dt}}
+\newcommand{\dxdt}{\dfrac{dx}{dt}}
+\newcommand*{\iinteg}[2][x]{\ensuremath{\displaystyle\int #2\;\mathrm{d}#1}}
+\newcommand*{\dinteg}[4][x]{\ensuremath{\displaystyle\int_{#2}^{#3}#4\;\mathrm{d}#1}}
+\newcommand*{\abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand*{\eps}{\varepsilon}
+\newcommand*{\real}{\ensuremath\mathbb{R}}
+\newcommand*{\integer}{\ensuremath\mathbb{Z}}
+\newcommand*{\posint}{\ensuremath\mathbb{Z^+}}
+\newcommand*{\cbrt}[1]{\ensuremath{\sqrt[3]{#1}}}
+\newcommand*{\lheqzero}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac00\right]}{=}}}}
+\newcommand*{\lheqinfty}{\ensuremath{\underset{\text{L'H}}{\overset{\left[\frac{\infty}{\infty}\right]}{=}}}}
+\newcommand{\tor}{\text{ or }}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\at}{\Big|}
+
+\newcommand{\vem}{\vspace{0.5em}}
+\newcommand{\example}[1]{\section{Example #1}}
+\newcommand{\problem}[1]{\section{Problem #1}}
+\newcommand{\subproblem}[1]{\subsection{(#1)} \,}
+
+\DeclareMathOperator{\dne}{DNE}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\definition}[1]{\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,parbox=false] #1 \end{tcolorbox}}
+
+\newcommand{\theorem}[2]{\begin{tcolorbox}[title={#1},colback=blue!5!white,colframe=blue!75!black,parbox=false] #2 \end{tcolorbox}}
+
+\allowdisplaybreaks
+% \postdisplaypenalty=100000
+
+% document
+\begin{document}
+
+\vspace*{0cm}
+
+% opening
+\begin{center}
+    {\Large \bfseries Problem Set 24} \\[0.5cm]
+    {\large Arc Length} \\[0.35cm]
+    {\normalsize November 5, 2026}
+\end{center}
+
+% problems
+
+\problem{1}
+
+\subproblem{a}
+\begin{gather*}
+    n=1 \implies l=\sqrt{2}= 1.414\\
+    n=2 \implies l = 1.4604\\
+    n=4 \implies l =1.474
+\end{gather*}
+
+\subproblem{b}
+By the triangle inequality,
+\[
+AB \le AC+BC
+\]
+Hence, every polygon length is an underestimate compared to $L$.\vem
+
+\subproblem{c}
+\begin{gather*}
+    \Delta y=f'(x)\Delta x
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    y=mx+c\implies y'=m\\
+    L=\int_a^b\sqrt{1+m^2}\, dx = (b-a)\sqrt{1+m^2}\\
+    y=\sqrt{1-x^2}= \boxed{\frac{\pi}{6}}
+\end{gather*}
+
+\problem{2}
+
+\subproblem{b}
+\begin{gather*}
+    x =y^2\implies x'=2y\\
+    l=\int_0^1 \sqrt{1+4y^2}\, dy\\
+    \sqrt{1+4y^2} = \sec \theta\\
+    y= \frac{1}{2}\tan \theta  \implies dy= \frac{1}{2}\sec^2 \theta \, d\theta\\
+    l= \frac{1}{2}\int_0^{\arctan 2} \sec^3 \theta \, d\theta\\
+    = \frac{1}{4}(\sec \theta \tan \theta + \ln | \sec \theta + \tan \theta|) \at_0^{\arctan 2}\\
+    = \frac{1}{4}(\sqrt{5} \cdot 2 + \ln (2+\sqrt{5})\\
+    = \boxed{\frac{\sqrt{5}}{2} + \frac{1}{4} \ln (2+\sqrt{5})}
+\end{gather*}
+
+\problem{3}
+
+\subproblem{b}
+\begin{gather*}
+    x=y+y^3\implies x'=1+3y^2\\
+    \boxed{l=\int_1^4 \sqrt{1+(1+3y^2)^2}\,dy}
+\end{gather*}
+
+\subproblem{c}
+$\sqrt{9+66^2}$ gives the straight-line distance between the two points, functioning as the lower bound. $3+66$ gives the simpler, overestimate version of the integral, functioning as the upper bound.
+
+\problem{4}
+
+\subproblem{b}
+\begin{gather*}
+    x=\frac{1}{3}\sqrt{y}(y-3)= \frac{1}{3}y^\frac{3}{2}-y^\frac{1}{2}\\
+    x'= \frac{1}{2}(y^\frac{1}{2}-y^{-\frac{1}{2}})\\
+    l= \int_1^9 \sqrt{1+ \paren{\frac{1}{2}(y^\frac{1}{2}-y^{-\frac{1}{2}})}^2} \, dy\\
+    = \int_1^9 \sqrt{1+\frac{1}{4}(y-2+\frac{1}{y})} \, dy\\
+    =\int_1^9 \frac{1}{2}\sqrt{ y+2+\frac{1}{y} } \, dy\\
+    = \frac{1}{2} \int_1^9 \sqrt{y} + \frac{1}{\sqrt{y}} \, dy\\
+    = \frac{1}{3}y^\frac{3}{2} + y^\frac{1}{2} \at_1^9\\
+    = 9 +3 - \frac{1}{3}-1 \\
+    = \boxed{\frac{32}{3}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    y=\ln \sec x\implies y'=  \sec x \tan x\cdot \frac{1}{\sec x}=\tan x\\
+    l=\int_0^\frac{\pi}{4} \sqrt{1+\tan^2x}\,dx\\
+    = \int_0^\frac{\pi}{4} \sec x\,dx\\
+    = \ln |\sec x +\tan x|\at _0^\frac{\pi}{4}\\
+    = \boxed{\ln (\sqrt{2}+1)}
+\end{gather*}
+
+\subproblem{e}
+\begin{gather*}
+    1+(A-B)^2= A^2-2AB+b^2+4AB=(A+B)^2\\
+    y= \frac{x^2}{8} - \ln x\\
+    y' = \frac{1}{4}x -\frac{1}{x}\\
+    l=\int_1^e \sqrt{1+\paren{\frac{1}{4}x -\frac{1}{x}}^2 } \, dx\\
+    = \int_1^e \frac{1}{4}x+\frac{1}{x}\, dx\\
+    = \frac{x^2}{8} + \ln x\at_1^e\\
+    = \boxed{\frac{e^2+7}{8}}
+\end{gather*}
+
+\problem{5}
+\begin{gather*}
+    x^\frac{2}{3}+y^\frac{2}{3}=1 \implies y^\frac{2}{3}=1-x^\frac{2}{3}\\
+    y=\paren{1-x^\frac{2}{3}}^\frac{3}{2}\\
+    y'= \frac{3}{2} (1-x^\frac{2}{3})^\frac{1}{2}(-\frac{2}{3}x^{-\frac{1}{3}})\\\\
+    y'= - \frac{(1-x^\frac{2}{3})^\frac{1}{2}}{x^\frac{1}{3}}\\
+    y=x \implies x^\frac{2}{3}=\frac{1}{2} \implies x =\frac{1}{2\sqrt{2}}\\
+    l= \int_\frac{1}{2\sqrt{2}}^1 \sqrt{1+ \frac{1-x^\frac{2}{3}}{x^\frac{2}{3}}} \, dx\\
+    = \int_\frac{1}{2\sqrt{2}}^1 x^{-\frac{1}{3}}\, dx\\
+    = \frac{3}{2}x^\frac{2}{3} \at^1_{\frac{1}{2\sqrt{2}}}\\
+    = \frac{3}{2}- \frac{3}{4}\\
+    = \boxed{\frac{3}{4}}\\
+    8\cdot \frac{3}{4} = \boxed{6}
+\end{gather*}
+Near $(0,1)$, the derivative approaches negative infinity, rendering the problem more complicated to calculate.
+
+\problem{6}
+
+\subproblem{a}
+\begin{gather*}
+    y=180-\frac{1}{45}x^2 \implies y'= - \frac{2}{45}x\\
+    l= \int_0^{90} \sqrt{1+\frac{4}{2025}x^2}\, dx\\
+    x=\frac{45}{2} \tan \theta \implies dx= \frac{45}{2}\sec^2\theta \, d \theta\\
+    l=\int_0^{\arctan 4} \frac{45}{2}\sec^3 \theta \, d\theta\\
+    = \frac{45}{4} (\sec x \tan x + \ln |\sec x +\tan x |) \at_0^{\arctan 4}\\
+    = \frac{45}{4}(\sqrt{17} \cdot 4 + \ln (\sqrt{17} +4) )\\
+    = \boxed{45\sqrt{17} + \frac{45}{4} \ln (\sqrt{17} + 4) \approx 209.1\text{m}}
+\end{gather*}
+
+\subproblem{b}
+The values are the absolute upper and lower bounds to length.
+
+\problem{7}
+
+\subproblem{a}
+\begin{gather*}
+    y= \int_1^x \sqrt{t^3-1} \, dt \implies y'=\sqrt{x^3-1}\\
+    l= \int_1^4\sqrt{1+x^3-1} \, dx\\
+    = \frac{2}{5}x^\frac{5}{2} \at_1^4\\
+    =\boxed{\frac{62}{5}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \frac{e^t-e^{-t}}{2}=\int_0^t \sqrt{1+f'(x)^2} \, dx\\
+    \frac{e^t+e^{-t}}{2}=\sqrt{1+f'(x)^2}\\
+    f'(x)^2= \frac{1}{4}(e^{2t}+2+e^{-2t}-1)\\
+    f'(x)=\frac{e^x-e^{-x}}{2}\\
+    f(x)= \int \frac{e^x-e^{-x}}{2} \, dx\\
+    \boxed{f(x)= \frac{e^x+e^{-x}}{2}}
+\end{gather*}
+
+\problem{8}
+
+\subproblem{a}
+\begin{gather*}
+    y=\frac{2}{3}x^\frac{3}{2} \implies y'=\sqrt{x}\\
+    l=\int_0^x \sqrt{1+t} \, dt\\
+    =\int_{{1}}^{x+1} \sqrt{u} \, du\\
+    = \frac{2}{3}u^\frac{3}{2}\at_1^{x+1}\\
+    =\boxed{\frac{2}{3}(x+1)^\frac{3}{2}-\frac{2}{3}}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    \frac{2}{3}(x+1)^\frac{3}{2}-\frac{2}{3} = \frac{14}{3}\\
+    (x+1)^\frac{3}{2}=8 \implies \boxed{x=3}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    s=\frac{2}{3}(x+1)^\frac{3}{2}-\frac{2}{3}\\
+    s'= \sqrt{x+1} =\sqrt{3+1}=\boxed{2}
+\end{gather*}
+It is moving 4 units per second along the curve. 
+
+\problem{9}
+
+\subproblem{a}
+\begin{gather*}
+    y= \frac{x^3}{6} + \frac{1}{2x} \implies y' = \frac{x^2}{2} - \frac{1}{2x^2} \ge 0\\
+    A=\int_1^2 \frac{x^3}{6}+\frac{1}{2x}\, dx\\
+    = \frac{x^4}{24}+ \frac{1}{2}\ln x \at_1^2\\
+    = \boxed{\frac{5}{8}+\frac{1}{2}\ln 2}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    l=\int_1^2 \sqrt{1+ \paren{\frac{x^2}{2} - \frac{1}{2x^2}}^2} \, dx\\
+    = \int_1^2 \sqrt{\paren{\frac{x^2}{2} + \frac{1}{2x^2}}^2}\, dx\\
+    = \int_1^2 \frac{x^2}{2} + \frac{1}{2x^2}\, dx\\
+    = \frac{x^3}{6} - \frac{1}{2x} \at_1^2\\
+    = \boxed{\frac{17}{12}}
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    V=\pi \int_1^2 \paren{\frac{x^3}{6}+\frac{1}{2x}}^2 \, dx\\
+    = \pi \int_1^2 \frac{x^6}{36} + \frac{x^2}{6} + \frac{1}{4x^2} \, dx\\
+    = \pi (\frac{x^7}{252}+\frac{x^3}{18} - \frac{1}{4x})\at_1^2\\
+    = \boxed{ \frac{57\pi}{56}}
+\end{gather*}
+
+\subproblem{d}
+\begin{gather*}
+    V=2\pi \int_1^2 x\paren{\frac{x^3}{6}+\frac{1}{2x}} \, dx\\
+    = 2\pi \int_1^2\frac{x^4}{6} + \frac{1}{2} \, dx\\
+    = 2\pi ( \frac{x^5}{30} + \frac{1}{2}x)\at_1^2\\
+    = \boxed{ \frac{46\pi}{15}}
+\end{gather*}
+
+\subproblem{e}
+The former represents the straight line distance, which is the strict lower bound, while the latter represent the upper bound, simply the addition of $\Delta x$ and $\Delta y$.
+
+\problem{10}
+
+\subproblem{a}
+\begin{gather*}
+    L=2\cdot n\cdot \frac{1}{n}=\boxed{2}
+\end{gather*}
+
+\subproblem{b}
+\begin{gather*}
+    l = \int_0^\pi \sqrt{1+n^2\cos^2(n^2 x)} \, dx\\
+    \ge \int_0^\pi n|\cos (n^2 x)|\, dx=2n
+\end{gather*}
+
+\subproblem{c}
+\begin{gather*}
+    0 \le f'^2-2f'+1\\
+    1+f'^2+2f'\le 2f'^2+2\\
+    1+f' \le \sqrt{2} \sqrt{1+(f')^2}
+\end{gather*}
+It is exactly $\sqrt{2}$ when $f'=1$.\vem
+
+\subproblem{d}
+\begin{gather*}
+    l=\int_a^b \sqrt{1+f'(x)^2} \, dx\\
+    g(x)=k f\paren{\frac{x}{k}} \implies g'(x)=f'\paren{\frac{x}{k}}\\
+    l= \int_{ka}^{kb} \sqrt{1+f'\paren{\frac{x}{k}}} \, dx\\
+    = k\int_a^b \sqrt{1+f'(u)^2} \, du
+\end{gather*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
